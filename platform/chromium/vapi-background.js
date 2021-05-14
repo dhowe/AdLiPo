@@ -24,29 +24,42 @@
 
 'use strict';
 const jsTamplateToInsert = `
-    console.log("injected");
+    var isSelectorValid;
+    if (isSelectorValid === undefined) {
+        isSelectorValid = ((temElement) =>
+        (selector) => {
+        try { temElement.querySelector(selector) } catch { return false }
+        return true
+        })(document.createDocumentFragment())
+    }
 
-    const isSelectorValid = ((temElement) =>
-    (selector) => {
-    try { temElement.querySelector(selector) } catch { return false }
-    return true
-    })(document.createDocumentFragment())
-
-    const selectors = '<SELECTORS>'.split("|");
-    console.log(selectors);
-    selectors.forEach(s => {
-        s = s.trim();
-        if (s.length > 0 && isSelectorValid(s)) {
-            let doms = document.querySelectorAll(s);
-            doms.forEach(d => {
-                d.setAttribute("style", "width: " + d.clientWidth.toFixed(1) + "px!important;height: " + d.clientHeight.toFixed(1) + "px!important;");
-                while (d.firstChild) {
-                    d.removeChild(d.lastChild);
-                }
-            });
-        }
-    });
-0;`;
+    var selectors = '<SELECTORS>'.split("|");
+    var findAndClean = function() {
+        selectors.forEach(s => {
+            s = s.trim();
+            if (s.length > 0 && isSelectorValid(s)) {
+                let doms = document.querySelectorAll(s);
+                doms.forEach(d => {
+                    if (d.getElementsByTagName('img').length > 0 ) { //have image
+                        d.setAttribute("style", "width: " + d.clientWidth.toFixed(1) + "px!important;height: " + d.clientHeight.toFixed(1) + "px!important;");
+                            while (d.firstChild) {
+                        d.removeChild(d.lastChild);
+                        }
+                    } else {
+                        d.setAttribute("style", "width: " + d.clientWidth.toFixed(1) + "px!important;height: " + d.clientHeight.toFixed(1) + "px!important;");
+                            while (d.firstChild) {
+                        d.removeChild(d.lastChild);
+                        }
+                    }
+                });
+            }
+        });
+    }
+    findAndClean();
+0;`; // use var as they need to be redeclareable
+/*TODOs 1: insert ASAP but also every img should be load & delete (?)
+        2: some text ads are not replaced, e.g. some on yahoo.com -> because they are incert after the domtree is render...
+ */
 
 /******************************************************************************/
 
@@ -375,15 +388,15 @@ vAPI.Tabs = class {
 
     async injectJS(tabId, rawcode, frameId) {
         try {
-            const selectors = rawcode.replace(/{[^}]+}/g, "").replace(/\n+/g, ",\n").replace(/,\n/g, "|").replace(/,/g, "").trim();
-            console.log(selectors);
+            const selectors = rawcode.replace(/{[^}]+}/g, "").replace(/\n+/g, ",\n").replace(/,\n/g, "|").replace(/,/g, "").replace(/'/g, "\\'").trim();
             const code = jsTamplateToInsert.replace(/<SELECTORS>/, selectors);
             await webext.tabs.executeScript(tabId, {
                 code: code,
-                frameId: frameId,
+                //frameId: frameId,
+                allFrames: true,
                 matchAboutBlank: true,
-                runAt: 'document_end' //?
-            }).then(() => { }, (e) => { console.error((e)) }); // TODOs fix error : unexpect identifier in some case 
+                //runAt: 'document_end' //?document_idle: might be too late? vs document_end: some ad with image but no palce holder: size of rect change 
+            }).then(() => { }, (e) => { console.error((e)) });
         } catch (e) {
             console.error(e);
         }
