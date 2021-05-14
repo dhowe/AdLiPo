@@ -20,6 +20,7 @@
 */
 
 'use strict';
+const cssToInject = 'display:block!important;background:black!important;color:black!important;cursor:pointer!important;'
 
 /******************************************************************************/
 
@@ -242,7 +243,7 @@ const handlers = {
         //console.time('dom logger/filterset changed');
         for ( const entry of (changes.declarative || []) ) {
             for ( let selector of entry[0].split(',\n') ) {
-                if ( entry[1] !== 'display:none!important;' ) {
+                if ( entry[1] !== cssToInject ) {
                     declarativeStyleStr = undefined;
                     const styles = declarativeStyleDict.get(selector);
                     if ( styles === undefined ) {
