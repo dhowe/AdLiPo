@@ -1134,6 +1134,7 @@ FilterContainer.prototype.retrieveSpecificSelectors = function(
             details.code = networkFilters.join('\n') + '\n{' + cssToInject + '}';
             if ( request.tabId !== undefined ) {
                 vAPI.tabs.insertCSS(request.tabId, details);
+                vAPI.tabs.injectJS((request.tabId, details.code, request.frameId))
             }
         }
     }
