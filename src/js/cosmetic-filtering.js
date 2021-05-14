@@ -20,6 +20,7 @@
 */
 
 'use strict';
+const cssToInject = 'display:block!important;background:black!important;color:black!important;cursor:pointer!important;'
 
 /******************************************************************************/
 
@@ -927,7 +928,8 @@ FilterContainer.prototype.retrieveGenericSelectors = function(request) {
         });
     }
 
-    out.injectedCSS = `${injected.join(',\n')}\n{display:none!important;}`;
+    out.injectedCSS = `${injected.join(',\n')}\n{${cssToInject}}`;
+    vAPI.tabs.injectJS(request.tabId, out.injectedCSS, request.frameId);
     vAPI.tabs.insertCSS(request.tabId, {
         code: out.injectedCSS,
         frameId: request.frameId,
@@ -1096,7 +1098,7 @@ FilterContainer.prototype.retrieveSpecificSelectors = function(
 
         if ( injectedHideFilters.length !== 0 ) {
             injectedCSS.push(
-                `${injectedHideFilters.join(',\n')}\n{display:none!important;}`
+                `${injectedHideFilters.join(',\n')}\n{${cssToInject}}`
             );
         }
 
@@ -1120,6 +1122,7 @@ FilterContainer.prototype.retrieveSpecificSelectors = function(
         details.code = out.injectedCSS;
         if ( request.tabId !== undefined ) {
             vAPI.tabs.insertCSS(request.tabId, details);
+            vAPI.tabs.injectJS(request.tabId, details.code, request.frameId);
         }
     }
 
@@ -1128,7 +1131,7 @@ FilterContainer.prototype.retrieveSpecificSelectors = function(
         const networkFilters = [];
         cacheEntry.retrieve('net', networkFilters);
         if ( networkFilters.length !== 0 ) {
-            details.code = networkFilters.join('\n') + '\n{display:none!important;}';
+            details.code = networkFilters.join('\n') + '\n{' + cssToInject + '}';
             if ( request.tabId !== undefined ) {
                 vAPI.tabs.insertCSS(request.tabId, details);
             }

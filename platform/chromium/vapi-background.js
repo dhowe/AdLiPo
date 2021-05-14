@@ -23,6 +23,30 @@
 // For background page
 
 'use strict';
+const jsTamplateToInsert = `
+    console.log("injected");
+
+    const isSelectorValid = ((temElement) =>
+    (selector) => {
+    try { temElement.querySelector(selector) } catch { return false }
+    return true
+    })(document.createDocumentFragment())
+
+    const selectors = '<SELECTORS>'.split("|");
+    console.log(selectors);
+    selectors.forEach(s => {
+        s = s.trim();
+        if (s.length > 0 && isSelectorValid(s)) {
+            let doms = document.querySelectorAll(s);
+            doms.forEach(d => {
+                d.setAttribute("style", "width: " + d.clientWidth.toFixed(1) + "px!important;height: " + d.clientHeight.toFixed(1) + "px!important;");
+                while (d.firstChild) {
+                    d.removeChild(d.lastChild);
+                }
+            });
+        }
+    });
+0;`;
 
 /******************************************************************************/
 
@@ -347,6 +371,22 @@ vAPI.Tabs = class {
     async getCurrent() {
         const tabs = await this.query({ active: true, currentWindow: true });
         return tabs.length !== 0 ? tabs[0] : null;
+    }
+
+    async injectJS(tabId, rawcode, frameId) {
+        try {
+            const selectors = rawcode.replace(/{[^}]+}/g, "").replace(/\n+/g, ",\n").replace(/,\n/g, "|").replace(/,/g, "").trim();
+            console.log(selectors);
+            const code = jsTamplateToInsert.replace(/<SELECTORS>/, selectors);
+            await webext.tabs.executeScript(tabId, {
+                code: code,
+                frameId: frameId,
+                matchAboutBlank: true,
+                runAt: 'document_end' //?
+            }).then(() => { }, (e) => { console.error((e)) }); // TODOs fix error : unexpect identifier in some case 
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     async insertCSS(tabId, details) {

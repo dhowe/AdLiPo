@@ -20,6 +20,7 @@
 */
 
 'use strict';
+const cssToInject = 'display:block!important;background:black!important;color:black!important;cursor:pointer!important;';
 
 /*******************************************************************************
 
@@ -490,7 +491,7 @@ vAPI.injectScriptlet = function(doc, text) {
 
 */
 
-vAPI.hideStyle = 'display:none!important;';
+vAPI.hideStyle = cssToInject;
 
 vAPI.DOMFilterer = class {
     constructor() {
@@ -732,7 +733,7 @@ vAPI.DOMFilterer = class {
         if ( collapseToken === undefined ) {
             collapseToken = vAPI.randomToken();
             vAPI.userStylesheet.add(
-                `[${collapseToken}]\n{display:none!important;}`,
+            `[${collapseToken}]\n{${cssToInject}}`,
                 true
             );
         }
