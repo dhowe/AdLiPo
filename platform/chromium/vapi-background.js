@@ -35,27 +35,22 @@ const jsTamplateToInsert = `
 
     var selectors = '<SELECTORS>'.split("|");
     var findAndClean = function() {
+        console.log("cleaning ads ...")
         selectors.forEach(s => {
             s = s.trim();
             if (s.length > 0 && isSelectorValid(s)) {
                 let doms = document.querySelectorAll(s);
                 doms.forEach(d => {
-                    if (d.getElementsByTagName('img').length > 0 ) { //have image
-                        d.setAttribute("style", "width: " + d.clientWidth.toFixed(1) + "px!important;height: " + d.clientHeight.toFixed(1) + "px!important;");
-                            while (d.firstChild) {
+                    d.setAttribute("style", "width: " + d.clientWidth.toFixed(1) + "px!important;height: " + d.clientHeight.toFixed(1) + "px!important;");
+                    while (d.firstChild) {
                         d.removeChild(d.lastChild);
-                        }
-                    } else {
-                        d.setAttribute("style", "width: " + d.clientWidth.toFixed(1) + "px!important;height: " + d.clientHeight.toFixed(1) + "px!important;");
-                            while (d.firstChild) {
-                        d.removeChild(d.lastChild);
-                        }
                     }
                 });
             }
         });
     }
-    findAndClean();
+    
+    window.addEventListener("load", findAndClean);
 0;`; // use var as they need to be redeclareable
 /*TODOs 1: insert ASAP but also every img should be load & delete (?)
         2: some text ads are not replaced, e.g. some on yahoo.com -> because they are incert after the domtree is render...
@@ -392,10 +387,9 @@ vAPI.Tabs = class {
             const code = jsTamplateToInsert.replace(/<SELECTORS>/, selectors);
             await webext.tabs.executeScript(tabId, {
                 code: code,
-                //frameId: frameId,
-                allFrames: true,
+                frameId: frameId,
                 matchAboutBlank: true,
-                //runAt: 'document_end' //?document_idle: might be too late? vs document_end: some ad with image but no palce holder: size of rect change 
+                runAt: 'document_start' 
             }).then(() => { }, (e) => { console.error((e)) });
         } catch (e) {
             console.error(e);
