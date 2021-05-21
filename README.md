@@ -1,6 +1,6 @@
 ## AdLiPo
 
-### A uBlock-based version of AdLiPo (under development)
+### Ongoing development for a uBlock-based variant of AdLiPo
 
 <br>
 
