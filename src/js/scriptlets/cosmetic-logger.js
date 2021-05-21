@@ -20,7 +20,7 @@
 */
 
 'use strict';
-const cssToInject = 'display:block!important;background:black!important;color:black!important;cursor:pointer!important;'
+const cssToInject = 'display:block!important;';
 
 /******************************************************************************/
 

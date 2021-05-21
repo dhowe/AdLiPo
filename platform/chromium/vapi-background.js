@@ -41,7 +41,15 @@ const jsTamplateToInsert = `
             if (s.length > 0 && isSelectorValid(s)) {
                 let doms = document.querySelectorAll(s);
                 doms.forEach(d => {
-                    d.setAttribute("style", "width: " + d.clientWidth.toFixed(1) + "px!important;height: " + d.clientHeight.toFixed(1) + "px!important;");
+                    d.setAttribute("style", "display: block!important");
+                    //console.log("w",d.clientWidth); // get width and height confilct with injected css
+                    for (let index = d.attributes.length - 1; index >= 0; index --){
+                        d.removeAttribute(d.attributes[index].name);
+                    }
+                    console.log("w",d.clientWidth);
+                    d.setAttribute("style", "width: " + d.clientWidth.toFixed(1) + "px!important;height: " + d.clientHeight.toFixed(1) + "px!important;background: black!important;cursor: pointer!important");
+                    d.setAttribute("class", "AdLiPoRemovedAd"); // for injected css
+                    console.log(d);
                     while (d.firstChild) {
                         d.removeChild(d.lastChild);
                     }
@@ -51,7 +59,7 @@ const jsTamplateToInsert = `
     }
 
     var checkAndClean = function(mutations, observer) {
-        console.log("mutation detected")
+        //console.log("mutation detected")
         mutations.forEach(mutation => {
             if (mutation.type === 'childList') {
                 if (mutation.addedNodes.length > 0) {
@@ -66,6 +74,12 @@ const jsTamplateToInsert = `
                             }
                         }
                         if (match) {
+                            for (let index = node.attributes.length - 1; index >= 0; index --){
+                                node.removeAttribute(node.attributes[index].name);
+                            }
+                            node.setAttribute("style", "width: " + d.clientWidth.toFixed(1) + "px!important;height: " + node.clientHeight.toFixed(1) + "px!important;background: black!important;cursor: pointer!important");
+                            node.setAttribute("class", "AdLiPoRemovedAd"); // for injected css
+                            console.log(node)
                             while (node.firstChild) {
                                 node.removeChild(d.lastChild);
                             }
