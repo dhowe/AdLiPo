@@ -21,6 +21,7 @@ For Firefox, run `tools/make-firefox.sh` (`sh tools/make-firefox.sh -all`), then
 For Chromium: run `tools/make-chromium.sh` (`sh tools/make-chromium.sh`), then load the unpack extension into Chromium browsers.
 
 <br> 
+
 #### Testing
 
 After loading the extension:
