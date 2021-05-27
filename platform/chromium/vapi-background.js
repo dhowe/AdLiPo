@@ -53,10 +53,10 @@ const jsTamplateToInsert = `
     var checkAndProcess = function(mutations, observer) {
         console.log("mutation detected")
         mutations.forEach(mutation => {
-            if (mutation.type === 'childList' || mutation.type === 'attributes') {
+            if (mutation.type === 'childList') {
                 if (mutation.addedNodes.length > 0) {
                     for (let i = 0; i < mutation.addedNodes.length; i ++) {
-                        const node = mutation.addedNodes[i];
+                        let node = mutation.addedNodes[i];
                         if (node.nodeType !== Node.ELEMENT_NODE) continue;
                         for (let j = 0; j < selectors.length; j ++) {
                             if (node.matches(selectors[j])) {
@@ -66,6 +66,17 @@ const jsTamplateToInsert = `
                         }
                     }
                 } 
+            } else if (mutation.type === 'attributes') {
+                let node = mutation.target;
+                if (node.nodeType !== Node.ELEMENT_NODE) {}
+                else {
+                    for (let j = 0; j < selectors.length; j ++) {
+                        if (node.matches(selectors[j])) {
+                            processCatchedElement(node, 1);
+                            break;
+                        }
+                    }
+                }
             }
         });
     }
