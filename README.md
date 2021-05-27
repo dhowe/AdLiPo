@@ -8,7 +8,7 @@ Note: uBlock Origin is included as a submodule (rather than via forking)
 
 <hr>
 
-### Instructions for building/testing
+### Instructions
 
 #### Building
 
