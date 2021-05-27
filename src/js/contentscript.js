@@ -20,7 +20,7 @@
 */
 
 'use strict';
-const cssToInject = 'display:none!important;';
+const cssToInject = 'visibility: hidden!important;';
 
 /*******************************************************************************
 

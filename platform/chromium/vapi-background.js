@@ -24,6 +24,7 @@
 
 'use strict';
 const jsTamplateToInsert = `
+    var onloadList = ["body", "frame", "frameset", "iframe", "img", "link", "script"];
     var isSelectorValid;
     if (isSelectorValid === undefined) {
         isSelectorValid = ((temElement) =>
@@ -34,54 +35,33 @@ const jsTamplateToInsert = `
     }
 
     var selectors = '<SELECTORS>'.split("|");
-    var findAndClean = function() {
-        console.log("cleaning ads ...")
+    var findAndProcess = function() {
+        console.log("processing ads ...")
         selectors.forEach(s => {
             s = s.trim();
             if (s.length > 0 && isSelectorValid(s)) {
                 let doms = document.querySelectorAll(s);
                 doms.forEach(d => {
-                    d.setAttribute("style", "display: block!important");
-                    //console.log("w",d.clientWidth); // get width and height confilct with injected css
-                    for (let index = d.attributes.length - 1; index >= 0; index --){
-                        d.removeAttribute(d.attributes[index].name);
-                    }
-                    console.log("w",d.clientWidth);
-                    d.setAttribute("style", "width: " + d.clientWidth.toFixed(1) + "px!important;height: " + d.clientHeight.toFixed(1) + "px!important;background: black!important;cursor: pointer!important");
-                    d.setAttribute("class", "AdLiPoRemovedAd"); // for injected css
-                    console.log(d);
-                    while (d.firstChild) {
-                        d.removeChild(d.lastChild);
-                    }
+                    processCatchedElement(d, 1);
                 });
             }
         });
+        //inject css
+
     }
 
-    var checkAndClean = function(mutations, observer) {
-        //console.log("mutation detected")
+    var checkAndProcess = function(mutations, observer) {
+        console.log("mutation detected")
         mutations.forEach(mutation => {
-            if (mutation.type === 'childList') {
+            if (mutation.type === 'childList' || mutation.type === 'attributes') {
                 if (mutation.addedNodes.length > 0) {
                     for (let i = 0; i < mutation.addedNodes.length; i ++) {
                         const node = mutation.addedNodes[i];
                         if (node.nodeType !== Node.ELEMENT_NODE) continue;
-                        let match = false;
                         for (let j = 0; j < selectors.length; j ++) {
                             if (node.matches(selectors[j])) {
-                                match = true;
+                                processCatchedElement(node, 1);
                                 break;
-                            }
-                        }
-                        if (match) {
-                            for (let index = node.attributes.length - 1; index >= 0; index --){
-                                node.removeAttribute(node.attributes[index].name);
-                            }
-                            node.setAttribute("style", "width: " + d.clientWidth.toFixed(1) + "px!important;height: " + node.clientHeight.toFixed(1) + "px!important;background: black!important;cursor: pointer!important");
-                            node.setAttribute("class", "AdLiPoRemovedAd"); // for injected css
-                            console.log(node)
-                            while (node.firstChild) {
-                                node.removeChild(d.lastChild);
                             }
                         }
                     }
@@ -90,10 +70,37 @@ const jsTamplateToInsert = `
         });
     }
 
-    var observer = new MutationObserver(checkAndClean);
+    var observer = new MutationObserver(checkAndProcess);
+
+    var processCatchedElement = function (node, dbug) {
+        let oriW = node.offsetWidth;
+        let oriH = node.offsetHeight;
+
+        let injectedBG = document.createElement("div");
+        injectedBG.setAttribute("class", "AdLiPoReplacedAd");
+        injectedBG.setAttribute("style", "background: black!important;width:" + oriW + "px!important;height: " + oriH + "px!important");
+
+        if (dbug) console.log("replacing ", node, "with", injectedBG);
+        node.parentNode.replaceChild(injectedBG, node);
+    }
+
+    var cleanCatchedElement = function (node) {
+        node.setAttribute("style", "display: block!important");
+        const w = node.clientWidth;
+        const h = node.clientHeight;
+        for (let index = node.attributes.length - 1; index >= 0; index --){
+            node.removeAttribute(node.attributes[index].name);
+        }
+        node.setAttribute("style", "width: " + ((w === 0) ? (node.clientWidth.toFixed(1)) : w) + "px!important;height: " + ((h === 0) ? (node.clientHeight.toFixed(1)) : h) + "px!important;background: black!important;cursor: pointer!important");
+        node.setAttribute("class", "AdLiPoRemovedAd"); // for injected css
+        console.log(node)
+        while (node.firstChild) {
+            node.removeChild(d.lastChild);
+        }
+    }
 
     observer.observe(document, { childList: true, subtree: true, characterData: false })
-    window.addEventListener("load", findAndClean);
+    window.addEventListener("load", findAndProcess);
 0;`; // use var as they need to be redeclareable
 /*TODOs 1: insert ASAP but also every img should be load & delete (?)
         2: some text ads are not replaced, e.g. some on yahoo.com -> because they are incert after the domtree is render...
@@ -443,6 +450,7 @@ vAPI.Tabs = class {
         if ( vAPI.supportsUserStylesheets ) {
             details.cssOrigin = 'user';
         }
+        //details.runAt = 'document_idle'
         try {
             await webext.tabs.insertCSS(...arguments);
         }
