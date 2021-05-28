@@ -46,38 +46,28 @@ const jsTamplateToInsert = `
                 });
             }
         });
-        //inject css
-
     }
 
     var checkAndProcess = function(mutations, observer) {
-        console.log("mutation detected")
         mutations.forEach(mutation => {
+            let checkList = [];
             if (mutation.type === 'childList') {
-                if (mutation.addedNodes.length > 0) {
-                    for (let i = 0; i < mutation.addedNodes.length; i ++) {
-                        let node = mutation.addedNodes[i];
-                        if (node.nodeType !== Node.ELEMENT_NODE) continue;
-                        for (let j = 0; j < selectors.length; j ++) {
-                            if (node.matches(selectors[j])) {
-                                processCatchedElement(node, 1);
-                                break;
-                            }
-                        }
-                    }
-                } 
+                checkList = mutation.addedNodes; //[] to NodeList
             } else if (mutation.type === 'attributes') {
-                let node = mutation.target;
-                if (node.nodeType !== Node.ELEMENT_NODE) {}
-                else {
-                    for (let j = 0; j < selectors.length; j ++) {
-                        if (node.matches(selectors[j])) {
-                            processCatchedElement(node, 1);
-                            break;
+                checkList.push(mutation.target);
+            }
+            if (!checkList.length) return;
+            
+            selectors.forEach(s => {
+                s = s.trim();
+                if (s.length > 0 && isSelectorValid(s)) {
+                    for (let i = 0; i < checkList.length; i ++) {
+                        if (checkList[i].matches(s)) {
+                            processCatchedElement(checkList[i], 1);
                         }
                     }
                 }
-            }
+            });
         });
     }
 
@@ -126,7 +116,7 @@ const jsTamplateToInsert = `
         return pool[Math.floor(Math.random() * pool.length)];
     }
 
-    observer.observe(document, { childList: true, subtree: true, characterData: false })
+    observer.observe(document, { childList: true, subtree: true, characterData: false, attributes: true, attributeFilter:  ["display", "class", "style", "id"], })
     window.addEventListener("load", findAndProcess);
 0;`; // use var as they need to be redeclareable
 /*TODOs 1: insert ASAP but also every img should be load & delete (?)
