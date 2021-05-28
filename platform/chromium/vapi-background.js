@@ -84,30 +84,46 @@ const jsTamplateToInsert = `
     var observer = new MutationObserver(checkAndProcess);
 
     var processCatchedElement = function (node, dbug) {
+        //check the node
+        if (node.offsetWidth < 2 || node.offsetHeight < 2) {
+            if (dbug) console.log(node,"too small");
+            return;
+        }
+
+        if (node.classList.contains("AdLiPoReplacedAd")) return; //already changed
+        //
+        let type = (node.tagName.toLowerCase() === "img" || node.tagName.toLowerCase() === "iframe")
         let oriW = node.offsetWidth;
         let oriH = node.offsetHeight;
 
         let injectedBG = document.createElement("div");
         injectedBG.setAttribute("class", "AdLiPoReplacedAd");
-        injectedBG.setAttribute("style", "background: black!important;width:" + oriW + "px!important;height: " + oriH + "px!important");
+        injectedBG.setAttribute("style", "background: " + getColor() + "!important;width:" + oriW + "px!important;height: " + oriH + "px!important");
 
-        if (dbug) console.log("replacing ", node, "with", injectedBG);
-        node.parentNode.replaceChild(injectedBG, node);
+        // different moves according to different kinds of elements
+        if (node.parentNode.tagName.toLowerCase() === "a") {
+            node = node.parentNode; // get rid of links
+        }
+
+        if (type){
+            // img & iframe
+            injectedBG.style.position = "relative";
+            if (dbug) console.log("replacing ", node, "with", injectedBG);
+            node.parentNode.replaceChild(injectedBG, node);
+        } else {
+            // div, li, etc
+            injectedBG.style.position = "relative";
+            injectedBG.style.top = "0px";
+            injectedBG.style.left = "opx";
+            if (dbug) console.log("replacing ", node, "with", injectedBG);
+            node.parentNode.replaceChild(injectedBG, node);
+        }
+        
     }
 
-    var cleanCatchedElement = function (node) {
-        node.setAttribute("style", "display: block!important");
-        const w = node.clientWidth;
-        const h = node.clientHeight;
-        for (let index = node.attributes.length - 1; index >= 0; index --){
-            node.removeAttribute(node.attributes[index].name);
-        }
-        node.setAttribute("style", "width: " + ((w === 0) ? (node.clientWidth.toFixed(1)) : w) + "px!important;height: " + ((h === 0) ? (node.clientHeight.toFixed(1)) : h) + "px!important;background: black!important;cursor: pointer!important");
-        node.setAttribute("class", "AdLiPoRemovedAd"); // for injected css
-        console.log(node)
-        while (node.firstChild) {
-            node.removeChild(d.lastChild);
-        }
+    function getColor() {
+        let pool = ['#4484A4', '#A2B6C0', '#889D59', '#CF8D2F', '#C55532'];
+        return pool[Math.floor(Math.random() * pool.length)];
     }
 
     observer.observe(document, { childList: true, subtree: true, characterData: false })
