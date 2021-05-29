@@ -42,33 +42,45 @@ const jsTamplateToInsert = `
             if (s.length > 0 && isSelectorValid(s)) {
                 let doms = document.querySelectorAll(s);
                 doms.forEach(d => {
-                    processCatchedElement(d, 1);
+                    processCatchedElement(d);
                 });
             }
         });
     }
 
     var checkAndProcess = function(mutations, observer) {
-        mutations.forEach(mutation => {
-            let checkList = [];
+        for(let idx = 0; idx < mutations.length; idx++) {
+            const mutation = mutations[idx];
+            let checkList;
             if (mutation.type === 'childList') {
-                checkList = mutation.addedNodes; //[] to NodeList
+                checkList = mutation.addedNodes;
             } else if (mutation.type === 'attributes') {
-                checkList.push(mutation.target);
+                if (mutation.target.hasChildNodes()){
+                    checkChildren(mutation.target);
+                    continue;
+                } else {
+                    checkList = mutation.target
+                }
             }
-            if (!checkList.length) return;
+            if (!checkList) continue;
             
             selectors.forEach(s => {
                 s = s.trim();
                 if (s.length > 0 && isSelectorValid(s)) {
-                    for (let i = 0; i < checkList.length; i ++) {
-                        if (checkList[i].matches(s)) {
-                            processCatchedElement(checkList[i], 1);
+                    if (checkList.length) {
+                        for (let i = 0; i < checkList.length; i ++) {
+                            if (checkList[i].matches(s)) {
+                                processCatchedElement(checkList[i]);
+                            }
+                        }
+                    } else {
+                        if (checkList.matches(s)) {
+                            processCatchedElement(checkList);
                         }
                     }
                 }
             });
-        });
+        }
     }
 
     var observer = new MutationObserver(checkAndProcess);
@@ -109,6 +121,18 @@ const jsTamplateToInsert = `
             node.parentNode.replaceChild(injectedBG, node);
         }
         
+    }
+
+    function checkChildren(target){
+        selectors.forEach(s => {
+            s = s.trim();
+            if (s.length > 0 && isSelectorValid(s)) {
+                let doms = target.querySelectorAll(s);
+                doms.forEach(d => {
+                    processCatchedElement(d);
+                });
+            }
+        });
     }
 
     function getColor() {
