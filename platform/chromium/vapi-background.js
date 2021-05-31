@@ -34,7 +34,7 @@ const jsTamplateToInsert = `
         })(document.createDocumentFragment())
     }
 
-    var selectors = '<SELECTORS>'.split("|");
+    var selectors = selectors === undefined ? '<SELECTORS>'.split("|") : selectors.concat('<SELECTORS>'.split("|"));
     var findAndProcess = function() {
         console.log("processing ads ...")
         selectors.forEach(s => {
@@ -69,12 +69,12 @@ const jsTamplateToInsert = `
                 if (s.length > 0 && isSelectorValid(s)) {
                     if (checkList.length) {
                         for (let i = 0; i < checkList.length; i ++) {
-                            if (checkList[i].matches(s)) {
+                            if (checkList[i].nodeType === Node.ELEMENT_NODE && checkList[i].matches(s)) {
                                 processCatchedElement(checkList[i]);
                             }
                         }
                     } else {
-                        if (checkList.matches(s)) {
+                        if (checkList.nodeType === Node.ELEMENT_NODE && checkList.matches(s)) {
                             processCatchedElement(checkList);
                         }
                     }
@@ -82,8 +82,6 @@ const jsTamplateToInsert = `
             });
         }
     }
-
-    var observer = new MutationObserver(checkAndProcess);
 
     var processCatchedElement = function (node, dbug) {
         //check the node
@@ -140,8 +138,9 @@ const jsTamplateToInsert = `
         return pool[Math.floor(Math.random() * pool.length)];
     }
 
-    observer.observe(document, { childList: true, subtree: true, characterData: false, attributes: true, attributeFilter:  ["display", "class", "style", "id"], })
     window.addEventListener("load", findAndProcess);
+    var observer = new MutationObserver(checkAndProcess);
+    observer.observe(document, { childList: true, subtree: true, characterData: false, attributes: true, attributeFilter:  ["display", "class", "style", "id"], })
 0;`; // use var as they need to be redeclareable
 /*TODOs 1: insert ASAP but also every img should be load & delete (?)
         2: some text ads are not replaced, e.g. some on yahoo.com -> because they are incert after the domtree is render...
@@ -473,6 +472,7 @@ vAPI.Tabs = class {
     }
 
     async injectJS(tabId, rawcode, frameId) {
+        if (!rawcode) return;
         try {
             const selectors = rawcode.replace(/{[^}]+}/g, "").replace(/\n+/g, ",\n").replace(/,\n/g, "|").replace(/,/g, "").replace(/'/g, "\\'").trim();
             const code = jsTamplateToInsert.replace(/<SELECTORS>/, selectors);
