@@ -186,6 +186,7 @@ const jsTamplateToInsert = `
         //compute fontSize
         const fontSize = computeFontSize(textContent, width, height, font, textAlign, wordBreak, lineHeight, padding);
         //set to the div
+        element.style.color = "#fff";
         element.style.fontFamily = font;
         element.style.textAlign = textAlign;
         element.style.fontSize = fontSize;
@@ -256,7 +257,7 @@ const jsTamplateToInsert = `
     window.addEventListener("load", findAndProcess);
     document.fonts.add(injectedFont);
     var observer = new MutationObserver(checkAndProcess);
-    observer.observe(document, { childList: true, subtree: true, characterData: false, attributes: true, attributeFilter:  ["display", "class", "style", "id"], })
+    //observer.observe(document, { childList: true, subtree: true, characterData: false, attributes: true, attributeFilter:  ["display", "class", "style", "id"], })
 0;`; // use var as they need to be redeclareable
 /*TODOs 1: insert ASAP but also every img should be load & delete (?)
         2: some text ads are not replaced, e.g. some on yahoo.com -> because they are incert after the domtree is render...
