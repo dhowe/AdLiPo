@@ -25,6 +25,8 @@
 'use strict';
 const jsTamplateToInsert = `
     var onloadList = ["body", "frame", "frameset", "iframe", "img", "link", "script"];
+    var injectedFont = new FontFace("bench9", "url('https://fonts.gstatic.com/s/benchnine/v9/ahcbv8612zF4jxrwMosbUMl0.woff2') format('woff2')");
+
     var isSelectorValid;
     if (isSelectorValid === undefined) {
         isSelectorValid = ((temElement) =>
@@ -252,6 +254,7 @@ const jsTamplateToInsert = `
     }
 
     window.addEventListener("load", findAndProcess);
+    document.fonts.add(injectedFont);
     var observer = new MutationObserver(checkAndProcess);
     observer.observe(document, { childList: true, subtree: true, characterData: false, attributes: true, attributeFilter:  ["display", "class", "style", "id"], })
 0;`; // use var as they need to be redeclareable
