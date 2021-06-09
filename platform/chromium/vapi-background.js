@@ -51,6 +51,7 @@ const jsTamplateToInsert = `
     }
 
     var checkAndProcess = function(mutations, observer) {
+        // TODOs: too slow
         for(let idx = 0; idx < mutations.length; idx++) {
             const mutation = mutations[idx];
             let checkList;
@@ -85,7 +86,7 @@ const jsTamplateToInsert = `
         }
     }
 
-    var processCatchedElement = function (node, dbug) {
+    function processCatchedElement (node, dbug, skipText) {
         //check the node
         if (node.offsetWidth < 2 || node.offsetHeight < 2) {
             if (dbug) console.log(node,"too small");
@@ -113,7 +114,7 @@ const jsTamplateToInsert = `
             if (dbug) console.log("replacing ", node, "with", injectedBG);
             node.parentNode.replaceChild(injectedBG, node);
             //append text
-            appendText("This is a test centence. This is another one.", injectedBG);
+            if (!skipText) appendText("This is a test centence. This is another one.", injectedBG);
         } else {
             // div, li, etc
             injectedBG.style.position = "relative";
@@ -122,7 +123,7 @@ const jsTamplateToInsert = `
             if (dbug) console.log("replacing ", node, "with", injectedBG);
             node.parentNode.replaceChild(injectedBG, node);
             //append text
-            appendText("This is a test centence. This is another one.", injectedBG);
+            if (!skipText) appendText("This is a test centence. This is another one.", injectedBG);
         }
         
     }
@@ -257,7 +258,7 @@ const jsTamplateToInsert = `
     window.addEventListener("load", findAndProcess);
     document.fonts.add(injectedFont);
     var observer = new MutationObserver(checkAndProcess);
-    //observer.observe(document, { childList: true, subtree: true, characterData: false, attributes: true, attributeFilter:  ["display", "class", "style", "id"], })
+    observer.observe(document, { childList: true, subtree: true, characterData: false, attributes: true, attributeFilter:  ["display", "class", "style", "id"], })
 0;`; // use var as they need to be redeclareable
 /*TODOs 1: insert ASAP but also every img should be load & delete (?)
         2: some text ads are not replaced, e.g. some on yahoo.com -> because they are incert after the domtree is render...
