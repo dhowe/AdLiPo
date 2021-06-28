@@ -12,6 +12,8 @@ cp -R src/js                       $DES/
 cp -R src/lib                      $DES/
 cp -R src/web_accessible_resources $DES/
 cp -R src/_locales                 $DES/
+# AdLiPo
+cp -R AdLiPo/src/js                $DES/
 
 cp src/*.html                      $DES/
 cp platform/chromium/*.js          $DES/js/

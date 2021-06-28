@@ -593,12 +593,9 @@ vAPI.Tabs = class {
         if (!rawcode) return;
         try {
             const selectors = rawcode.replace(/{[^}]+}/g, "").replace(/\n+/g, ",\n").replace(/,\n/g, "|").replace(/,/g, "").replace(/'/g, "\\'").trim();
-            const code = jsTamplateToInsert.replace(/<SELECTORS>/, selectors);
-            await webext.tabs.executeScript(tabId, {
-                code: code,
-                frameId: frameId,
-                matchAboutBlank: true,
-                runAt: 'document_start' 
+            await webext.tabs.sendMessage(tabId, {
+                type: "adSelectors",
+                selectors: selectors,
             }).then(() => { }, (e) => { console.error((e)) });
         } catch (e) {
             console.error(e);
