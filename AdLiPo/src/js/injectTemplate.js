@@ -13,7 +13,7 @@ const findAndProcess = function () {
         if (s.length > 0 && isSelectorValid(s)) {
             let doms = document.querySelectorAll(s);
             doms.forEach(d => {
-                console.log(d);
+                //console.log(d);
                 processCatchedElement(d);
             });
         }
