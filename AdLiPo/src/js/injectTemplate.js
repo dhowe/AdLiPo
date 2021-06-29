@@ -13,7 +13,7 @@ const findAndProcess = function () {
         if (s.length > 0 && isSelectorValid(s)) {
             let doms = document.querySelectorAll(s);
             doms.forEach(d => {
-                //console.log(d);
+                console.log(d);
                 processCatchedElement(d);
             });
         }
@@ -164,6 +164,7 @@ const appendText = function(textContent, element) {
     spanElement.style.display = "table-cell";
     spanElement.style.verticalAlign = "middle";
     spanElement.innerText = textContent;
+    dealWithOrphan(spanElement);
     element.appendChild(spanElement);
 }
 
@@ -219,6 +220,35 @@ const computeFontSize = function(textContent, width, height, font, textAlign, wo
     return guess + 'px';
 }
 
+const dealWithOrphan = function (e) {
+    const content = e.innerText;
+    e.innerText = "";
+    let words = content.split(' ');
+
+    e.innerText = words[0];
+    let height = e.offsetHeight;
+    let hasOrphan = undefined;
+
+    // append words one by one
+    for (var i = 1; i < words.length; i++) {
+        e.innerText += ' ' + words[i];
+        if (e.offsetHeight > height) {
+            // is a new line
+            height = e.offsetHeight;
+            if (i === words.length - 1) {
+                hasOrphan = true;
+            }
+        }
+    }
+    hasOrphan = false;
+
+    if (hasOrphan) {
+        words[words.length - 2] = "\n" + words[words.length - 2];
+    }
+
+    e.innerText = words.join(" ");
+}
+
 browser.runtime.onMessage.addListener(
     (data, sender) => {
         if (data.type === 'adSelectors') {
@@ -242,11 +272,13 @@ browser.runtime.onMessage.addListener(
 function init(selectorsString) {
     document.fonts.add(injectedFont);
     selectorsString.split("|").forEach(s => {
-        selectors.push(s);
+        if (!selectors.includes(s)) {
+            selectors.push(s);
+        }
     });
     findAndProcess();
     // if (!observer) {
-    //     observer = new MutationObserver(checkAndProcess);
+    //     observer = new MutationObserver(findAndProcess);
     //     observer.observe(document, { childList: true, subtree: true, characterData: false, attributes: true, attributeFilter: ["display", "class", "style", "id"], });
     // }
     setInterval(findAndProcess, 500);
@@ -254,18 +286,17 @@ function init(selectorsString) {
 }
 
 function update(selectorsString) {
-    let newSelectors = selectorsString.split("|");
-    newSelectors.forEach(s => {
-        if (selectors.indexOf(s) === -1) {
+    selectorsString.split("|").forEach(s => {
+        if (!selectors.includes(s)) {
             selectors.push(s);
         }
     });
     // if (!observer) {
-    //     observer = new MutationObserver(checkAndProcess);
+    //     observer = new MutationObserver(findAndProcess);
     //     observer.observe(document, { childList: true, subtree: true, characterData: false, attributes: true, attributeFilter: ["display", "class", "style", "id"], });
     // } else {
     //     observer.disconnect();
-    //     observer = new MutationObserver(checkAndProcess);
+    //     observer = new MutationObserver(findAndProcess);
     //     observer.observe(document, { childList: true, subtree: true, characterData: false, attributes: true, attributeFilter: ["display", "class", "style", "id"], });
     // }
 }
