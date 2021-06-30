@@ -40,10 +40,11 @@
         "file://*/*"
       ],
       "js": [
+        "/js/rita-micro.js",
         "/js/vapi.js",
         "/js/vapi-client.js",
         "/js/contentscript.js",
-        "js/injectTemplate.js"
+        "/js/injectTemplate.js"
       ],
       "run_at": "document_start",
       "all_frames": true
