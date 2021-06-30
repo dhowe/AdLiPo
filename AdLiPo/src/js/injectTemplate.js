@@ -92,7 +92,7 @@ const processCatchedElement = function (node, dbug, skipText) {
         // div, li, etc
         injectedBG.style.position = "relative";
         injectedBG.style.top = "0px";
-        injectedBG.style.left = "opx";
+        injectedBG.style.left = "0px";
         if (dbug) console.log("replacing ", node, "with", injectedBG);
         node.parentNode.replaceChild(injectedBG, node);
         //append text
@@ -141,7 +141,7 @@ const appendText = function(textContent, element) {
     const textAlign = element.style.textAlign || 'left'; // a string representing alignment
     const wordBreak = element.style.wordBreak || 'break-word'; 
     const lineHeight = element.style.lineHeight || 'normal';
-    const padding = element.style.padding || "0";
+    const padding = element.style.padding || "5px"; // default minial padding
     //deal with possible orphan
     //textContent = textContent.replace(/ +/g, "\\u00a0");// works but not good: 1.jam all letter into one "word"; 2.space might occur at the start of the line
     // const textGroup = textContent.split("\\n");
