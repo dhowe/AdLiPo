@@ -166,12 +166,18 @@ const appendText = function(textContent, element) {
     element.style.lineHeight = lineHeight;
     //use a inline element to wrap it, so it can be in the middle
     element.style.display = "table";
-    const spanElement = document.createElement("span");
-    spanElement.style.display = "table-cell";
-    spanElement.style.verticalAlign = "middle";
-    spanElement.innerText = textContent;
-    dealWithOrphan(spanElement);
-    element.appendChild(spanElement);
+    const cellElement = document.createElement("div");
+    cellElement.style.display = "table-cell";
+    cellElement.style.verticalAlign = "middle";
+    // tem fix for orphans ------------------
+    temArr = textContent.split(" ");
+    temArr[temArr.length - 2] = temArr[temArr.length - 2] + "\u00A0" + temArr[temArr.length - 1];
+    temArr.splice(temArr.length - 1, 1);
+    textContent = temArr.join(" ");
+    // --------------------------------------
+    cellElement.innerText = textContent;
+    //appendInnerText(cellElement, textContent);
+    element.appendChild(cellElement);
 }
 
 const computeFontSize = function(textContent, width, height, font, textAlign, wordBreak, lineHeight, padding, tryLimit) {
@@ -226,33 +232,35 @@ const computeFontSize = function(textContent, width, height, font, textAlign, wo
     return guess + 'px';
 }
 
-const dealWithOrphan = function (e) {
-    const content = e.innerText;
-    e.innerText = "";
-    let words = content.split(' ');
-
-    e.innerText = words[0];
-    let height = e.offsetHeight;
-    let hasOrphan = undefined;
-
+const appendInnerText = function (e, text) {
+    // TODO: need to  figure out how to monitor the height of the text block
+    // before it is rendered in the DOM tree (it might be just not possible for now)
+    let words = text.split(' ');
+    const div = document.createElement("div");
+    div.innerText = words[0];
+    let height = 0, lineNo = 0;
+    let hasOrphan = false;
+    console.log(div.offsetHeight);
     // append words one by one
-    for (var i = 1; i < words.length; i++) {
-        e.innerText += ' ' + words[i];
-        if (e.offsetHeight > height) {
-            // is a new line
-            height = e.offsetHeight;
-            if (i === words.length - 1) {
-                hasOrphan = true;
-            }
-        }
-    }
-    hasOrphan = false;
-
-    if (hasOrphan) {
-        words[words.length - 2] = "\n" + words[words.length - 2];
-    }
-
-    e.innerText = words.join(" ");
+    // for (let i = 1; i < words.length; i++) {
+    //     // try
+    //     div.innerText += ' ' + words[i];
+    //     console.log(div.offsetHeight);
+    //     if (div.offsetHeight > height) {
+    //         // is a new line
+    //         lineNo++;
+    //         if (i === words.length - 1) {
+    //             hasOrphan = true;
+    //         }
+    //     }
+    //     height = div.offsetHeight;
+    // }
+    // console.log(words.join(" "), lineNo, hasOrphan);
+    // if (hasOrphan) {
+    //     words[words.length - 2] = "<br>" + words[words.length - 2];
+    //     div.innerHTML = words.join(" ");
+    // }
+    e.appendChild(div);
 }
 const generateText = function (w, h){
     if (!rm) {
