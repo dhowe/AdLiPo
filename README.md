@@ -26,6 +26,6 @@ For Chromium: run `tools/make-chromium.sh` (`sh tools/make-chromium.sh`), then l
 
 After loading the extension:
 
-1. Visit `test/test.html` and make sure all the divs in the page are hidden, then disable the extension and enable it again, make sure each rectangle is the same size as the original div.
-2. Visit https://rednoise.org/adntest/simple.html and check for the same items
-3. Visit https://hk.yahoo.com and check if all the ads are hidden or replaced with rectangles. Disable the extension and enable it again, then make sure that more than 75% of the ads are replaced. Pay attention to ads inserted in the news lists. When testing this from Asia, make sure the filter list `AdGuard Chinese` is enabled (especially in Chrome).
+1. Visit `test/test.html` and make sure all divs on the page are hidden, then disable the extension and re-enable it, then make sure each rectangle is the same size as the original div.
+2. Visit https://rednoise.org/adntest/simple.html and do the same check.
+3. Visit https://hk.yahoo.com and verify that all ads are either hidden or replaced with rectangles. Disable the extension and enable it again, then make sure that more at least 75% of the ads are replaced. Pay attention to ads inserted in the news lists (when testing this from Asia, make sure the filter list `AdGuard Chinese` is enabled).
