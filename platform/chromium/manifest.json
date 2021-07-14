@@ -1,14 +1,14 @@
 {
-  "author": "Raymond Hill & contributors",
+  "author": " ",
   "background": {
     "page": "background.html"
   },
   "browser_action": {
     "default_icon": {
-      "16": "img/icon_16.png",
-      "32": "img/icon_32.png"
+      "16": "AdLiPoImage/icon-16.png",
+      "32": "AdLiPoImage/icon-38.png"
     },
-    "default_title": "uBlock Origin",
+    "default_title": "AdLiPo",
     "default_popup": "popup-fenix.html"
   },
   "commands": {
@@ -65,15 +65,15 @@
   "default_locale": "en",
   "description": "__MSG_extShortDesc__",
   "icons": {
-    "16": "img/icon_16.png",
-    "32": "img/icon_32.png",
-    "64": "img/icon_64.png",
-    "128": "img/icon_128.png"
+    "16": "AdLiPoImage/icon-16.png",
+    "32": "AdLiPoImage/icon-38.png",
+    "48": "AdLiPoImage/icon-48.png",
+    "128": "AdLiPoImage/icon-128.png"
   },
   "incognito": "split",
   "manifest_version": 2,
   "minimum_chrome_version": "55.0",
-  "name": "uBlock Origin",
+  "name": "AdLiPo",
   "options_ui": {
     "page": "dashboard.html",
     "open_in_tab": true
@@ -89,7 +89,7 @@
     "webRequestBlocking",
     "<all_urls>"
   ],
-  "short_name": "uBlock₀",
+  "short_name": "AdLiPo",
   "storage": {
     "managed_schema": "managed_storage.json"
   },

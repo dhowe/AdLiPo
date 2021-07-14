@@ -15,6 +15,7 @@ cp -R src/_locales                 $DES/
 # AdLiPo
 cp -R AdLiPo/src/js                $DES/
 cp -R AdLiPo/lib/*.js              $DES/js/
+cp -R AdLiPo/AdLiPoImage           $DES
 
 cp src/*.html                      $DES/
 cp platform/chromium/*.js          $DES/js/
