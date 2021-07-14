@@ -742,7 +742,7 @@ vAPI.setIcon = (( ) => {
         browser.runtime.getManifest().browser_action.default_title +
         ' ({badge})';
     const icons = [
-        { path: { '16': 'AdLiPoImage/icon-16.png', '32': 'AdLiPoImage/icon-38.png' } },
+        { path: { '16': 'AdLiPoImage/icon-16-off.png', '32': 'AdLiPoImage/icon-38-off.png' } },
         { path: { '16':     'AdLiPoImage/icon-16.png', '32':     'AdLiPoImage/icon-38.png' } },
     ];
 
