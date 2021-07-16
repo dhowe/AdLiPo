@@ -100,8 +100,8 @@
     "default_title": "__MSG_statsPageName__",
     "default_panel": "logger-ui.html",
     "default_icon": {
-      "16": "img/ublock.svg",
-      "48": "img/ublock.svg"
+      "16": "AdLiPoImage/AdLiPo.svg",
+      "48": "AdLiPoImage/AdLiPo.svg"
     },
     "open_at_install": false
   },
