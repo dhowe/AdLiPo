@@ -1,15 +1,15 @@
 {
   "extName": {
-    "message": "uBlock Origin",
+    "message": "AdLiPo",
     "description": "extension name."
   },
   "extShortDesc": {
-    "message": "Finally, an efficient blocker. Easy on CPU and memory.",
+    "message": "Replaces advertisements with generated language art. Based on UBO",
     "description": "this will be in the Chrome web store: must be 132 characters or less"
   },
   "dashboardName": {
-    "message": "uBlock₀ — Dashboard",
-    "description": "English: uBlock₀ — Dashboard"
+    "message": "AdLiPo — Dashboard",
+    "description": "English: AdLiPo — Dashboard"
   },
   "dashboardUnsavedWarning": {
     "message": "Warning! You have unsaved changes",
@@ -48,15 +48,27 @@
     "description": "appears as tab name in dashboard"
   },
   "statsPageName": {
-    "message": "uBlock₀ — Logger",
+    "message": "AdLiPo — Logger",
     "description": "Title for the logger window"
+  },
+  "aboutAdLiPoGitHubRepo": {
+    "message": "GitHub Repo",
+    "description": " "
+  },
+  "aboutAdLiPoInfoTitle": {
+    "message": "AdLiPo infomation",
+    "description": " "
   },
   "aboutPageName": {
     "message": "About",
     "description": "appears as tab name in dashboard"
   },
+  "aboutUBOInfoTitle": {
+    "message": "UBO infomation",
+    "description": " "
+  },
   "assetViewerPageName": {
-    "message": "uBlock₀ — Asset viewer",
+    "message": "AdLiPo — Asset viewer",
     "description": "Title for the asset viewer page"
   },
   "advancedSettingsPageName": {
@@ -64,15 +76,15 @@
     "description": "Title for the advanced settings page"
   },
   "popupPowerSwitchInfo": {
-    "message": "Click: disable/enable uBlock₀ for this site.\n\nCtrl+click: disable uBlock₀ only on this page.",
-    "description": "English: Click: disable/enable uBlock₀ for this site.\n\nCtrl+click: disable uBlock₀ only on this page."
+    "message": "Click: disable/enable AdLiPo for this site.\n\nCtrl+click: disable AdLiPo only on this page.",
+    "description": "English: Click: disable/enable AdLiPo for this site.\n\nCtrl+click: disable AdLiPo only on this page."
   },
   "popupPowerSwitchInfo1": {
-    "message": "Click to disable uBlock₀ for this site.\n\nCtrl+click to disable uBlock₀ only on this page.",
+    "message": "Click to disable AdLiPo for this site.\n\nCtrl+click to disable AdLiPo only on this page.",
     "description": "Message to be read by screen readers"
   },
   "popupPowerSwitchInfo2": {
-    "message": "Click to enable uBlock₀ for this site.",
+    "message": "Click to enable AdLiPo for this site.",
     "description": "Message to be read by screen readers"
   },
   "popupBlockedRequestPrompt": {
@@ -580,7 +592,7 @@
     "description": "English: a sort option for list of rules."
   },
   "whitelistPrompt": {
-    "message": "The trusted site directives dictate on which web pages uBlock Origin should be disabled. One entry per line. Invalid directives will be silently ignored and commented out.",
+    "message": "The trusted site directives dictate on which web pages AdLiPo should be disabled. One entry per line. Invalid directives will be silently ignored and commented out.",
     "description": "The name of the trusted sites pane."
   },
   "whitelistImport": {
@@ -640,7 +652,7 @@
     "description": "Tooltip for the popup panel button in the logger page"
   },
   "loggerInfoTip": {
-    "message": "uBlock Origin wiki: The logger",
+    "message": "AdLiPo wiki: The logger",
     "description": "Tooltip for the top-right info label in the logger page"
   },
   "loggerClearTip": {
@@ -904,7 +916,7 @@
     "description": "English: Reset to default settings..."
   },
   "aboutRestoreDataConfirm": {
-    "message": "All your settings will be overwritten using data backed up on {{time}}, and uBlock₀ will restart.\n\nOverwrite all existing settings using backed up data?",
+    "message": "All your settings will be overwritten using data backed up on {{time}}, and AdLiPo will restart.\n\nOverwrite all existing settings using backed up data?",
     "description": "Message asking user to confirm restore"
   },
   "aboutRestoreDataError": {
@@ -912,7 +924,7 @@
     "description": "Message to display when an error occurred during restore"
   },
   "aboutResetDataConfirm": {
-    "message": "All your settings will be removed, and uBlock₀ will restart.\n\nReset uBlock₀ to factory settings?",
+    "message": "All your settings will be removed, and AdLiPo will restart.\n\nReset AdLiPo to factory settings?",
     "description": "Message asking user to confirm reset"
   },
   "errorCantConnectTo": {
@@ -961,10 +973,10 @@
   },
   "fennecMenuItemBlockingOff": {
     "message": "off",
-    "description": "Firefox-specific: appears as 'uBlock₀ (off)'"
+    "description": "Firefox-specific: appears as 'AdLiPo (off)'"
   },
   "docblockedPrompt1": {
-    "message": "uBlock Origin has prevented the following page from loading:",
+    "message": "AdLiPo has prevented the following page from loading:",
     "description": "Used in the strict-blocking page"
   },
   "docblockedPrompt2": {

@@ -80,7 +80,7 @@
     "128": "AdLiPoImage/icon-128.png"
   },
   "manifest_version": 2,
-  "name": "uBlock Origin",
+  "name": "AdLiPo",
   "options_ui": {
     "page": "dashboard.html",
     "open_in_tab": true

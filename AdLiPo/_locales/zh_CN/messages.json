@@ -1,15 +1,15 @@
 {
   "extName": {
-    "message": "uBlock₀",
+    "message": "AdLiPo",
     "description": "extension name."
   },
   "extShortDesc": {
-    "message": "一款高效的网络请求过滤工具，占用极低的内存和 CPU。",
+    "message": "用程序生成的诗句取代广告。基于UBO。",
     "description": "this will be in the Chrome web store: must be 132 characters or less"
   },
   "dashboardName": {
-    "message": "uBlock₀ — 控制面板",
-    "description": "English: uBlock₀ — Dashboard"
+    "message": "AdLiPo — 控制面板",
+    "description": "English: AdLiPo — Dashboard"
   },
   "dashboardUnsavedWarning": {
     "message": "警告！您有未保存的更改",
@@ -48,15 +48,27 @@
     "description": "appears as tab name in dashboard"
   },
   "statsPageName": {
-    "message": "uBlock₀ — 记录器",
+    "message": "AdLiPo — 记录器",
     "description": "Title for the logger window"
+  },
+  "aboutAdLiPoGitHubRepo": {
+    "message": "GitHub 仓库",
+    "description": " "
+  },
+  "aboutAdLiPoInfoTitle":{
+    "message": "关于AdLiPo的信息",
+    "description": " "
   },
   "aboutPageName": {
     "message": "关于",
     "description": "appears as tab name in dashboard"
   },
+  "aboutUBOInfoTitle": {
+    "message": "关于UBO的信息",
+    "description": " "
+  },
   "assetViewerPageName": {
-    "message": "uBlock₀ — 资源查看器",
+    "message": "AdLiPo — 资源查看器",
     "description": "Title for the asset viewer page"
   },
   "advancedSettingsPageName": {
@@ -64,15 +76,15 @@
     "description": "Title for the advanced settings page"
   },
   "popupPowerSwitchInfo": {
-    "message": "单击：对此网站禁用/启用 uBlock₀。\n\nCtrl + 单击：仅对此页面禁用 uBlock₀。",
-    "description": "English: Click: disable/enable uBlock₀ for this site.\n\nCtrl+click: disable uBlock₀ only on this page."
+    "message": "单击：对此网站禁用/启用 AdLiPo。\n\nCtrl + 单击：仅对此页面禁用 AdLiPo。",
+    "description": "English: Click: disable/enable AdLiPo for this site.\n\nCtrl+click: disable AdLiPo only on this page."
   },
   "popupPowerSwitchInfo1": {
-    "message": "单击：对此网站禁用 uBlock₀ 。\n\nCtrl + 单击：仅在此页面上禁用 uBlock₀ 。",
+    "message": "单击：对此网站禁用 AdLiPo 。\n\nCtrl + 单击：仅在此页面上禁用 AdLiPo 。",
     "description": "Message to be read by screen readers"
   },
   "popupPowerSwitchInfo2": {
-    "message": "单击：对此网站启用 uBlock₀ 。",
+    "message": "单击：对此网站启用 AdLiPo 。",
     "description": "Message to be read by screen readers"
   },
   "popupBlockedRequestPrompt": {
@@ -416,7 +428,7 @@
     "description": "English: Parse and enforce Adblock+ element hiding filters."
   },
   "3pParseAllABPHideFiltersInfo": {
-    "message": "<p>此选项将启用<a href=\"https://adblockplus.org/zh_CN/faq_internal#elemhide\">与 Adblock Plus 兼容的&ldquo;元素隐藏&rdquo;规则的解析和应用</a>。这些过滤规则本质上只是装饰美化，它们用来隐藏一个网页上被认为碍眼且不能被网络请求过滤引擎所屏蔽的视觉元素。</p><p>启用这项功能将增加 <i>uBlock₀</i> 的内存使用量。</p>",
+    "message": "<p>此选项将启用<a href=\"https://adblockplus.org/zh_CN/faq_internal#elemhide\">与 Adblock Plus 兼容的&ldquo;元素隐藏&rdquo;规则的解析和应用</a>。这些过滤规则本质上只是装饰美化，它们用来隐藏一个网页上被认为碍眼且不能被网络请求过滤引擎所屏蔽的视觉元素。</p><p>启用这项功能将增加 <i>AdLiPo</i> 的内存使用量。</p>",
     "description": "Describes the purpose of the 'Parse and enforce cosmetic filters' feature."
   },
   "3pIgnoreGenericCosmeticFilters": {
@@ -424,7 +436,7 @@
     "description": "This will cause uBO to ignore all generic cosmetic filters."
   },
   "3pIgnoreGenericCosmeticFiltersInfo": {
-    "message": "<p>通用元素过滤规则是应用到所有网站的元素过滤规则。<p>尽管 uBlock₀ 能很有效率地处理，通用元素过滤规则在一些网页上仍可能导致可见的内存和 CPU 占用增长，尤其是大和长期的内容。<p>启用此选项将解除这些添加到网页以处理通用元素过滤规则导致的内存和 CPU 占用，同时降低 uBlock₀ 本身的内存占用。<p>推荐低性能设备启用此选项。",
+    "message": "<p>通用元素过滤规则是应用到所有网站的元素过滤规则。<p>尽管 AdLiPo 能很有效率地处理，通用元素过滤规则在一些网页上仍可能导致可见的内存和 CPU 占用增长，尤其是大和长期的内容。<p>启用此选项将解除这些添加到网页以处理通用元素过滤规则导致的内存和 CPU 占用，同时降低 AdLiPo 本身的内存占用。<p>推荐低性能设备启用此选项。",
     "description": "Describes the purpose of the 'Ignore generic cosmetic filters' feature."
   },
   "3pListsOfBlockedHostsHeader": {
@@ -640,7 +652,7 @@
     "description": "Tooltip for the popup panel button in the logger page"
   },
   "loggerInfoTip": {
-    "message": "uBlock Origin wiki：记录器",
+    "message": "AdLiPo wiki：记录器",
     "description": "Tooltip for the top-right info label in the logger page"
   },
   "loggerClearTip": {
@@ -904,7 +916,7 @@
     "description": "English: Reset to default settings..."
   },
   "aboutRestoreDataConfirm": {
-    "message": "您的所有设置将被备份于 {{time}} 的数据覆盖，并且 uBlock₀ 将重新启动。\n确定要用备份的数据覆盖全部现有设置吗？",
+    "message": "您的所有设置将被备份于 {{time}} 的数据覆盖，并且 AdLiPo 将重新启动。\n确定要用备份的数据覆盖全部现有设置吗？",
     "description": "Message asking user to confirm restore"
   },
   "aboutRestoreDataError": {
@@ -912,7 +924,7 @@
     "description": "Message to display when an error occurred during restore"
   },
   "aboutResetDataConfirm": {
-    "message": "您的设置将被清除，uBlock₀ 将重新启动。\n\n确定将 uBlock₀ 重置到初始状态？",
+    "message": "您的设置将被清除，AdLiPo 将重新启动。\n\n确定将 AdLiPo 重置到初始状态？",
     "description": "Message asking user to confirm reset"
   },
   "errorCantConnectTo": {
@@ -920,7 +932,7 @@
     "description": "English: Network error: {{msg}}"
   },
   "subscriberConfirm": {
-    "message": "uBlock₀：添加下列 URL 到您的自定义规则列表吗？\n\n标题： “{{title}}”\nURL： {{url}}",
+    "message": "AdLiPo：添加下列 URL 到您的自定义规则列表吗？\n\n标题： “{{title}}”\nURL： {{url}}",
     "description": "No longer used"
   },
   "subscribeButton": {
@@ -961,10 +973,10 @@
   },
   "fennecMenuItemBlockingOff": {
     "message": "关",
-    "description": "Firefox-specific: appears as 'uBlock₀ (off)'"
+    "description": "Firefox-specific: appears as 'AdLiPo (off)'"
   },
   "docblockedPrompt1": {
-    "message": "uBlock₀ 阻止了下列页面加载：",
+    "message": "AdLiPo 阻止了下列页面加载：",
     "description": "Used in the strict-blocking page"
   },
   "docblockedPrompt2": {
