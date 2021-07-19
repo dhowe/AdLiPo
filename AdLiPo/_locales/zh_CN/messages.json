@@ -160,15 +160,15 @@
     "description": "Tooltip for the no-large-media per-site switch"
   },
   "popupTipNoCosmeticFiltering": {
-    "message": "是否在此网站启用网页元素过滤",
+    "message": "是否在此网站启用网页元素替换",
     "description": "Tooltip for the no-cosmetic-filtering per-site switch"
   },
   "popupTipNoCosmeticFiltering1": {
-    "message": "单击禁用针对此网站的元素过滤规则",
+    "message": "单击禁用针对此网站的元素替换",
     "description": "Tooltip for the no-cosmetic-filtering per-site switch"
   },
   "popupTipNoCosmeticFiltering2": {
-    "message": "单击启用此网站上的元素过滤",
+    "message": "单击启用此网站上的元素替换",
     "description": "Tooltip for the no-cosmetic-filtering per-site switch"
   },
   "popupTipNoRemoteFonts": {
@@ -200,7 +200,7 @@
     "description": "Caption for the no-large-media per-site switch"
   },
   "popupNoCosmeticFiltering_v2": {
-    "message": "页面元素过滤",
+    "message": "页面元素替换",
     "description": "Caption for the no-cosmetic-filtering per-site switch"
   },
   "popupNoRemoteFonts_v2": {

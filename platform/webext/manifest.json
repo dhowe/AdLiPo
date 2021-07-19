@@ -1,7 +1,8 @@
 {
+  "homepage_url": "http://rednoise.org/adlipo/",
   "applications": {
     "gecko": {
-      "id": "uBlock0@raymondhill.net",
+      "id": "adlipo@adlipo",
       "strict_min_version": "55.0"
     }
   },
@@ -108,7 +109,7 @@
   "storage": {
     "managed_schema": "managed_storage.json"
   },
-  "version": "1.9.15.101",
+  "version": "dev",
   "web_accessible_resources": [
     "/web_accessible_resources/*"
   ]

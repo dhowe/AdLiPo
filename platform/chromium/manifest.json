@@ -1,5 +1,6 @@
 {
-  "author": " ",
+  "author": "",
+  "homepage_url": "http://rednoise.org/adlipo/",
   "background": {
     "page": "background.html"
   },
@@ -93,7 +94,7 @@
   "storage": {
     "managed_schema": "managed_storage.json"
   },
-  "version": "1.15.11.0",
+  "version": "dev",
   "web_accessible_resources": [
     "/web_accessible_resources/*"
   ]

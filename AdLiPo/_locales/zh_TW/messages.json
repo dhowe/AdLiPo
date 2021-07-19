@@ -148,15 +148,15 @@
     "description": "Tooltip for the no-large-media per-site switch"
   },
   "popupTipNoCosmeticFiltering": {
-    "message": "切換是否在此網站過濾網頁元素",
+    "message": "切換是否在此網站替換網頁元素",
     "description": "Tooltip for the no-cosmetic-filtering per-site switch"
   },
   "popupTipNoCosmeticFiltering1": {
-    "message": "點擊以停用此網站的網頁元素過濾",
+    "message": "點擊以停用此網站的網頁元素替換",
     "description": "Tooltip for the no-cosmetic-filtering per-site switch"
   },
   "popupTipNoCosmeticFiltering2": {
-    "message": "點擊以啟用此網站的元素隱藏過濾",
+    "message": "點擊以啟用此網站的元素隱藏替換",
     "description": "Tooltip for the no-cosmetic-filtering per-site switch"
   },
   "popupTipNoRemoteFonts": {
@@ -188,7 +188,7 @@
     "description": "Caption for the no-large-media per-site switch"
   },
   "popupNoCosmeticFiltering_v2": {
-    "message": "元素隱藏過濾",
+    "message": "元素替換",
     "description": "Caption for the no-cosmetic-filtering per-site switch"
   },
   "popupNoRemoteFonts_v2": {

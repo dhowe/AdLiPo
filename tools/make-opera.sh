@@ -2,13 +2,13 @@
 #
 # This script assumes a linux environment
 
-echo "*** uBlock0.opera: Creating web store package"
+echo "*** AdLiPo.opera: Creating web store package"
 
-DES=dist/build/uBlock0.opera
+DES=dist/build/AdLiPo.opera
 rm -rf $DES
 mkdir -p $DES
 
-echo "*** uBlock0.opera: copying common files"
+echo "*** AdLiPo.opera: copying common files"
 bash ./tools/copy-common-files.sh  $DES
 
 # Opera-specific
@@ -33,7 +33,7 @@ rm $DES/lib/lz4/*.wat
 rm $DES/lib/publicsuffixlist/wasm/*.wasm
 rm $DES/lib/publicsuffixlist/wasm/*.wat
 
-echo "*** uBlock0.opera: Generating meta..."
+echo "*** AdLiPo.opera: Generating meta..."
 python tools/make-opera-meta.py $DES/
 
-echo "*** uBlock0.opera: Package done."
+echo "*** AdLiPo.opera: Package done."

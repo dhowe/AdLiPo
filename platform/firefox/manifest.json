@@ -1,5 +1,6 @@
 {
-  "author": " ",
+  "author": "",
+  "homepage_url": "http://rednoise.org/adlipo/",
   "background": {
     "page": "background.html"
   },
@@ -14,7 +15,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "uBlock0@raymondhill.net",
+      "id": "adlipo@adlipo",
       "strict_min_version": "57.0"
     }
   },
@@ -104,7 +105,7 @@
     "default_icon": "AdLiPoImage/AdLiPo.svg",
     "open_at_install": false
   },
-  "version": "1.9.15.101",
+  "version": "dev",
   "web_accessible_resources": [
     "/web_accessible_resources/*"
   ]
