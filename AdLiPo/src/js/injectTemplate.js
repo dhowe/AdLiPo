@@ -346,6 +346,24 @@ browser.runtime.onMessage.addListener(
             } else {
                 update(data.selectors);
             }
+        } else if (data.type === 'elementToReplace') {
+            /*
+            from background
+            {
+                type:'elementToReplace',
+                targetClassName: "a string"
+            }
+            */
+            const targetClassName = data.targetClassName;
+            if (!targetClassName) return;
+            let doms = document.querySelectorAll("." + targetClassName);
+            try {
+                doms.forEach(node => {
+                    processCatchedElement(node);
+                });
+            } catch (e) {
+                console.error(e);
+            }
         }
         return;
     }

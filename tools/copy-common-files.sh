@@ -21,7 +21,7 @@ cp LICENSE.txt                     $DES/
 
 # AdLiPo
 cp -R AdLiPo/_locales              $DES/
-cp -R AdLiPo/src/js                $DES/
+yes | cp -R AdLiPo/src/js                $DES/
 cp -R AdLiPo/lib/*.js              $DES/js/
 cp -R AdLiPo/AdLiPoImage           $DES
 yes | cp AdLiPo/*.html             $DES/

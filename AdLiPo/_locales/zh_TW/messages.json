@@ -112,7 +112,7 @@
     "description": "English: Click to open the dashboard"
   },
   "popupTipZapper": {
-    "message": "進入元素臨時移除模式",
+    "message": "進入元素臨時替換模式",
     "description": "Tooltip for the element-zapper icon in the popup panel"
   },
   "popupTipPicker": {

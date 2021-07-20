@@ -124,7 +124,7 @@
     "description": "English: Click to open the dashboard"
   },
   "popupTipZapper": {
-    "message": "Enter element zapper mode",
+    "message": "Enter element replacement mode",
     "description": "Tooltip for the element-zapper icon in the popup panel"
   },
   "popupTipPicker": {
