@@ -55,6 +55,10 @@
     "message": "GitHub Repo",
     "description": " "
   },
+  "aboutAdLiPoWebsite" : {
+    "message": "Website",
+    "description": " "
+  },
   "aboutAdLiPoInfoTitle": {
     "message": "AdLiPo infomation",
     "description": " "

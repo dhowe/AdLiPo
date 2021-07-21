@@ -851,6 +851,10 @@
     "message": "GitHub 倉庫",
     "description": " "
   },
+  "aboutAdLiPoWebsite" : {
+    "message": "AdLiPo網站",
+    "description": " "
+  },
   "aboutAdLiPoInfoTitle":{
     "message": "有關AdLiPo的資訊",
     "description": " "

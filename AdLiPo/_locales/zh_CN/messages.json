@@ -55,6 +55,10 @@
     "message": "GitHub 仓库",
     "description": " "
   },
+  "aboutAdLiPoWebsite" : {
+    "message": "AdLiPo主页",
+    "description": " "
+  },
   "aboutAdLiPoInfoTitle":{
     "message": "关于AdLiPo的信息",
     "description": " "

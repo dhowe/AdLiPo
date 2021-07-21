@@ -1,8 +1,8 @@
 browser.runtime.onMessage.addListener(
     (data, sender) => {
+        const tabId = sender.tab.id;
         switch (data.type) {
             case "elementToReplace":
-                const tabId = sender.tab.id;
                 if (tabId === undefined) return;
                 try {
                     let sending = webext.tabs.sendMessage(tabId, data);
@@ -12,6 +12,20 @@ browser.runtime.onMessage.addListener(
                 }
                 break;
     
+            case "userStylesheetCSS":
+                const selectors = data.cssText;
+                if (tabId === undefined || selectors === undefined) return;
+                try {
+                    let sending = webext.tabs.sendMessage(tabId, {
+                        type: "adSelectors",
+                        selectors: selectors,
+                    });
+                    sending.then(() => { }, (e) => { console.error((e)) });
+                } catch (e) {
+                    console.error(e)
+                }
+                break;
+                break;
             default:
                 break;
         }
