@@ -966,18 +966,18 @@ const zapElementAtPoint = function(mx, my, options) {
     // instead of remove the element, replace with rect
     elemToRemove.classList.add("AdLiPoElementToReplace");
     try {
-        if (!browser.runtime.sendMessage) {
+        try {
+            browser.runtime.sendMessage({
+                type: "elementToReplace",
+                targetClassName: "AdLiPoElementToReplace"
+            }).then(() => { }, (e) => { console.error((e)) });
+        } catch (error) {
             const webext = {
                 runtime: {
                     sendMessage: promisifyNoFail(chrome.runtime, 'sendMessage')
                 }
             }
             webext.runtime.sendMessage({
-                type: "elementToReplace",
-                targetClassName: "AdLiPoElementToReplace"
-            }).then(() => { }, (e) => { console.error((e)) });
-        } else {
-            browser.runtime.sendMessage({
                 type: "elementToReplace",
                 targetClassName: "AdLiPoElementToReplace"
             }).then(() => { }, (e) => { console.error((e)) });

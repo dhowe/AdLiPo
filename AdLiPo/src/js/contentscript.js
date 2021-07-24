@@ -146,22 +146,22 @@ vAPI.userStylesheet = {
             const added = Array.from(this.added);
             for ( const cssText of added ) {
                 try {
-                    if (!browser.runtime.sendMessage) {
-                        const webext = {
-                            runtime: {
-                                sendMessage: promisifyNoFail(chrome.runtime, 'sendMessage')
+                        try {
+                            browser.runtime.sendMessage({
+                                type: "userStylesheetCSS",
+                                cssText: cssText.replace(/\{.*\}/ig, "")
+                            }).then(() => { }, (e) => { console.error((e)) });
+                        } catch (error) {
+                            const webext = {
+                                runtime: {
+                                    sendMessage: promisifyNoFail(chrome.runtime, 'sendMessage')
+                                }
                             }
+                            webext.runtime.sendMessage({
+                                type: "userStylesheetCSS",
+                                cssText: cssText.replace(/\{.*\}/ig, "")
+                            }).then(() => { }, (e) => { console.error((e)) });
                         }
-                        webext.runtime.sendMessage({
-                            type: "userStylesheetCSS",
-                            cssText: cssText.replace(/\{.*\}/ig, "")
-                        }).then(() => { }, (e) => { console.error((e)) });
-                    } else {
-                        browser.runtime.sendMessage({
-                            type: "userStylesheetCSS",
-                            cssText: cssText.replace(/\{.*\}/ig, "")
-                        }).then(() => { }, (e) => { console.error((e)) });
-                    }
                 } catch (e) {
                     console.error(e);
                 }
