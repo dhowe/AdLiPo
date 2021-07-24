@@ -146,10 +146,22 @@ vAPI.userStylesheet = {
             const added = Array.from(this.added);
             for ( const cssText of added ) {
                 try {
-                    browser.runtime.sendMessage({
-                        type: "userStylesheetCSS",
-                        cssText: cssText
-                    }).then(() => { }, (e) => { console.error((e)) });
+                    if (!browser.runtime.sendMessage) {
+                        const webext = {
+                            runtime: {
+                                sendMessage: promisifyNoFail(chrome.runtime, 'sendMessage')
+                            }
+                        }
+                        webext.runtime.sendMessage({
+                            type: "userStylesheetCSS",
+                            cssText: cssText.replace(/\{.*\}/ig, "")
+                        }).then(() => { }, (e) => { console.error((e)) });
+                    } else {
+                        browser.runtime.sendMessage({
+                            type: "userStylesheetCSS",
+                            cssText: cssText.replace(/\{.*\}/ig, "")
+                        }).then(() => { }, (e) => { console.error((e)) });
+                    }
                 } catch (e) {
                     console.error(e);
                 }
@@ -1343,6 +1355,21 @@ vAPI.DOMFilterer = class {
         });
     };
 }
+
+/******************************************************************************/
+const promisifyNoFail = function(thisArg, fnName, outFn = r => r) {
+    const fn = thisArg[fnName];
+    return function() {
+        return new Promise(resolve => {
+            fn.call(thisArg, ...arguments, function() {
+                if ( chrome.runtime.lastError instanceof Object ) {
+                    void chrome.runtime.lastError.message;
+                }
+                resolve(outFn(...arguments));
+            });
+        });
+    };
+};
 
 // This starts bootstrap process.
 vAPI.bootstrap();

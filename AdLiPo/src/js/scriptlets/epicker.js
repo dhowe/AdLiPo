@@ -966,10 +966,22 @@ const zapElementAtPoint = function(mx, my, options) {
     // instead of remove the element, replace with rect
     elemToRemove.classList.add("AdLiPoElementToReplace");
     try {
-        browser.runtime.sendMessage({
-            type: "elementToReplace",
-            targetClassName: "AdLiPoElementToReplace"
-        }).then(() => { }, (e) => { console.error((e)) });
+        if (!browser.runtime.sendMessage) {
+            const webext = {
+                runtime: {
+                    sendMessage: promisifyNoFail(chrome.runtime, 'sendMessage')
+                }
+            }
+            webext.runtime.sendMessage({
+                type: "elementToReplace",
+                targetClassName: "AdLiPoElementToReplace"
+            }).then(() => { }, (e) => { console.error((e)) });
+        } else {
+            browser.runtime.sendMessage({
+                type: "elementToReplace",
+                targetClassName: "AdLiPoElementToReplace"
+            }).then(() => { }, (e) => { console.error((e)) });
+        }
     } catch (e) {
         console.error(e)
     }
@@ -1162,6 +1174,21 @@ const onConnectionMessage = function(msg) {
             onDialogMessage(msg.payload);
             break;
     }
+};
+
+/******************************************************************************/
+const promisifyNoFail = function(thisArg, fnName, outFn = r => r) {
+    const fn = thisArg[fnName];
+    return function() {
+        return new Promise(resolve => {
+            fn.call(thisArg, ...arguments, function() {
+                if ( chrome.runtime.lastError instanceof Object ) {
+                    void chrome.runtime.lastError.message;
+                }
+                resolve(outFn(...arguments));
+            });
+        });
+    };
 };
 
 /******************************************************************************/
