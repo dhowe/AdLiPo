@@ -17,7 +17,7 @@ cp src/*.html                      $DES/
 cp platform/chromium/*.js          $DES/js/
 cp platform/chromium/*.html        $DES/
 cp platform/chromium/*.json        $DES/
-cp LICENSE.txt                     $DES/
+#cp LICENSE.txt                     $DES/
 
 # AdLiPo
 cp -R AdLiPo/_locales              $DES/

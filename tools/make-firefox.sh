@@ -12,7 +12,7 @@ mkdir -p $DES
 echo "*** AdLiPo.firefox: copying common files"
 bash ./tools/copy-common-files.sh  $DES
 
-cp -R $DES/_locales/nb                 $DES/_locales/no
+#cp -R $DES/_locales/nb                 $DES/_locales/no
 
 cp platform/firefox/manifest.json      $DES/
 cp platform/firefox/webext.js          $DES/js/
