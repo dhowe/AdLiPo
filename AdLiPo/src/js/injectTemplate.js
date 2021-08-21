@@ -9,15 +9,22 @@ const isSelectorValid = ((temElement) =>
         try { temElement.querySelector(selector) } catch { return false }
         return true
     })(document.createDocumentFragment())
-const findAndProcess = function () {
+const findAndProcess = function (dbug = false) {
     try {
         selectors.forEach(s => {
             s = s.trim();
             if (s.length > 0 && isSelectorValid(s)) {
                 let doms = document.querySelectorAll(s);
-                doms.forEach(d => {
-                    //console.log(d);
-                    processCatchedElement(d);
+                doms.forEach((d,i) => {
+                    if (dbug) {
+                        console.log("Processing Element " + i+1 + "/" + doms.length + ":");
+                        console.log(d);
+                    }
+                    try {
+                        processCatchedElement(d, dbug);
+                    } catch (e) {
+                        console.error(e);
+                    }
                 });
             }
         });
@@ -60,9 +67,23 @@ const checkAndProcess = function (mutations, observer) {
     }
 }
 const processCatchedElement = function (node, dbug, skipText) {
+    if (node === undefined || node === null || !node instanceof HTMLElement) return;
     //check the node
+    if (node.offsetWidth === undefined || node.offsetHeight === undefined) {
+        if (dbug) console.log(node, "invalid node");
+        node.remove();
+        return;
+    }
+
     if (node.offsetWidth < 2 || node.offsetHeight < 2) {
         if (dbug) console.log(node, "too small");
+        node.remove();
+        return;
+    }
+
+    if (node.offsetHeight/node.offsetWidth > 100 || node.offsetWidth/node.offsetHeight > 100) {
+        if (dbug) console.log(node, "shape too strange");
+        node.remove();
         return;
     }
 
@@ -71,7 +92,7 @@ const processCatchedElement = function (node, dbug, skipText) {
     let type = (node.tagName.toLowerCase() === "img" || node.tagName.toLowerCase() === "iframe")
     let oriW = node.offsetWidth;
     let oriH = node.offsetHeight;
-
+    if (dbug) console.log("w: " + oriW + " , h: " + oriH);
     let injectedBG = document.createElement("div");
     injectedBG.setAttribute("class", "AdLiPoReplacedAd");
     injectedBG.setAttribute("style", "background: " + getColor() + "!important;width:" + oriW + "px!important;height: " + oriH + "px!important");
@@ -87,7 +108,7 @@ const processCatchedElement = function (node, dbug, skipText) {
         if (dbug) console.log("replacing ", node, "with", injectedBG);
         node.parentNode.replaceChild(injectedBG, node);
         //append text
-        if (!skipText) appendText(generateText(oriW, oriH), injectedBG);
+        if (!skipText) appendText(generateText(oriW, oriH, dbug), injectedBG, dbug);
     } else {
         // div, li, etc
         injectedBG.style.position = "relative";
@@ -96,7 +117,7 @@ const processCatchedElement = function (node, dbug, skipText) {
         if (dbug) console.log("replacing ", node, "with", injectedBG);
         node.parentNode.replaceChild(injectedBG, node);
         //append text
-        if (!skipText) appendText(generateText(oriW, oriH), injectedBG);
+        if (!skipText) appendText(generateText(oriW, oriH, dbug), injectedBG, dbug);
     }
 
 }
@@ -115,24 +136,25 @@ const getColor = function() {
     let pool = ['#4484A4', '#A2B6C0', '#889D59', '#CF8D2F', '#C55532'];
     return pool[Math.floor(Math.random() * pool.length)];
 }
-const appendText = function(textContent, element) {
+const appendText = function(textContent, element, dbug) {
     // textContent should be a string 
     // element should be a DOM element
-    if (!textContent || !element) {
-        console.error("doLayout requires string and DOM element");
+    if (textContent === undefined || element === undefined || element === null) {
+        console.error("apendText requires string and DOM element");
         return;
     }
     if (typeof textContent !== "string") textContent = textContent.toString();
     if (!(typeof HTMLElement === "object" ? element instanceof HTMLElement : typeof element === "object" && element !== null && element.nodeType === 1 && typeof element.nodeName==="string")) {
-        console.error("doLayout expects a DOM element, get ", element, "instead");
+        console.error("apendText expects a DOM element, get ", element, "instead");
         return;
     }
     const width = element.style.width;
     const height = element.style.height;
     if (!width || !height || !/^[0-9\\.]+px$/.test(width) || !/^[0-9\\.]+px$/.test(height) ) {
-        console.error("doLayout expects a DOM with fixed width and height");
+        console.error("apendText expects a DOM with fixed width and height");
         return;
     }
+    if (dbug) console.log("cleaning node");
     //clear target
     while(element.firstChild){
         element.removeChild(element.lastChild);
@@ -153,9 +175,10 @@ const appendText = function(textContent, element) {
     //     newtextGroup.push(textArr.join(" "));
     // });
     // textContent = newtextGroup.length === 1 ? newtextGroup[0] : newtextGroup.join("\\n"); // in extremely rare case create word break ...
-    
+    if (dbug) console.log("computing font size");
     //compute fontSize
-    const fontSize = computeFontSize(textContent, width, height, font, textAlign, wordBreak, lineHeight, padding);
+    const fontSize = computeFontSize(textContent, width, height, font, textAlign, wordBreak, lineHeight, padding, 100, dbug);
+    if (dbug) console.log("setting the node");
     //set to the div
     element.style.color = "#fff";
     element.style.fontFamily = font;
@@ -180,7 +203,7 @@ const appendText = function(textContent, element) {
     element.appendChild(cellElement);
 }
 
-const computeFontSize = function(textContent, width, height, font, textAlign, wordBreak, lineHeight, padding, tryLimit) {
+const computeFontSize = function(textContent, width, height, font, textAlign, wordBreak, lineHeight, padding, tryLimit, dbug) {
     // tem element version
     textContent = textContent.trim();
     let css = {}, cssStr;
@@ -200,9 +223,11 @@ const computeFontSize = function(textContent, width, height, font, textAlign, wo
     let tries = 0;
     let cross = 0;
     //first using math to guess
+    if (dbug) console.log("Fontsize: guessing");
     let guess = (Math.sqrt(targetWidth * targetHeight / contentLength)); // in px
     cssStr = 'height: auto;display: block!important;width: ' + width + '!important;padding: ' + padding + ';font-size: ' + guess + 'px;font-family: ' + font + ';text-align: ' + textAlign + ';word-break: ' + wordBreak + ';line-height: ' + lineHeight + ';';
     //trying
+    if (dbug) console.log("Fontsize: trying");
     testEl.setAttribute("style", cssStr);
     testEl.innerText = textContent;
     document.body.appendChild(testEl);
@@ -210,6 +235,7 @@ const computeFontSize = function(textContent, width, height, font, textAlign, wo
     testEl.parentNode.removeChild(testEl);
     while (tries < limit && Math.abs(realHeight - targetHeight) > Math.max(0.05*targetHeight, 5)) {
         let gap = targetHeight - realHeight;
+        if (dbug) console.log("gap" + gap);
         if (gap > 0 !== lastDirection) cross ++;
         if (cross > 3) {
             guess = last5.sort((a, b) => {return b - a})[0];
@@ -218,10 +244,18 @@ const computeFontSize = function(textContent, width, height, font, textAlign, wo
         }
         lastDirection = gap > 0;
         guess += (gap * guess) / realHeight;
+        if (dbug) console.log("guess" + guess);
+        if (guess < 1) {
+            guess = 1;
+            // smaller font would not make sense
+            getRealHeight();
+            break;
+        }
         getRealHeight();
         if (last5.length >= 5) last5.shift();
         last5.push(guess);
         tries++;
+        if (dbug) console.log("Fontsize: guessing, tries " + tries);
     }
     guess = guess.toFixed(2);
     while (realHeight > targetHeight) {
@@ -262,15 +296,17 @@ const appendInnerText = function (e, text) {
     // }
     e.appendChild(div);
 }
-const generateText = function (w, h){
+const generateText = function (w, h, dbug){
     if (!rm) {
         rm = RiTa.markov(3);
         rm.addText(adLiPoText);
     }
     let res;
+    if (dbug) console.log("generating text");
     while (!isTextValid(res, w, h)) {
         res = selectText(rm.generate(1)[0]);
     }
+    if (dbug) console.log("generate result: " + res);
     recentUsed.push(res);
     if (recentUsed.length > 30) {
         recentUsed.shift();
