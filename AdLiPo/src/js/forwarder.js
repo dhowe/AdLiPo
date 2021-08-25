@@ -25,6 +25,14 @@ browser.runtime.onMessage.addListener(
                     console.error(e)
                 }
                 break;
+            case "elementContainingGeneratedText":
+                if (tabId === undefined) return;
+                try {
+                    let sending = webext.tabs.sendMessage(tabId, data);
+                    sending.then(() => { }, (e) => { console.error((e)) });
+                } catch (e) {
+                    console.error(e);
+                }
                 break;
             default:
                 break;

@@ -2,6 +2,7 @@ const selectors = [];
 const recentUsed = [];
 let observer = undefined;
 let rm;
+let noOfReplacement = 0;
 const onloadList = ["body", "frame", "frameset", "iframe", "img", "link", "script"];
 const injectedFont = new FontFace("bench9", "url('https://fonts.gstatic.com/s/benchnine/v9/ahcbv8612zF4jxrwMosbUMl0.woff2') format('woff2')");
 const isSelectorValid = ((temElement) =>
@@ -190,6 +191,9 @@ const appendText = function(textContent, element, dbug) {
     //use a inline element to wrap it, so it can be in the middle
     element.style.display = "table";
     const cellElement = document.createElement("div");
+    cellElement.classList.add("adLiPoReplacedCellElement");
+    cellElement.id = "elementContainingGeneratedTextNo" + noOfReplacement;
+    noOfReplacement ++;
     cellElement.style.display = "table-cell";
     cellElement.style.verticalAlign = "middle";
     // tem fix for orphans ------------------
@@ -199,6 +203,26 @@ const appendText = function(textContent, element, dbug) {
     textContent = temArr.join(" ");
     // --------------------------------------
     cellElement.innerText = textContent;
+    try {
+        try {
+            browser.runtime.sendMessage({
+                type: "elementContainingGeneratedText",
+                elem: cellElement.id
+            }).then(() => { }, (e) => { console.error((e)) });
+        } catch (error) {
+            const webext = {
+                runtime: {
+                    sendMessage: promisifyNoFail(chrome.runtime, 'sendMessage')
+                }
+            }
+            webext.runtime.sendMessage({
+                type: "elementToReplace",
+                targetClassName: "AdLiPoElementToReplace"
+            }).then(() => { }, (e) => { console.error((e)) });
+        }
+    } catch (e) {
+        console.error(e);
+    }
     //appendInnerText(cellElement, textContent);
     element.appendChild(cellElement);
 }
