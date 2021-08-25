@@ -391,6 +391,20 @@ const polishText = function (text) {
     return text.trim();
 }
 
+const promisifyNoFail = function(thisArg, fnName, outFn = r => r) {
+    const fn = thisArg[fnName];
+    return function() {
+        return new Promise(resolve => {
+            fn.call(thisArg, ...arguments, function() {
+                if ( chrome.runtime.lastError instanceof Object ) {
+                    void chrome.runtime.lastError.message;
+                }
+                resolve(outFn(...arguments));
+            });
+        });
+    };
+};
+
 browser.runtime.onMessage.addListener(
     (data, sender) => {
         if (data.type === 'adSelectors') {

@@ -60,6 +60,18 @@
       ],
       "run_at": "document_idle",
       "all_frames": false
+    },
+    {
+      "matches":[
+        "https://www.washingtonpost.com/*",
+        "http://www.washingtonpost.com/*"
+      ],
+      "js": [
+        "/js/preventOverwrite.js"
+      ],
+      "all_frames": true,
+      "match_about_blank": true,
+      "run_at": "document_start"
     }
   ],
   "content_security_policy": "script-src 'self'; object-src 'self'",

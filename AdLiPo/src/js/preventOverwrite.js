@@ -9,55 +9,45 @@ move it to a content script that only apply for a list (the first one in the lis
 let dbug;
 let mobserver;
 
-const init = function() {
-    dbug = true;
+const initObserver = function () {
+    dbug = false;
     if (dbug) console.log("preventOverwrite init...");
-    mobserver = new MutationObserver((theMutationsList, observer) => {
-        //if (dbug) console.log(theMutationsList);
-        theMutationsList.forEach((theMutation, i) => {
-        //if (dbug) console.log(theMutation);
-            let targetNode = theMutation.target;
-            //if (dbug) console.log(targetNode);
-            if (!targetNode){
-                // skip this
-            } else {
-                let addedNodes = theMutation.addedNodes;
-                if (addedNodes && addedNodes.length > 0){
-                    addedNodes.forEach(addedNode => {
-                        targetNode.removeChild(addedNode);
-                    });
+    if (mobserver === undefined) {
+        mobserver = new MutationObserver((theMutationsList, observer) => {
+            for (let theMutation of theMutationsList) {
+                let targetNode = theMutation.target;
+                if (!targetNode) {
+                    continue;
                 }
-                let removedNodes = theMutation.removedNodes;
-                if (removedNodes && removedNodes.length > 0) {
-                    removedNodes.forEach(removedNode => {
-                        targetNode.appendChild(removedNode);
-                    });
+                for (let addedNode of theMutation.addedNodes) {
+                    if (addedNode.nodeType === 1) targetNode.removeChild(addedNode);
+                }
+                for (let removedNode of theMutation.removedNodes) {
+                    if (removedNode.nodeType === 3) targetNode.appendChild(removedNode)
                 }
             }
         });
-    });
+    }
 }
 
-//slow....
-const addObserver = function(idOfelementToObs){
-    //if (dbug) console.log(idOfelementToObs);
+const addObserver = function (idOfelementToObs) {
     let elementToObs = document.getElementById(idOfelementToObs);
     if (!elementToObs) return;
     try {
-        mobserver.observe(elementToObs, {characterData: false, childList: true, attributes: false});
+        mobserver.observe(elementToObs, { characterData: false, childList: true, attributes: false });
     } catch (e) {
         console.error(e);
     }
 }
 
-init();
+initObserver();
 
 browser.runtime.onMessage.addListener(
     (data, sender) => {
         if (data.type === "elementContainingGeneratedText") {
-            try{
+            try {
                 addObserver(data.elem);
-            } catch(e){
+            } catch (e) {
                 console.error(e);
             }
         }
