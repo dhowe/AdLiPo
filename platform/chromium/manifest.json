@@ -64,7 +64,9 @@
     {
       "matches":[
         "https://www.washingtonpost.com/*",
-        "http://www.washingtonpost.com/*"
+        "http://www.washingtonpost.com/*",
+        "https://www.nytimes.com/*",
+        "http://www.nytimes.com/*"
       ],
       "js": [
         "/js/preventOverwrite.js"
