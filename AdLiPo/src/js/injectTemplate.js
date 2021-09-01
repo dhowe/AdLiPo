@@ -96,7 +96,7 @@ const processCatchedElement = function (node, dbug, skipText) {
     if (dbug) console.log("w: " + oriW + " , h: " + oriH);
     let injectedBG = document.createElement("div");
     injectedBG.setAttribute("class", "AdLiPoReplacedAd");
-    injectedBG.setAttribute("style", "background: " + getColor() + "!important;width:" + oriW + "px!important;height: " + oriH + "px!important");
+    injectedBG.setAttribute("style", "background: " + getColor() + "!important;width:" + oriW + "px!important;height: " + oriH + "px!important;border: 0!important;");
 
     // different moves according to different kinds of elements
     if (node.parentNode.tagName.toLowerCase() === "a") {
@@ -164,7 +164,9 @@ const appendText = function(textContent, element, dbug) {
     const textAlign = element.style.textAlign || 'left'; // a string representing alignment
     const wordBreak = element.style.wordBreak || 'break-word'; 
     const lineHeight = element.style.lineHeight || 'normal';
-    const padding = element.style.padding || "5px"; // default minial padding
+    const padding_LR = parseInt(Math.max(2, parseInt(width)/15)); // min padding is 2px
+    const padding_TB = parseInt(Math.max(2, parseInt(height)/15)); // min padding is 2px
+    const padding = element.style.padding || `${padding_TB}px ${padding_LR}px`;
     //deal with possible orphan
     //textContent = textContent.replace(/ +/g, "\\u00a0");// works but not good: 1.jam all letter into one "word"; 2.space might occur at the start of the line
     // const textGroup = textContent.split("\\n");
@@ -186,7 +188,6 @@ const appendText = function(textContent, element, dbug) {
     element.style.textAlign = textAlign;
     element.style.fontSize = fontSize;
     element.style.wordBreak = wordBreak;
-    element.style.padding = padding;
     element.style.lineHeight = lineHeight;
     //use a inline element to wrap it, so it can be in the middle
     element.style.display = "table";
@@ -196,6 +197,7 @@ const appendText = function(textContent, element, dbug) {
     noOfReplacement ++;
     cellElement.style.display = "table-cell";
     cellElement.style.verticalAlign = "middle";
+    cellElement.style.padding = padding;
     // tem fix for orphans ------------------
     temArr = textContent.split(" ");
     temArr[temArr.length - 2] = temArr[temArr.length - 2] + "\u00A0" + temArr[temArr.length - 1];
