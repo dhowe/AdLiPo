@@ -164,8 +164,8 @@ const appendText = function(textContent, element, dbug) {
     const textAlign = element.style.textAlign || 'left'; // a string representing alignment
     const wordBreak = element.style.wordBreak || 'break-word'; 
     const lineHeight = element.style.lineHeight || 'normal';
-    const padding_LR = parseInt(Math.max(2, parseInt(width)/15)); // min padding is 2px
-    const padding_TB = parseInt(Math.max(2, parseInt(height)/15)); // min padding is 2px
+    const padding_LR = Math.min(parseInt(Math.max(2, parseInt(width)/15)), 20); // min padding is 2px max padding is 20px
+    const padding_TB = Math.min(parseInt(Math.max(2, parseInt(height)/15)), 20); // min padding is 2px
     const padding = element.style.padding || `${padding_TB}px ${padding_LR}px`;
     //deal with possible orphan
     //textContent = textContent.replace(/ +/g, "\\u00a0");// works but not good: 1.jam all letter into one "word"; 2.space might occur at the start of the line
@@ -351,10 +351,13 @@ const isTextValid = function (text, w, h) {
 			return false;
 		}
         
-        //Rough limitation of the length for small div
+        //Rough limitation of the length for small div 
+        //Or long div short text
 		if (w < 200 && h < 200 && text.length > 50){
 		    return false;
-		}
+		} else if (w > 800 && h < 100 && text.length < 50) {
+            return false;
+        }
 		return true;
 	}
 	return false;
