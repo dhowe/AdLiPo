@@ -355,7 +355,8 @@ const isTextValid = function (text, w, h) {
         //Or long div short text
 		if (w < 200 && h < 200 && text.length > 50){
 		    return false;
-		} else if (w > 800 && h < 100 && text.length < 50) {
+		}
+        if (text.length < 3 * (w * 3/ 4)/ (0.7 * h) ) {
             return false;
         }
 		return true;
