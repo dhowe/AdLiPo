@@ -94,9 +94,33 @@ const processCatchedElement = function (node, dbug, skipText) {
     let oriW = node.offsetWidth;
     let oriH = node.offsetHeight;
     if (dbug) console.log("w: " + oriW + " , h: " + oriH);
+    //
+    let parentNode = node.parentElement;
+    let parentW = parentNode.offsetWidth;
+    let parentH = parentNode.offsetHeight
+    let wPercentage = (oriW/parentW)*100;
+    let hPercentage = (oriH/parentH)*100;
+    //constrain
+    if (wPercentage > 100) wPercentage = 100;
+    //
     let injectedBG = document.createElement("div");
     injectedBG.setAttribute("class", "AdLiPoReplacedAd");
-    injectedBG.setAttribute("style", "background: " + getColor() + "!important;width:" + oriW + "px!important;height: " + oriH + "px!important;border: 0!important;");
+    injectedBG.setAttribute("style", "");
+    // should inherit some style
+    // let oldStyles = window.getComputedStyle(node);
+    // Array.from(oldStyles).forEach(s => injectedBG.style.setProperty(s, oldStyles.getPropertyValue(s)))
+    // overwrite style:
+    injectedBG.style.backgroundColor = getColor();
+    injectedBG.style.border = "0";
+    // check the origin ad setting
+    let sizeType = checkSizeType(node)
+    if (sizeType){
+        injectedBG.style.width = oriW + "px";
+        injectedBG.style.height = oriH + "px";
+    } else {
+        injectedBG.style.width = wPercentage + "%";
+        //injectedBG.style.height = hPercentage + "%";
+    }
 
     // different moves according to different kinds of elements
     if (node.parentNode.tagName.toLowerCase() === "a") {
@@ -109,16 +133,14 @@ const processCatchedElement = function (node, dbug, skipText) {
         if (dbug) console.log("replacing ", node, "with", injectedBG);
         node.parentNode.replaceChild(injectedBG, node);
         //append text
-        if (!skipText) appendText(generateText(oriW, oriH, dbug), injectedBG, dbug);
+        if (!skipText) appendText(generateText(oriW, oriH, dbug), injectedBG,  oriW, oriH, sizeType, dbug);
     } else {
         // div, li, etc
         injectedBG.style.position = "relative";
-        injectedBG.style.top = "0px";
-        injectedBG.style.left = "0px";
         if (dbug) console.log("replacing ", node, "with", injectedBG);
         node.parentNode.replaceChild(injectedBG, node);
         //append text
-        if (!skipText) appendText(generateText(oriW, oriH, dbug), injectedBG, dbug);
+        if (!skipText) appendText(generateText(oriW, oriH, dbug), injectedBG, oriW, oriH, sizeType, dbug);
     }
 
 }
@@ -137,7 +159,7 @@ const getColor = function() {
     let pool = ['#4484A4', '#A2B6C0', '#889D59', '#CF8D2F', '#C55532'];
     return pool[Math.floor(Math.random() * pool.length)];
 }
-const appendText = function(textContent, element, dbug) {
+const appendText = function(textContent, element, widthInPx, heightInPx, type, dbug) {
     // textContent should be a string 
     // element should be a DOM element
     if (textContent === undefined || element === undefined || element === null) {
@@ -149,11 +171,16 @@ const appendText = function(textContent, element, dbug) {
         console.error("apendText expects a DOM element, get ", element, "instead");
         return;
     }
-    const width = element.style.width;
-    const height = element.style.height;
+    let width = element.style.width;
+    let height = element.style.height;
     if (!width || !height || !/^[0-9\\.]+px$/.test(width) || !/^[0-9\\.]+px$/.test(height) ) {
-        console.error("apendText expects a DOM with fixed width and height");
-        return;
+        if (!widthInPx || !heightInPx) {
+            console.error("apendText expects fixed width and height");
+            return;
+        } else {
+            width = widthInPx + "px";
+            height = heightInPx + "px";
+        }
     }
     if (dbug) console.log("cleaning node");
     //clear target
@@ -181,12 +208,14 @@ const appendText = function(textContent, element, dbug) {
     if (dbug) console.log("computing font size");
     //compute fontSize
     const fontSize = computeFontSize(textContent, width, height, font, textAlign, wordBreak, lineHeight, padding, 100, dbug);
+    //fontSize to vw
+    const fontSizeVw = (parseFloat(fontSize) * 100 / window.innerWidth) + "vw";
     if (dbug) console.log("setting the node");
     //set to the div
     element.style.color = "#fff";
     element.style.fontFamily = font;
     element.style.textAlign = textAlign;
-    element.style.fontSize = fontSize;
+    element.style.fontSize = type ? fontSize :fontSizeVw;
     element.style.wordBreak = wordBreak;
     element.style.lineHeight = lineHeight;
     //use a inline element to wrap it, so it can be in the middle
@@ -410,6 +439,24 @@ const promisifyNoFail = function(thisArg, fnName, outFn = r => r) {
         });
     };
 };
+
+const checkSizeType = function (element){
+    while(element.children.length > 0){
+        if (!element.style) continue
+        if (/^[0-9\\.]+px$/.test(element.style.width) || /^[0-9\\.]+px$/.test(element.style.height)) {
+            return true;
+        }
+        let nextIdx = 0;
+        while(element.children[nextIdx] && 
+            !["div","img","p","span"].includes(element.children[nextIdx].tagName.toLowerCase())) {
+            nextIdx ++;
+        }
+        if (!element.children[nextIdx]) break;
+        element = element.children[nextIdx];
+    }
+    if (!element.style) return false;
+    return /^[0-9\\.]+px$/.test(element.style.width) || /^[0-9\\.]+px$/.test(element.style.height);
+}
 
 browser.runtime.onMessage.addListener(
     (data, sender) => {
