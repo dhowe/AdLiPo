@@ -363,7 +363,7 @@ const generateText = function (w, h, dbug){
     }
     if (dbug) console.log("generate result: " + res);
     recentUsed.push(res);
-    if (recentUsed.length > 30) {
+    if (recentUsed.length > 100) {
         recentUsed.shift();
     }
     return res;
