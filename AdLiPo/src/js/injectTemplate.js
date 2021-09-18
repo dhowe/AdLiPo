@@ -216,6 +216,7 @@ const appendText = function(textContent, element, widthInPx, heightInPx, type, d
     element.style.fontFamily = font;
     element.style.textAlign = textAlign;
     element.style.fontSize = type ? fontSize :fontSizeVw;
+    element.style.fontWeight = "normal";
     element.style.wordBreak = wordBreak;
     element.style.lineHeight = lineHeight;
     //use a inline element to wrap it, so it can be in the middle
