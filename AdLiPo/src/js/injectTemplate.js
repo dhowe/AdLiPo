@@ -362,6 +362,7 @@ const generateText = function (w, h, dbug){
         res = selectText(rm.generate(1)[0]);
     }
     if (dbug) console.log("generate result: " + res);
+    res = res.charAt(0).toUpperCase() + res.slice(1, res.length);
     recentUsed.push(res);
     if (recentUsed.length > 100) {
         recentUsed.shift();
