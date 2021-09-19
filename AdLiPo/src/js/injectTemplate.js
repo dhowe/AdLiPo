@@ -1,5 +1,6 @@
 const selectors = [];
 const recentUsed = [];
+const perPageLimit = 5;
 let observer = undefined;
 let rm;
 let noOfReplacement = 0;
@@ -68,6 +69,13 @@ const checkAndProcess = function (mutations, observer) {
     }
 }
 const processCatchedElement = function (node, dbug, skipText) {
+    //per page limit
+    if (noOfReplacement > perPageLimit) {
+        if (dbug) console.log(node, "over limit");
+        node.remove();
+        return;
+    }
+    //
     if (node === undefined || node === null || !node instanceof HTMLElement) return;
     //check the node
     if (node.offsetWidth === undefined || node.offsetHeight === undefined) {
