@@ -1,4 +1,4 @@
-## AdLiPo
+## AdLiPo v2
 
 ### Ongoing development for a uBlock-based variant of AdLiPo
 
