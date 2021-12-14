@@ -2,17 +2,22 @@
 #
 # This script assumes a linux environment
 
-echo "*** AdLiPo.chromium: Creating web store package"
+echo "*** AdLiPo.chromium: Building..."
 
 DES=dist/build/AdLiPo.chromium
 rm -rf $DES
 mkdir -p $DES
 
-echo "*** AdLiPo.chromium: copying common files"
+echo "*** AdLiPo.chromium: Copying common files"
 bash ./tools/copy-common-files.sh  $DES
 
+echo "*** AdLiPo.chromium: Copying platform files"
+cp platform/chromium/*.js          $DES/js/
+cp platform/chromium/*.html        $DES/
+cp platform/chromium/*.json        $DES/
+
 # Chrome store-specific
-cp -R $DES/_locales/nb $DES/_locales/no
+[[ -e $DES/_locales/nb ]] && cp -R $DES/_locales/nb $DES/_locales/no
 
 echo "*** AdLiPo.chromium: Generating meta..."
 python tools/make-chromium-meta.py $DES/

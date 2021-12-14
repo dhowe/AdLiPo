@@ -2,18 +2,17 @@
 #
 # This script assumes a linux environment
 
-echo "*** AdLiPo.firefox: Creating web store package"
+echo "*** AdLiPo.firefox: Building..."
 
 BLDIR=dist/build
 DES="$BLDIR"/AdLiPo.firefox
 rm -rf $DES
 mkdir -p $DES
 
-echo "*** AdLiPo.firefox: copying common files"
+echo "*** AdLiPo.firefox: Copying common files"
 bash ./tools/copy-common-files.sh  $DES
 
-#cp -R $DES/_locales/nb                 $DES/_locales/no
-
+echo "*** AdLiPo.firefox: Copying platform files"
 cp platform/firefox/manifest.json      $DES/
 cp platform/firefox/webext.js          $DES/js/
 cp platform/firefox/vapi-webrequest.js $DES/js/
