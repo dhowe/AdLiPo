@@ -16,7 +16,7 @@ Note: uBlock Origin is included as a submodule (rather than via forking)
 2. clone [uAssests](https://github.com/uBlockOrigin/uAssets) into the same parent folder with  `git clone https://github.com/uBlockOrigin/uAssets.git`
 2. then enter the AdLiPo folder (`cd AdLiPo`)
 
-For Firefox (instructions checked on v95.0):
+ For Firefox (instructions checked on v95.0):
 1. run `tools/make-firefox.sh` (or `sh tools/make-firefox.sh -all`)
 2. then, in Firefox open about:debugging from the location bar
 3. click 'This Firefox' on the top-left, then click 'Load Temporary Add-on...'
