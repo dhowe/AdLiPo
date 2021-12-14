@@ -16,15 +16,19 @@ Note: uBlock Origin is included as a submodule (rather than via forking)
 2. clone [uAssests](https://github.com/uBlockOrigin/uAssets) into the same parent folder with  `git clone https://github.com/uBlockOrigin/uAssets.git`
 2. then enter the AdLiPo folder (`cd AdLiPo`)
 
-For Firefox (instructions checked on v95.0), 
+For Firefox (instructions checked on v95.0):
 1. run `tools/make-firefox.sh` (or `sh tools/make-firefox.sh -all`)
-2. then, in Firefox go to about:debugging
-3. click 'This Firefox' on the top-left
-4. then click 'Load Temporary Add-on...'
-5. then select the manifest.json file in `dist/build/AdLiPo.firefox/`
+2. then, in Firefox open about:debugging from the location bar
+3. click 'This Firefox' on the top-left, then click 'Load Temporary Add-on...'
+5. in the dialog that appears, navigate to `dist/build/AdLiPo.firefox/` and select the manifest.json file
 6. AdLiPo should now be loaded in Firefox (check for the icon in the toolbar)
 
-For Chromium: run `tools/make-chromium.sh` (`sh tools/make-chromium.sh`), then load the unpacked extension into Chromium browsers.
+For Chromium (instructions checked on Chrome v96.0):
+1. run `tools/make-chromium.sh` (or `sh tools/make-chromium.sh`)
+2. then, in the browser open chrome://extensions from the location bar
+3. click 'Load unpacked' on the top-left
+4. in the dialog that appears, navigate to `dist/build/` and select the `AdLiPo.chromium` folder
+5. AdLiPo should now be loaded in the browser (check for the icon in the toolbar)
 
 <br> 
 
