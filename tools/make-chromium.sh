@@ -12,9 +12,9 @@ echo "*** AdLiPo.chromium: Copying common files"
 bash ./tools/copy-common-files.sh  $DES
 
 echo "*** AdLiPo.chromium: Copying platform files"
-cp platform/chromium/*.js          $DES/js/
-cp platform/chromium/*.html        $DES/
-cp platform/chromium/*.json        $DES/
+cp ChangedFiles/platform/chromium/*.js          $DES/js/
+cp ChangedFiles/platform/chromium/*.html        $DES/
+cp ChangedFiles/platform/chromium/*.json        $DES/
 
 # Chrome store-specific
 [[ -e $DES/_locales/nb ]] && cp -R $DES/_locales/nb $DES/_locales/no

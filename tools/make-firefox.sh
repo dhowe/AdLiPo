@@ -13,9 +13,9 @@ echo "*** AdLiPo.firefox: Copying common files"
 bash ./tools/copy-common-files.sh  $DES
 
 echo "*** AdLiPo.firefox: Copying platform files"
-cp platform/firefox/manifest.json      $DES/
-cp platform/firefox/webext.js          $DES/js/
-cp platform/firefox/vapi-webrequest.js $DES/js/
+cp ChangedFiles/platform/firefox/manifest.json      $DES/
+cp ChangedFiles/platform/firefox/webext.js          $DES/js/
+cp ChangedFiles/platform/firefox/vapi-webrequest.js $DES/js/
 
 # Firefox/webext-specific
 rm $DES/img/icon_128.png
