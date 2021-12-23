@@ -55,6 +55,10 @@
     "message": "정보",
     "description": "appears as tab name in dashboard"
   },
+  "supportPageName": {
+    "message": "지원",
+    "description": "appears as tab name in dashboard"
+  },
   "assetViewerPageName": {
     "message": "uBlock₀ — Asset 뷰어",
     "description": "Title for the asset viewer page"
@@ -122,6 +126,10 @@
   "popupTipLog": {
     "message": "로그로 이동",
     "description": "Tooltip used for the logger icon in the panel"
+  },
+  "popupTipReport": {
+    "message": "이 사이트의 이슈 신고",
+    "description": "Tooltip used for the 'chat' icon in the panel"
   },
   "popupTipNoPopups": {
     "message": "이 사이트에서 팝업 차단 토글",
@@ -581,7 +589,7 @@
   },
   "whitelistPrompt": {
     "message": "목록에 있는 호스트들은 uBlock₀에서 비활성화됩니다. 한 줄에 한 개씩 입력하세요. 존재하지 않는 호스트는 자동으로 무시됩니다.",
-    "description": "The name of the trusted sites pane."
+    "description": "A concise description of the 'Trusted sites' pane."
   },
   "whitelistImport": {
     "message": "가져오기 및 추가하기",
@@ -847,21 +855,133 @@
     "message": "마크다운",
     "description": "Label for radio-button to pick export text format"
   },
+  "supportOpenButton": {
+    "message": "열기",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportReportSpecificButton": {
+    "message": "새 신고 생성",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportFindSpecificButton": {
+    "message": "유사한 신고 탐색",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS1H": {
+    "message": "문서",
+    "description": "Header of 'Documentation' section in Support pane"
+  },
+  "supportS1P1": {
+    "message": "<code>uBlock/wiki</code>의 문서를 읽고 uBlock Origin의 모든 기능에 대해 알아보세요.",
+    "description": "First paragraph of 'Documentation' section in Support pane"
+  },
+  "supportS2H": {
+    "message": "질문 및 지원",
+    "description": "Header of 'Questions and support' section in Support pane"
+  },
+  "supportS2P1": {
+    "message": "질문에 대한 답변 및 기타 도움 지원은 <code>/r/uBlockOrigin</code> 서브레딧에서 제공됩니다.",
+    "description": "First paragraph of 'Questions and support' section in Support pane"
+  },
+  "supportS3H": {
+    "message": "필터 문제/웹사이트가 망가짐",
+    "description": "Header of 'Filter issues' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "특정 웹사이트에서 발생하는 필터 이슈는 <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> 이슈 트래커</span>에 보고해주세요. GitHub 계정이 필요합니다.",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P2": {
+    "message": "<b>중요:</b> uBlock Origin과 유사한 목적의 다른 차단기를 함께 사용하지 마세요. 특정 웹사이트에서 필터 문제가 발생할 수 있습니다.",
+    "description": "Second paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P3": {
+    "message": "<b>팁:</b> 필터 목록이 최신 버전인지 확인하세요. <span data-url=\"logger-ui.html#_\">로거</span>는 필터 관련 문제를 진단하는 데에 사용되는 기본적인 도구입니다.",
+    "description": "Third paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS4H": {
+    "message": "오류 신고",
+    "description": "Header of 'Bug report' section in Support pane"
+  },
+  "supportS4P1": {
+    "message": "uBlock Origin 자체에 대한 이슈는 <span data-url=\"https://github.com/uBlockOrigin/uBlock-issues/issues?q=is%3Aissue\"><code>uBlockOrigin/uBlock-issue</code> 이슈 트래커</span>에 보고해주세요. GitHub 계정이 필요합니다.",
+    "description": "First paragraph of 'Bug report' section in Support pane"
+  },
+  "supportS5H": {
+    "message": "문제 해결 정보",
+    "description": "Header of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P1": {
+    "message": "다음은 자원 봉사자들이 문제를 해결하는 데에 도움을 줄 때 유용할 수 있는 기술적인 정보입니다.",
+    "description": "First paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P2": {
+    "message": "<b>중요:</b> 잠재적으로 개인 정보이거나 민감한 정보는 기본적으로 지워집니다. 정보가 지워지면 문제 해결이 더 어려워질 수도 있습니다.",
+    "description": "Second paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS6H": {
+    "message": "필터 이슈 신고",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "봉사자들이 중복 신고로 인해 부담을 겪지 않도록, 해당 이슈가 이미 신고되지는 않았는지 확인해주시기 바랍니다.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "웹 페이지의 주소:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "웹 페이지가...",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- 주제 선택 --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "광고나 광고 흔적을 보여줍니다",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "오버레이나 기타 성가신 요소를 보여줍니다",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "uBlock Origin 사용을 감지합니다",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "개인정보 보호 관련 이슈가 있습니다",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "uBlock Origin을 켜면 깨집니다",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "원치 않는 탭이나 창을 엽니다",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "웹페이지를 \"NSFW\"  (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>)로 분류",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportRedact": {
+    "message": "지우기",
+    "description": "Text for 'Redact' button"
+  },
+  "supportUnredact": {
+    "message": "지우지 않기",
+    "description": "Text for 'Unredact' button"
+  },
+  "aboutPrivacyPolicy": {
+    "message": "개인정보취급방침",
+    "description": "Link to privacy policy on GitHub (English)"
+  },
   "aboutChangelog": {
     "message": "변경사항",
     "description": ""
-  },
-  "aboutWiki": {
-    "message": "위키",
-    "description": "English: project' wiki on GitHub"
-  },
-  "aboutSupport": {
-    "message": "지원",
-    "description": "A link for where to get support"
-  },
-  "aboutIssues": {
-    "message": "이슈 트래커",
-    "description": "Text for a link to official issue tracker"
   },
   "aboutCode": {
     "message": "소스 코드 (GPLv3)",
@@ -885,6 +1005,14 @@
   },
   "aboutDependencies": {
     "message": "외부 종속성 (GPLv3 호환):",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNs": {
+    "message": "아래 <a href=\"https://wikipedia.org/wiki/Content_delivery_network\">CDN</a>에서 uBO의 필터 목록을 무료로 호스팅해 줍니다:",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNsInfo": {
+    "message": "필터 목록을 업데이트할 때 무작위로 선택된 CDN이 쓰입니다.",
     "description": "Shown in the About pane"
   },
   "aboutBackupDataButton": {
@@ -1043,6 +1171,10 @@
     "message": "프레임 내 구성 요소 차단",
     "description": "An entry in the browser's contextual menu"
   },
+  "contextMenuSubscribeToList": {
+    "message": "필터 목록 구독...",
+    "description": "An entry in the browser's contextual menu"
+  },
   "contextMenuTemporarilyAllowLargeMediaElements": {
     "message": "이번만 대형 미디어 구성요소 허용",
     "description": "A context menu entry, present when large media elements have been blocked on the current site"
@@ -1058,6 +1190,10 @@
   "genericCopyToClipboard": {
     "message": "클립보드에 복사",
     "description": "Label for buttons used to copy something to the clipboard"
+  },
+  "genericSelectAll": {
+    "message": "모두 선택",
+    "description": "Label for buttons used to select all text in editor"
   },
   "toggleBlockingProfile": {
     "message": "차단 프로필 전환",

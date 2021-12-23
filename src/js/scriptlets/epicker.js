@@ -30,6 +30,12 @@
 
 /******************************************************************************/
 
+if ( typeof vAPI !== 'object' || vAPI === null ) {
+    return;
+}
+
+/******************************************************************************/
+
 const epickerId = vAPI.randomToken();
 let epickerConnectionId;
 
@@ -378,6 +384,7 @@ const filterTypes = {
 const cosmeticFilterFromElement = function(elem) {
     if ( elem === null ) { return 0; }
     if ( elem.nodeType !== 1 ) { return 0; }
+    if ( noCosmeticFiltering ) { return 0; }
 
     if ( candidateElements.indexOf(elem) === -1 ) {
         candidateElements.push(elem);
@@ -517,8 +524,19 @@ const filtersFrom = function(x, y) {
         x = undefined;
     }
 
-    // Network filter from element which was clicked.
-    if ( first !== null ) {
+    // https://github.com/gorhill/uBlock/issues/1545
+    //   Network filter candidates from all other elements found at [x,y].
+    // https://www.reddit.com/r/uBlockOrigin/comments/qmjk36/
+    //   Extract network candidates first.
+    if ( typeof x === 'number' ) {
+        const magicAttr = `${vAPI.sessionId}-clickblind`;
+        pickerRoot.setAttribute(magicAttr, '');
+        const elems = document.elementsFromPoint(x, y);
+        pickerRoot.removeAttribute(magicAttr);
+        for ( const elem of elems ) {
+            netFilterFromElement(elem);
+        }
+    } else if ( first !== null ) {
         netFilterFromElement(first);
     }
 
@@ -539,26 +557,6 @@ const filtersFrom = function(x, y) {
         if ( safeQuerySelectorAll(document.body, selector).length > 1 ) {
             cosmeticFilterCandidates.push('##body');
         }
-    }
-
-    // https://github.com/gorhill/uBlock/issues/1545
-    //   Network filter candidates from all other elements found at
-    //   point (x, y).
-    if ( typeof x === 'number' ) {
-        const attrName = vAPI.sessionId + '-clickblind';
-        elem = first;
-        while ( elem !== null ) {
-            const previous = elem;
-            elem.setAttribute(attrName, '');
-            elem = elementFromPoint(x, y);
-            if ( elem === null || elem === previous ) { break; }
-            netFilterFromElement(elem);
-        }
-        for ( const elem of document.querySelectorAll(`[${attrName}]`) ) {
-            elem.removeAttribute(attrName);
-        }
-
-        netFilterFromElement(document.body);
     }
 
     return netFilterCandidates.length + cosmeticFilterCandidates.length;
@@ -709,6 +707,7 @@ const filterToDOMInterface = (( ) => {
     // https://github.com/gorhill/uBlock/issues/2515
     //   Remove trailing pseudo-element when querying.
     const fromCompiledCosmeticFilter = function(raw) {
+        if ( noCosmeticFiltering ) { return; }
         if ( typeof raw !== 'string' ) { return; }
         let elems, style;
         try {
@@ -798,7 +797,7 @@ const filterToDOMInterface = (( ) => {
         if ( permanent === false || reCosmeticAnchor.test(lastFilter) === false ) {
             return apply();
         }
-        if ( vAPI.domFilterer instanceof Object === false ) { return; }
+        if ( noCosmeticFiltering ) { return; }
         const cssSelectors = new Set();
         const proceduralSelectors = new Set();
         for ( const { raw } of lastResultset ) {
@@ -886,7 +885,15 @@ const elementFromPoint = (( ) => {
         const magicAttr = `${vAPI.sessionId}-clickblind`;
         pickerRoot.setAttribute(magicAttr, '');
         let elem = document.elementFromPoint(x, y);
-        if ( elem === document.body || elem === document.documentElement ) {
+        if (
+            elem === null || /* to skip following tests */
+            elem === document.body ||
+            elem === document.documentElement || (
+                pickerBootArgs.zap !== true &&
+                noCosmeticFiltering &&
+                resourceURLsFromElement(elem).length === 0
+            )
+        ) {
             elem = null;
         }
         // https://github.com/uBlockOrigin/uBlock-issues/issues/380
@@ -1013,6 +1020,7 @@ const startPicker = function() {
     // Try using mouse position
     if (
         pickerBootArgs.mouse &&
+        vAPI.mouseClick instanceof Object &&
         typeof vAPI.mouseClick.x === 'number' &&
         vAPI.mouseClick.x > 0
     ) {
@@ -1041,14 +1049,28 @@ const startPicker = function() {
     const elems = document.getElementsByTagName(tagName);
     for ( const elem of elems  ) {
         if ( elem === pickerRoot ) { continue; }
-        const src = elem[attr];
-        if ( typeof src !== 'string' ) { continue; }
-        if ( (src !== url) && (src !== '' || url !== 'about:blank') ) {
+        const srcs = resourceURLsFromElement(elem);
+        if (
+            (srcs.length !== 0 && srcs.includes(url) === false) ||
+            (srcs.length === 0 && url !== 'about:blank')
+        ) {
             continue;
         }
-        elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
         filtersFrom(elem);
-        return showDialog({ broad: true });
+        if (
+            netFilterCandidates.length !== 0 ||
+            cosmeticFilterCandidates.length !== 0
+        ) {
+            if ( pickerBootArgs.mouse !== true ) {
+                elem.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                    inline: 'center'
+                });
+            }
+            showDialog({ broad: true });
+        }
+        return;
     }
 
     // A target was specified, but it wasn't found: abort.
@@ -1193,12 +1215,9 @@ const onConnectionMessage = function(msg) {
 }
 
 // The DOM filterer will not be present when cosmetic filtering is disabled.
-if (
-    pickerBootArgs.zap !== true &&
-    vAPI.domFilterer instanceof Object === false
-) {
-    return;
-}
+const noCosmeticFiltering =
+    vAPI.domFilterer instanceof Object === false ||
+    vAPI.noSpecificCosmeticFiltering === true;
 
 // https://github.com/gorhill/uBlock/issues/1529
 //   In addition to inline styles, harden the element picker styles by using

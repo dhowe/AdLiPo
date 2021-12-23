@@ -55,6 +55,10 @@
     "message": "Despre",
     "description": "appears as tab name in dashboard"
   },
+  "supportPageName": {
+    "message": "Sprijini",
+    "description": "appears as tab name in dashboard"
+  },
   "assetViewerPageName": {
     "message": "uBlock₀ — Vizualizator de resurse",
     "description": "Title for the asset viewer page"
@@ -122,6 +126,10 @@
   "popupTipLog": {
     "message": "Deschide jurnalul",
     "description": "Tooltip used for the logger icon in the panel"
+  },
+  "popupTipReport": {
+    "message": "Raportează o eroare cu acest site",
+    "description": "Tooltip used for the 'chat' icon in the panel"
   },
   "popupTipNoPopups": {
     "message": "Comută blocarea tuturor popup-urilor pentru acest sait",
@@ -496,7 +504,7 @@
     "description": "used as a tooltip for error icon beside a list"
   },
   "1pFormatHint": {
-    "message": "Un filtru pe linie. Un filtru poate fi un simplu nume de gazdă sau un filtru compatibil Adblock Plus. Liniile precedate de <code>!</code> vor fi ignorate.",
+    "message": "Un filtru pe linie. Un filtru poate fi un simplu nume de gazdă sau un filtru compatibil EasyList. Liniile precedate de <code>!</code> vor fi ignorate.",
     "description": "Short information about how to create custom filters"
   },
   "1pImport": {
@@ -581,7 +589,7 @@
   },
   "whitelistPrompt": {
     "message": "Lista ta de nume de gazde unde uBlock va fi dezactivat. Fiecare adresă pe o singură linie. Adresele nevalide vor fi ignorate automat.",
-    "description": "The name of the trusted sites pane."
+    "description": "A concise description of the 'Trusted sites' pane."
   },
   "whitelistImport": {
     "message": "Importă și adaugă",
@@ -847,21 +855,133 @@
     "message": "Marcaj",
     "description": "Label for radio-button to pick export text format"
   },
+  "supportOpenButton": {
+    "message": "Deschide",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportReportSpecificButton": {
+    "message": "Crează o nouă sesizare",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportFindSpecificButton": {
+    "message": "Găsește sesizări similare",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS1H": {
+    "message": "Documentație",
+    "description": "Header of 'Documentation' section in Support pane"
+  },
+  "supportS1P1": {
+    "message": "Citește documentația de la <code>uBlock/wiki</code> pentru a învăța totul despre caracteristicile uBlock Origin.",
+    "description": "First paragraph of 'Documentation' section in Support pane"
+  },
+  "supportS2H": {
+    "message": "Întrebări și ajutor",
+    "description": "Header of 'Questions and support' section in Support pane"
+  },
+  "supportS2P1": {
+    "message": "Răspunsuri la întrebări și alte informații de ajutor sunt disponibile pe subreddit-ul <code>/r/uBlockOrigin</code>.",
+    "description": "First paragraph of 'Questions and support' section in Support pane"
+  },
+  "supportS3H": {
+    "message": "Probleme cu filtrele/website-ul este defect",
+    "description": "Header of 'Filter issues' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "Raportați probleme cu filtrele pe anumite site-uri în <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> centralizatorul de probleme</span>. Necesită un cont GitHub.",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P2": {
+    "message": ">Important:</b> Evitați să folosiți alte extensii cu același scop ca uBlock Origin, deoarece pot exista probleme cu filtrele pe anumite site-uri.",
+    "description": "Second paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P3": {
+    "message": "<b>Sfat:</b> Asigurați-vă că filtrele sunt actualizate. <span data-url=\"logger-ui.html#_\">Registrul cu înregistrări</span> este unealta principală pentru diagnosticarea problemelor cu filtrele.",
+    "description": "Third paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS4H": {
+    "message": "Raportare defecte",
+    "description": "Header of 'Bug report' section in Support pane"
+  },
+  "supportS4P1": {
+    "message": "Raportați probleme cu uBlock Origin în <span data-url=\"https://github.com/uBlockOrigin/uBlock-issues/issues?q=is%3Aissue\"><code>uBlockOrigin/uBlock-issue</code>centralizatorul de probleme</span>. Necesită un cont GitHub.",
+    "description": "First paragraph of 'Bug report' section in Support pane"
+  },
+  "supportS5H": {
+    "message": "Informații pentru depanare",
+    "description": "Header of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P1": {
+    "message": "Mai jos sunt informații care îi pot ajuta pe voluntarii care încearcă să vă ajute în rezolvarea problemelor.",
+    "description": "First paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P2": {
+    "message": "<b>Important:</b> Informațiile potențial private sau sensibile sunt redactate implicit. Aceasta poate face mai dificilă rezolvarea problemelor.",
+    "description": "Second paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS6H": {
+    "message": "Raportează o problemăcu filtrele",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "Pentru a evita suprasolicitarea voluntarilor, vă rugăm să verificați dacă această problemă nu a fost deja raportată.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "Adresa paginii web:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "Pagina web...",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- Alege o intrare --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "Arată reclame sau resturi de reclame",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "Are acoperiri sau alte neplăceri",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "Detectează uBlock Origin",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "Are probleme privind confidențialitatea",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "Nu mai funcționează când uBlock Origin este activat",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "Deschide file sau ferestre nedorite",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "Etichetează pagina ca fiind NSFW (Not Safe For Work) - nerecomandată în public.",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportRedact": {
+    "message": "Redactează",
+    "description": "Text for 'Redact' button"
+  },
+  "supportUnredact": {
+    "message": "Anulează redactarea",
+    "description": "Text for 'Unredact' button"
+  },
+  "aboutPrivacyPolicy": {
+    "message": "Politică de confidențialitate",
+    "description": "Link to privacy policy on GitHub (English)"
+  },
   "aboutChangelog": {
     "message": "Jurnal de modificări",
     "description": ""
-  },
-  "aboutWiki": {
-    "message": "Wiki",
-    "description": "English: project' wiki on GitHub"
-  },
-  "aboutSupport": {
-    "message": "Suport",
-    "description": "A link for where to get support"
-  },
-  "aboutIssues": {
-    "message": "Jurnal cu probleme",
-    "description": "Text for a link to official issue tracker"
   },
   "aboutCode": {
     "message": "Cod sursă (GPLv3)",
@@ -885,6 +1005,14 @@
   },
   "aboutDependencies": {
     "message": "Dependențe externe (compatibile GPLv3):",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNs": {
+    "message": "FIltrele proprii uBO sunt găzduite gratuit de următoarele <a href=\"https://wikipedia.org/wiki/Content_delivery_network\">rețele de distribuție de conținut</a>:",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNsInfo": {
+    "message": "Un CDN ales aleator va fi folosit când listele de filtre vor trebui actualizate",
     "description": "Shown in the About pane"
   },
   "aboutBackupDataButton": {
@@ -1043,6 +1171,10 @@
     "message": "Blochează element in cardu...",
     "description": "An entry in the browser's contextual menu"
   },
+  "contextMenuSubscribeToList": {
+    "message": "Subscrie la lista de filtre...",
+    "description": "An entry in the browser's contextual menu"
+  },
   "contextMenuTemporarilyAllowLargeMediaElements": {
     "message": "Permite temporar elementele media mari",
     "description": "A context menu entry, present when large media elements have been blocked on the current site"
@@ -1058,6 +1190,10 @@
   "genericCopyToClipboard": {
     "message": "Copiază în clipboard",
     "description": "Label for buttons used to copy something to the clipboard"
+  },
+  "genericSelectAll": {
+    "message": "Selectează tot",
+    "description": "Label for buttons used to select all text in editor"
   },
   "toggleBlockingProfile": {
     "message": "Comutați profilul de blocare",

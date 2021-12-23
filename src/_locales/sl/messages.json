@@ -55,6 +55,10 @@
     "message": "O razširitvi",
     "description": "appears as tab name in dashboard"
   },
+  "supportPageName": {
+    "message": "Podpora",
+    "description": "appears as tab name in dashboard"
+  },
   "assetViewerPageName": {
     "message": "uBlock₀ — pregled sredstev",
     "description": "Title for the asset viewer page"
@@ -122,6 +126,10 @@
   "popupTipLog": {
     "message": "Pojdi na dnevnik omrežnih zahtev",
     "description": "Tooltip used for the logger icon in the panel"
+  },
+  "popupTipReport": {
+    "message": "Prijavi napako na tej strani",
+    "description": "Tooltip used for the 'chat' icon in the panel"
   },
   "popupTipNoPopups": {
     "message": "Vklop/Izklop blokiranja vseh pojavnih oken za to stran",
@@ -268,11 +276,11 @@
     "description": "Example of use: Version 1.26.4"
   },
   "popup3pScriptFilterTip": {
-    "message": "↑: Emphasize rows which have 3rd-party scripts",
+    "message": "Poudari vrstice, ki uporabljajo skripte tretjih oseb",
     "description": "Tooltip shown when hovering small filtering widget in '3rd-party scripts' cell"
   },
   "popup3pFrameFilterTip": {
-    "message": "↑: Emphasize rows which have 3rd-party frames",
+    "message": "Poudari vrstice, ki uporabljajo okvirje tretjih oseb",
     "description": "Tooltip shown when hovering small filtering widget in '3rd-party frames' cell"
   },
   "pickerCreate": {
@@ -576,12 +584,12 @@
     "description": "English: a sort option for list of rules."
   },
   "rulesSortByDestination": {
-    "message": "Destination",
+    "message": "Cilju",
     "description": "English: a sort option for list of rules."
   },
   "whitelistPrompt": {
     "message": "Vaš seznam gostiteljskih naslovov, za katere želite, da je uBlock₀ izklopljen. En vnos na vrstico. Neveljavna gostiteljska imena bodo brez opozoril ignorirana.",
-    "description": "The name of the trusted sites pane."
+    "description": "A concise description of the 'Trusted sites' pane."
   },
   "whitelistImport": {
     "message": "Uvozi in dodaj",
@@ -720,7 +728,7 @@
     "description": "Label to identify a root context field (typically a hostname)"
   },
   "loggerEntryDetailsPartyness": {
-    "message": "Partyness",
+    "message": "Pripadnost",
     "description": "Label to identify a field providing partyness information"
   },
   "loggerEntryDetailsType": {
@@ -828,7 +836,7 @@
     "description": "A label for the context column"
   },
   "loggerSettingHideColumnPartyness": {
-    "message": "{{input}} Partyness",
+    "message": "{{input}} Pripadnost",
     "description": "A label for the partyness column"
   },
   "loggerExportFormatList": {
@@ -847,21 +855,133 @@
     "message": "Markdown",
     "description": "Label for radio-button to pick export text format"
   },
+  "supportOpenButton": {
+    "message": "Odpri",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportReportSpecificButton": {
+    "message": "Ustvari novo poročilo",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportFindSpecificButton": {
+    "message": "Najdi podobna poročila",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS1H": {
+    "message": "Dokumentacija",
+    "description": "Header of 'Documentation' section in Support pane"
+  },
+  "supportS1P1": {
+    "message": "Preberi dokumentacijo na <code>uBlock/wiki</code>, da izveš vse o funkcijah uBlock Origin.",
+    "description": "First paragraph of 'Documentation' section in Support pane"
+  },
+  "supportS2H": {
+    "message": "Vprašanja in podpora",
+    "description": "Header of 'Questions and support' section in Support pane"
+  },
+  "supportS2P1": {
+    "message": "Odgovori na vprašanja in druga pomoč so na voljo na forumu <code>/r/uBlockOrigin</code>.",
+    "description": "First paragraph of 'Questions and support' section in Support pane"
+  },
+  "supportS3H": {
+    "message": "Težave s filtrom/stran ne deluje",
+    "description": "Header of 'Filter issues' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "Prijavi težave s filtrom na posameznih straneh v <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> sledilnik težav.",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P2": {
+    "message": "<b>Pomembno:</b> Izogibajte se sočasni uporabi podobnih orodij za blokiranje, to lahko povzroči težave s filtrom na posameznih straneh.",
+    "description": "Second paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P3": {
+    "message": "<b>Tips:</b> Preverjajte, da so vaši seznami filtrov redno posodobljeni. <span data-url=\"logger-ui.html#_\">Zapisovalnik</span> je glavno orodje za diagnostiko težav s filtri.",
+    "description": "Third paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS4H": {
+    "message": "Prijavi napako",
+    "description": "Header of 'Bug report' section in Support pane"
+  },
+  "supportS4P1": {
+    "message": "Report issues with uBlock Origin itself to the <span data-url=\"https://github.com/uBlockOrigin/uBlock-issues/issues?q=is%3Aissue\"><code>uBlockOrigin/uBlock-issue</code> issue tracker</span>. <u>Requires a GitHub account.</u>",
+    "description": "First paragraph of 'Bug report' section in Support pane"
+  },
+  "supportS5H": {
+    "message": "Troubleshooting Information",
+    "description": "Header of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P1": {
+    "message": "Below is technical information that might be useful when volunteers are trying to help you solve a problem.",
+    "description": "First paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P2": {
+    "message": "<b>Important:</b> Potentially private or sensitive information is redacted by default. Redacted information may make it more difficult to solve a problem.",
+    "description": "Second paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS6H": {
+    "message": "Report a filter issue",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "To avoid burdening volunteers with duplicate reports, please verify that the issue has not already been reported.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "Address of the web page:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "The web page...",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- Pick an entry --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "Shows ads or ad leftovers",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "Has overlays or other nuisances",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "Detects uBlock Origin",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "Has privacy-related issues",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "Malfunctions when uBlock Origin is enabled",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "Opens unwanted tabs or windows",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "Label the web page as “NSFW” (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>)",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportRedact": {
+    "message": "Redact",
+    "description": "Text for 'Redact' button"
+  },
+  "supportUnredact": {
+    "message": "Unredact",
+    "description": "Text for 'Unredact' button"
+  },
+  "aboutPrivacyPolicy": {
+    "message": "Pravilnik o zasebnosti",
+    "description": "Link to privacy policy on GitHub (English)"
+  },
   "aboutChangelog": {
     "message": "Dnevnik sprememb",
     "description": ""
-  },
-  "aboutWiki": {
-    "message": "Wiki",
-    "description": "English: project' wiki on GitHub"
-  },
-  "aboutSupport": {
-    "message": "Podpora",
-    "description": "A link for where to get support"
-  },
-  "aboutIssues": {
-    "message": "Sledilec težav",
-    "description": "Text for a link to official issue tracker"
   },
   "aboutCode": {
     "message": "Izvorna koda (GPLv3)",
@@ -885,6 +1005,14 @@
   },
   "aboutDependencies": {
     "message": "Zunanje odvisnosti (GPLv3-kompatibilne):",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNs": {
+    "message": "uBO's own filter lists are freely hosted on the following <a href=\"https://wikipedia.org/wiki/Content_delivery_network\">CDNs</a>:",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNsInfo": {
+    "message": "A randomly picked CDN is used when a filter list needs to be updated",
     "description": "Shown in the About pane"
   },
   "aboutBackupDataButton": {
@@ -1043,6 +1171,10 @@
     "message": "Blokiraj element v okvirju",
     "description": "An entry in the browser's contextual menu"
   },
+  "contextMenuSubscribeToList": {
+    "message": "Naroči se na seznam filtrov..",
+    "description": "An entry in the browser's contextual menu"
+  },
   "contextMenuTemporarilyAllowLargeMediaElements": {
     "message": "Začasno dovoli velike medijske elemente",
     "description": "A context menu entry, present when large media elements have been blocked on the current site"
@@ -1059,12 +1191,16 @@
     "message": "Kopiraj v odložišče",
     "description": "Label for buttons used to copy something to the clipboard"
   },
+  "genericSelectAll": {
+    "message": "Select all",
+    "description": "Label for buttons used to select all text in editor"
+  },
   "toggleBlockingProfile": {
     "message": "Toggle blocking profile",
     "description": "Label for keyboard shortcut used to toggle blocking profile"
   },
   "relaxBlockingMode": {
-    "message": "Relax blocking mode",
+    "message": "Sprostite način blokiranja.",
     "description": "Label for keyboard shortcut used to relax blocking mode (meant to replace 'Toggle blocking profile')"
   },
   "storageUsed": {

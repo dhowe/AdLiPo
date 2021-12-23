@@ -55,6 +55,10 @@
     "message": "Mengenai",
     "description": "appears as tab name in dashboard"
   },
+  "supportPageName": {
+    "message": "Sokongan",
+    "description": "appears as tab name in dashboard"
+  },
   "assetViewerPageName": {
     "message": "uBlock₀ — Pertonton aset",
     "description": "Title for the asset viewer page"
@@ -122,6 +126,10 @@
   "popupTipLog": {
     "message": "Membuka catatan",
     "description": "Tooltip used for the logger icon in the panel"
+  },
+  "popupTipReport": {
+    "message": "Laporkan masalah tentang laman web ini",
+    "description": "Tooltip used for the 'chat' icon in the panel"
   },
   "popupTipNoPopups": {
     "message": "Togol penghalang untuk segala pop timbul laman ini",
@@ -208,11 +216,11 @@
     "description": "Label to be used to hide popup panel sections"
   },
   "popupTipGlobalRules": {
-    "message": "Peraturan global: kolumn ini adalah untuk peraturan yang dikuatkuasakan untuk semua laman.",
+    "message": "Peraturan global: lajur ini adalah untuk peraturan yang dikuatkuasakan untuk semua laman.",
     "description": "Tooltip when hovering the top-most cell of the global-rules column."
   },
   "popupTipLocalRules": {
-    "message": "Peraturan tempatan: kolumn ini adalah untuk peraturan yang dikuatkuasakan untuk laman semasa sahaja.\nPeraturan tempatan mengatasikan peraturan global.",
+    "message": "Peraturan tempatan: lajur ini adalah untuk peraturan yang dikuatkuasakan untuk laman semasa sahaja.\nPeraturan tempatan menolak peraturan global.",
     "description": "Tooltip when hovering the top-most cell of the local-rules column."
   },
   "popupTipSaveRules": {
@@ -336,11 +344,11 @@
     "description": ""
   },
   "settingsAdvancedUserSettings": {
-    "message": "Tetapan lanjutan",
+    "message": "tetapan lanjutan",
     "description": "For the tooltip of a link which gives access to advanced settings"
   },
   "settingsPrefetchingDisabledPrompt": {
-    "message": "Nyahaktifkan pra-ambilan (untuk mengelakkan apa-apa sambungan untuk permintaan rangkaian yang disekat)",
+    "message": "Lumpuhkan pra-ambilan (untuk mengelakkan apa-apa sambungan untuk permintaan rangkaian yang disekat)",
     "description": "English: "
   },
   "settingsHyperlinkAuditingDisabledPrompt": {
@@ -360,7 +368,7 @@
     "description": ""
   },
   "settingsNoCosmeticFilteringPrompt": {
-    "message": "Nyahaktifkan tapisan kosmetik",
+    "message": "Lumpuhkan tapisan kosmetik",
     "description": ""
   },
   "settingsNoLargeMediaPrompt": {
@@ -372,7 +380,7 @@
     "description": ""
   },
   "settingsNoScriptingPrompt": {
-    "message": "Sekat JavaScript",
+    "message": "Lumpuhkan JavaScript",
     "description": "The default state for the per-site no-scripting switch"
   },
   "settingsNoCSPReportsPrompt": {
@@ -464,7 +472,7 @@
     "description": "English: Regions, languages"
   },
   "3pGroupCustom": {
-    "message": "Kustom",
+    "message": "Tersuai",
     "description": "English: Custom"
   },
   "3pImport": {
@@ -581,7 +589,7 @@
   },
   "whitelistPrompt": {
     "message": "Arahan laman web yang dipercayai menentukan halaman web mana uBlock Origin harus dilumpuhkan. Satu penyertaan setiap baris. Arahan tidak sah akan diam-diam diabaikan dan dikomentari.",
-    "description": "The name of the trusted sites pane."
+    "description": "A concise description of the 'Trusted sites' pane."
   },
   "whitelistImport": {
     "message": "Import dan melampirkan",
@@ -847,21 +855,133 @@
     "message": "Penurunan harga",
     "description": "Label for radio-button to pick export text format"
   },
+  "supportOpenButton": {
+    "message": "Buka",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportReportSpecificButton": {
+    "message": "Cipta laporan baru",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportFindSpecificButton": {
+    "message": "Cari laporan yang serupa",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS1H": {
+    "message": "Pendokumenan",
+    "description": "Header of 'Documentation' section in Support pane"
+  },
+  "supportS1P1": {
+    "message": "Baca pendokumenan di <code>uBlock/wiki</code>  untuk belajar tentang kesemua ciri-ciri uBlock Origin.",
+    "description": "First paragraph of 'Documentation' section in Support pane"
+  },
+  "supportS2H": {
+    "message": "Soalan dan sokongan",
+    "description": "Header of 'Questions and support' section in Support pane"
+  },
+  "supportS2P1": {
+    "message": "Menjawab soalan dan pelbagai sokongan disediakan di subreddit <code>/r/uBlockOrigin</code>.",
+    "description": "First paragraph of 'Questions and support' section in Support pane"
+  },
+  "supportS3H": {
+    "message": "Masalah penapisan/laman web rosak",
+    "description": "Header of 'Filter issues' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "Laporkan masalah penapisan di laman web tertentu di <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> pengesan masalah</span>. Memerlukan akaun GitHub.",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P2": {
+    "message": "<b>Penting:</b> Elakkan menggunakan penyekat-penyekat lain yang serupa dengan uBlock Origin, kerana ia menimbulkan masalah penapis di laman web tertentu.",
+    "description": "Second paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P3": {
+    "message": "<b>Tip:</b> Pastikan senarai penapis kamu dikemaskinikan <span data-url=\"logger-ui.html#_\">\tPencatat</span> adalah peralatan utama untuk memeriksa masalah yang berkaitan penapis.",
+    "description": "Third paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS4H": {
+    "message": "Laporan pepijat",
+    "description": "Header of 'Bug report' section in Support pane"
+  },
+  "supportS4P1": {
+    "message": "Laporkan masalah dengan uBlock Origin sendiri ke <span data-url=\"https://github.com/uBlockOrigin/uBlock-issues/issues?q=is%3Aissue\"><code>uBlockOrigin/uBlock-issue</code> pengesan masalah</span>. Memerlukan akaun GitHub.",
+    "description": "First paragraph of 'Bug report' section in Support pane"
+  },
+  "supportS5H": {
+    "message": "Informasi Pencarisilapan",
+    "description": "Header of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P1": {
+    "message": "Berikut adalah maklumat teknikal yang mungkin berguna ketika sukarelawan berusaha membantu anda menyelesaikan masalah.",
+    "description": "First paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P2": {
+    "message": "<b>Penting:</b>Maklumat yang bersifat sensitif dan peribadi dihitamkan secara lalai. Maklumat yang dihitamkan berkemungkinan sukar untuk menyelesaikan masalah. ",
+    "description": "Second paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS6H": {
+    "message": "Laporkan masalah berkaitan penapis",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "Untuk menggelakkan bebanan penyumbang dengan laporan pendua, sila mengesahkan bahawa isu itu belum dilaporkan.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "Alamat laman web:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "Laman web...",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- Pilih entri --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "Tunjuk iklan dan baki iklan tertinggal",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "Mempunyai panel dan gangguan lain",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "Mengesan uBlock Origin",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "Mempunyai masalah berkaitan privasi",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "Rosak pabila uBlock Origin didayakan",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "Membuka tab atau tetingkap yang tidak diingini",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "Labelkan laman web itu sebagai \"NSFW\" (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>)",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportRedact": {
+    "message": "Hitamkan",
+    "description": "Text for 'Redact' button"
+  },
+  "supportUnredact": {
+    "message": "Nyahhitamkan",
+    "description": "Text for 'Unredact' button"
+  },
+  "aboutPrivacyPolicy": {
+    "message": "Dasar privasi",
+    "description": "Link to privacy policy on GitHub (English)"
+  },
   "aboutChangelog": {
     "message": "Catatan perubahan",
     "description": ""
-  },
-  "aboutWiki": {
-    "message": "Wiki",
-    "description": "English: project' wiki on GitHub"
-  },
-  "aboutSupport": {
-    "message": "Sokongan",
-    "description": "A link for where to get support"
-  },
-  "aboutIssues": {
-    "message": "Pengesan masalah",
-    "description": "Text for a link to official issue tracker"
   },
   "aboutCode": {
     "message": "Kod sumber (GPLv3)",
@@ -885,6 +1005,14 @@
   },
   "aboutDependencies": {
     "message": "Pergantungan luaran (serasi dengan GPLv3):",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNs": {
+    "message": "Senarai penapis uBO sendiri dihoskan secara bebas di <a href=\"https://wikipedia.org/wiki/Content_delivery_network\">CDNs</a>:",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNsInfo": {
+    "message": "CDN yang dipilih secara rawak digunakan apabila senarai penapis perlu dikemas kini",
     "description": "Shown in the About pane"
   },
   "aboutBackupDataButton": {
@@ -956,7 +1084,7 @@
     "description": "Firefox/Fennec-specific: Show Dashboard"
   },
   "showNetworkLogButton": {
-    "message": "Tunjukkan Logger",
+    "message": "Tunjukkan Pencatat",
     "description": "Firefox/Fennec-specific: Show Logger"
   },
   "fennecMenuItemBlockingOff": {
@@ -1016,7 +1144,7 @@
     "description": ""
   },
   "cloudDeviceNamePrompt": {
-    "message": "Nama alat ini:",
+    "message": "Nama peranti ini:",
     "description": "used as a prompt for the user to provide a custom device name"
   },
   "advancedSettingsWarning": {
@@ -1032,15 +1160,19 @@
     "description": "for generic 'Apply changes' buttons"
   },
   "genericRevert": {
-    "message": "membalikkan",
+    "message": "Membalikkan",
     "description": "for generic 'Revert' buttons"
   },
   "genericBytes": {
-    "message": "byte",
+    "message": "bait",
     "description": ""
   },
   "contextMenuBlockElementInFrame": {
     "message": "Blok elemen dalam bingkai ...",
+    "description": "An entry in the browser's contextual menu"
+  },
+  "contextMenuSubscribeToList": {
+    "message": "Langgan ke senarai tapisan...",
     "description": "An entry in the browser's contextual menu"
   },
   "contextMenuTemporarilyAllowLargeMediaElements": {
@@ -1058,6 +1190,10 @@
   "genericCopyToClipboard": {
     "message": "Salin ke papan keratan",
     "description": "Label for buttons used to copy something to the clipboard"
+  },
+  "genericSelectAll": {
+    "message": "Pilih semua",
+    "description": "Label for buttons used to select all text in editor"
   },
   "toggleBlockingProfile": {
     "message": "Togol profil penyekat",

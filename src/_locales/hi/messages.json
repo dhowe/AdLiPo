@@ -55,6 +55,10 @@
     "message": "जानकारी",
     "description": "appears as tab name in dashboard"
   },
+  "supportPageName": {
+    "message": "सहायता",
+    "description": "appears as tab name in dashboard"
+  },
   "assetViewerPageName": {
     "message": "uBlock₀ — असेट व्यूअर",
     "description": "Title for the asset viewer page"
@@ -122,6 +126,10 @@
   "popupTipLog": {
     "message": "लॉगर खोलें",
     "description": "Tooltip used for the logger icon in the panel"
+  },
+  "popupTipReport": {
+    "message": "इस वेबसाइट पर किसी समस्या की रिपोर्ट करें",
+    "description": "Tooltip used for the 'chat' icon in the panel"
   },
   "popupTipNoPopups": {
     "message": "इस साईट के लिए कोई पॉपअप नहीं",
@@ -268,11 +276,11 @@
     "description": "Example of use: Version 1.26.4"
   },
   "popup3pScriptFilterTip": {
-    "message": "↑: Emphasize rows which have 3rd-party scripts",
+    "message": "↑: उन पंक्तियों पर जोर दें जिनमें तृतीय-पक्ष स्क्रिप्ट हैं",
     "description": "Tooltip shown when hovering small filtering widget in '3rd-party scripts' cell"
   },
   "popup3pFrameFilterTip": {
-    "message": "↑: Emphasize rows which have 3rd-party frames",
+    "message": "↑: उन पंक्तियों पर जोर दें जिनमें तृतीय-पक्ष स्क्रिप्ट हैं",
     "description": "Tooltip shown when hovering small filtering widget in '3rd-party frames' cell"
   },
   "pickerCreate": {
@@ -380,7 +388,7 @@
     "description": "background information: https://github.com/gorhill/uBlock/issues/3150"
   },
   "settingsUncloakCnamePrompt": {
-    "message": "Uncloak canonical names",
+    "message": "विहित नाम अनलॉक करें",
     "description": "background information: https://github.com/uBlockOrigin/uBlock-issues/issues/1513"
   },
   "settingsLastRestorePrompt": {
@@ -564,24 +572,24 @@
     "description": "English: dynamic rule syntax and full documentation."
   },
   "rulesSort": {
-    "message": "Sort:",
+    "message": "क्रम में लगाये",
     "description": "English: label for sort option."
   },
   "rulesSortByType": {
-    "message": "Rule type",
+    "message": "नियम प्रकार",
     "description": "English: a sort option for list of rules."
   },
   "rulesSortBySource": {
-    "message": "Source",
+    "message": "स्रोत",
     "description": "English: a sort option for list of rules."
   },
   "rulesSortByDestination": {
-    "message": "Destination",
+    "message": "गंतव्य",
     "description": "English: a sort option for list of rules."
   },
   "whitelistPrompt": {
     "message": "वाइटलिस्ट के नियम यह बताते हैं कि uBlock Origin को किस वेब पेज पर बंद करना चाहिए। एक एंट्री हर लाइन में। अमान्य नियमों को सीधे-सीधे नजरअंदाज कर दिया जाएगा।",
-    "description": "The name of the trusted sites pane."
+    "description": "A concise description of the 'Trusted sites' pane."
   },
   "whitelistImport": {
     "message": "इम्पोर्ट करें और जोड़ें",
@@ -684,7 +692,7 @@
     "description": "A keyword in the built-in row filtering expression"
   },
   "loggerRowFiltererBuiltinModified": {
-    "message": "modified",
+    "message": "परिवर्तित",
     "description": "A keyword in the built-in row filtering expression"
   },
   "loggerRowFiltererBuiltin1p": {
@@ -847,21 +855,133 @@
     "message": "मार्कडाउन",
     "description": "Label for radio-button to pick export text format"
   },
+  "supportOpenButton": {
+    "message": "खोलें",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportReportSpecificButton": {
+    "message": "नई रिपोर्ट बनाएं",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportFindSpecificButton": {
+    "message": "ऐसी ही रिपोर्ट खोजें",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS1H": {
+    "message": "प्रलेखन",
+    "description": "Header of 'Documentation' section in Support pane"
+  },
+  "supportS1P1": {
+    "message": "uBlock की सभी विशेषताओं के बारे में जानने के लिए <code>uBlock/wiki</code> पर दस्तावेज़ पढ़ें।",
+    "description": "First paragraph of 'Documentation' section in Support pane"
+  },
+  "supportS2H": {
+    "message": "प्रश्न और समर्थन",
+    "description": "Header of 'Questions and support' section in Support pane"
+  },
+  "supportS2P1": {
+    "message": "सबरेडिट <code>/r/uBlockOrigin</code>. पर सवालों के जवाब और अन्य प्रकार की सहायता सहायता प्रदान की जाती है",
+    "description": "First paragraph of 'Questions and support' section in Support pane"
+  },
+  "supportS3H": {
+    "message": "फ़िल्टर समस्याएं/वेबसाइट टूट गई है",
+    "description": "Header of 'Filter issues' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "Report filter issues with specific websites to the <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> issue tracker</span>. <u>Requires a GitHub account.</u>",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P2": {
+    "message": "<b>Important:</b> Avoid using other similarly-purposed blockers along with uBlock Origin, as this may cause filter issues on specific websites.",
+    "description": "Second paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P3": {
+    "message": "<b>Tips:</b> Be sure your filter lists are up to date. <span data-url=\"logger-ui.html#_\">The logger</span> is the primary tool to diagnose filter-related issues.",
+    "description": "Third paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS4H": {
+    "message": "बग रिपोर्ट",
+    "description": "Header of 'Bug report' section in Support pane"
+  },
+  "supportS4P1": {
+    "message": "Report issues with uBlock Origin itself to the <span data-url=\"https://github.com/uBlockOrigin/uBlock-issues/issues?q=is%3Aissue\"><code>uBlockOrigin/uBlock-issue</code> issue tracker</span>. <u>Requires a GitHub account.</u>",
+    "description": "First paragraph of 'Bug report' section in Support pane"
+  },
+  "supportS5H": {
+    "message": "समस्या निवारक जानकारी",
+    "description": "Header of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P1": {
+    "message": "नीचे तकनीकी जानकारी दी गई है जो तब उपयोगी हो सकती है जब स्वयंसेवक किसी समस्या का समाधान करने में आपकी सहायता करने का प्रयास कर रहे हों।",
+    "description": "First paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P2": {
+    "message": "<b> महत्वपूर्ण: </b> संभावित रूप से निजी या संवेदनशील जानकारी को डिफ़ॉल्ट रूप से संशोधित किया जाता है। संशोधित जानकारी किसी समस्या को हल करना अधिक कठिन बना सकती है।",
+    "description": "Second paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS6H": {
+    "message": "फ़िल्टर समस्या की रिपोर्ट करें",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "स्वयंसेवकों पर डुप्लीकेट रिपोर्ट का बोझ डालने से बचने के लिए, कृपया सत्यापित करें कि समस्या की रिपोर्ट पहले ही नहीं की गई है।",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "वेब पेज का पता:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "वेब पेज...",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- एक प्रविष्टि चुनें --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "विज्ञापन या बचा हुआ विज्ञापन दिखाता है",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "ओवरले या अन्य उपद्रव हैं",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "uBlock Origin का पता लगाता है",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "गोपनीयता से संबंधित समस्याएं हैं",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "uBlock Origin सक्षम होने पर खराबी",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "अवांछित टैब या विंडो खोलता है",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "वेब पेज को इस रूप में लेबल करें “NSFW” (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“काम करने के लिए सुरक्षित नहीं”</a>)",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportRedact": {
+    "message": "संपादन",
+    "description": "Text for 'Redact' button"
+  },
+  "supportUnredact": {
+    "message": "असंशोधित",
+    "description": "Text for 'Unredact' button"
+  },
+  "aboutPrivacyPolicy": {
+    "message": "गोपनीयता नीति",
+    "description": "Link to privacy policy on GitHub (English)"
+  },
   "aboutChangelog": {
     "message": "परिवर्तन सूची",
     "description": ""
-  },
-  "aboutWiki": {
-    "message": "विकी",
-    "description": "English: project' wiki on GitHub"
-  },
-  "aboutSupport": {
-    "message": "मदद",
-    "description": "A link for where to get support"
-  },
-  "aboutIssues": {
-    "message": "समस्या खोजी",
-    "description": "Text for a link to official issue tracker"
   },
   "aboutCode": {
     "message": "सोर्स कोड {GPLv3}",
@@ -885,6 +1005,14 @@
   },
   "aboutDependencies": {
     "message": "बाहरी डिपेंडेंसीज (GPLv3-compatible):",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNs": {
+    "message": "uBO's स्वयं की फ़िल्टर सूचियाँ निम्नलिखित पर स्वतंत्र रूप से होस्ट की जाती हैं <a href=\"https://wikipedia.org/wiki/Content_delivery_network\"> CDNs </a>",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNsInfo": {
+    "message": "बेतरतीब ढंग से चुनी गई सीडीएन का उपयोग तब किया जाता है जब फ़िल्टर सूची को अद्यतन करने की आवश्यकता होती है",
     "description": "Shown in the About pane"
   },
   "aboutBackupDataButton": {
@@ -924,7 +1052,7 @@
     "description": "No longer used"
   },
   "subscribeButton": {
-    "message": "Subscribe",
+    "message": "सबˈस्क्राइब्",
     "description": "For the button used to subscribe to a filter list"
   },
   "elapsedOneMinuteAgo": {
@@ -1040,7 +1168,11 @@
     "description": ""
   },
   "contextMenuBlockElementInFrame": {
-    "message": "Block element in frame...",
+    "message": "फ्रेम में तत्व को ब्लॉक करें...",
+    "description": "An entry in the browser's contextual menu"
+  },
+  "contextMenuSubscribeToList": {
+    "message": "फ़िल्टर सूची की सदस्यता लें...",
     "description": "An entry in the browser's contextual menu"
   },
   "contextMenuTemporarilyAllowLargeMediaElements": {
@@ -1058,6 +1190,10 @@
   "genericCopyToClipboard": {
     "message": "क्लिपबोर्ड में कॉपी करें",
     "description": "Label for buttons used to copy something to the clipboard"
+  },
+  "genericSelectAll": {
+    "message": "सभी चुनें",
+    "description": "Label for buttons used to select all text in editor"
   },
   "toggleBlockingProfile": {
     "message": "ब्लॉकिंग प्रोफ़ाइल क्को टॉगल करें ",

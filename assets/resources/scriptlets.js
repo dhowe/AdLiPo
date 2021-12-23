@@ -32,20 +32,31 @@
 
 
 
-/// abort-current-inline-script.js
+/// abort-current-script.js
+/// alias acs.js
+/// alias abort-current-inline-script.js
 /// alias acis.js
 (function() {
     const target = '{{1}}';
     if ( target === '' || target === '{{1}}' ) { return; }
+    const reRegexEscape = /[.*+?^${}()|[\]\\]/g;
     const needle = '{{2}}';
-    let reText = '.?';
-    if ( needle !== '' && needle !== '{{2}}' ) {
-        reText = /^\/.+\/$/.test(needle)
-            ? needle.slice(1,-1)
-            : needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    }
+    const reNeedle = (( ) => {
+        if ( needle === '' || needle === '{{2}}' ) { return /^/; }
+        if ( /^\/.+\/$/.test(needle) ) {
+            return new RegExp(needle.slice(1,-1));
+        }
+        return new RegExp(needle.replace(reRegexEscape, '\\$&'));
+    })();
+    const context = '{{3}}';
+    const reContext = (( ) => {
+        if ( context === '' || context === '{{3}}' ) { return /^$/; }
+        if ( /^\/.+\/$/.test(context) ) {
+            return new RegExp(context.slice(1,-1));
+        }
+        return new RegExp(context.replace(reRegexEscape, '\\$&'));
+    })();
     const thisScript = document.currentScript;
-    const re = new RegExp(reText);
     const chain = target.split('.');
     let owner = window;
     let prop;
@@ -66,28 +77,47 @@
     }
     const magic = String.fromCharCode(Date.now() % 26 + 97) +
                   Math.floor(Math.random() * 982451653 + 982451653).toString(36);
-    const validate = function() {
-        const e = document.currentScript;
-        if (
-            e instanceof HTMLScriptElement &&
-            e.src === '' &&
-            e !== thisScript &&
-            re.test(e.textContent)
-        ) {
-            throw new ReferenceError(magic);
+    const scriptTexts = new WeakMap();
+    const getScriptText = elem => {
+        let text = elem.textContent;
+        if ( text.trim() !== '' ) { return text; }
+        if ( scriptTexts.has(elem) ) { return scriptTexts.get(elem); }
+        const [ , mime, content ] =
+            /^data:([^,]*),(.+)$/.exec(elem.src.trim()) ||
+            [ '', '', '' ];
+        try {
+            switch ( true ) {
+            case mime.endsWith(';base64'):
+                text = self.atob(content);
+                break;
+            default:
+                text = self.decodeURIComponent(content);
+                break;
+            }
+        } catch(ex) {
         }
+        scriptTexts.set(elem, text);
+        return text;
+    };
+    const validate = ( ) => {
+        const e = document.currentScript;
+        if ( e instanceof HTMLScriptElement === false ) { return; }
+        if ( reContext.test(e.src) === false ) { return; }
+        if ( e === thisScript ) { return; }
+        if ( reNeedle.test(getScriptText(e)) === false ) { return; }
+        throw new ReferenceError(magic);
     };
     Object.defineProperty(owner, prop, {
         get: function() {
             validate();
             return desc instanceof Object
-                ? desc.get()
+                ? desc.get.call(owner)
                 : value;
         },
         set: function(a) {
             validate();
             if ( desc instanceof Object ) {
-                desc.set(a);
+                desc.set.call(owner, a);
             } else {
                 value = a;
             }
@@ -95,7 +125,7 @@
     });
     const oe = window.onerror;
     window.onerror = function(msg) {
-        if ( typeof msg === 'string' && msg.indexOf(magic) !== -1 ) {
+        if ( typeof msg === 'string' && msg.includes(magic) ) {
             return true;
         }
         if ( oe instanceof Function ) {
@@ -307,6 +337,7 @@
 
 /// addEventListener-defuser.js
 /// alias aeld.js
+// https://github.com/uBlockOrigin/uAssets/issues/9123#issuecomment-848255120
 (function() {
     let needle1 = '{{1}}';
     if ( needle1 === '' || needle1 === '{{1}}' ) {
@@ -330,8 +361,12 @@
         self.EventTarget.prototype.addEventListener,
         {
             apply: function(target, thisArg, args) {
-                const type = String(args[0]);
-                const handler = String(args[1]);
+                let type, handler;
+                try {
+                    type = String(args[0]);
+                    handler = String(args[1]);
+                } catch(ex) {
+                }
                 if (
                     needle1.test(type) === false ||
                     needle2.test(handler) === false
@@ -346,14 +381,19 @@
 
 /// addEventListener-logger.js
 /// alias aell.js
+// https://github.com/uBlockOrigin/uAssets/issues/9123#issuecomment-848255120
 (function() {
     const log = console.log.bind(console);
     self.EventTarget.prototype.addEventListener = new Proxy(
         self.EventTarget.prototype.addEventListener,
         {
             apply: function(target, thisArg, args) {
-                const type = String(args[0]);
-                const handler = String(args[1]);
+                let type, handler;
+                try {
+                    type = String(args[0]);
+                    handler = String(args[1]);
+                } catch(ex) {
+                }
                 log('uBO: addEventListener("%s", %s)', type, handler);
                 return target.apply(thisArg, args);
             }
@@ -683,6 +723,27 @@
 })();
 
 
+/// refresh-defuser.js
+// https://www.reddit.com/r/uBlockOrigin/comments/q0frv0/while_reading_a_sports_article_i_was_redirected/hf7wo9v/
+(function() {
+    const arg1 = '{{1}}';
+    const defuse = ( ) => {
+        const meta = document.querySelector('meta[http-equiv="refresh" i][content]');
+        if ( meta === null ) { return; }
+        const s = arg1 === '' || arg1 === '{{1}}'
+            ? meta.getAttribute('content')
+            : arg1;
+        const ms = Math.max(parseFloat(s) || 0, 0) * 1000;
+        setTimeout(( ) => { window.stop(); }, ms);
+    };
+    if ( document.readyState === 'loading' ) {
+        document.addEventListener('DOMContentLoaded', defuse, { once: true });
+    } else {
+        defuse();
+    }
+})();
+
+
 /// remove-attr.js
 /// alias ra.js
 (function() {
@@ -721,13 +782,13 @@
             }
         }
         if ( skip ) { return; }
-        timer = self.requestIdleCallback(rmattr, { timeout: 67 });
+        timer = self.requestIdleCallback(rmattr, { timeout: 17 });
     };
     const start = ( ) => {
         rmattr();
         if ( /\bstay\b/.test(behavior) === false ) { return; }
         const observer = new MutationObserver(mutationHandler);
-        observer.observe(document.documentElement, {
+        observer.observe(document, {
             attributes: true,
             attributeFilter: tokens,
             childList: true,
@@ -736,10 +797,10 @@
     };
     if ( document.readyState !== 'complete' && /\bcomplete\b/.test(behavior) ) {
         self.addEventListener('load', start, { once: true });
-    } else if ( document.readyState === 'loading' ) {
-        self.addEventListener('DOMContentLoaded', start, { once: true });
-    } else {
+    } else if ( document.readyState !== 'loading' || /\basap\b/.test(behavior) ) {
         start();
+    } else {
+        self.addEventListener('DOMContentLoaded', start, { once: true });
     }
 })();
 
@@ -754,7 +815,10 @@
     if ( selector === '' || selector === '{{2}}' ) {
         selector = '.' + tokens.map(a => CSS.escape(a)).join(',.');
     }
+    let behavior = '{{3}}';
+    let timer;
     const rmclass = function() {
+        timer = undefined;
         try {
             const nodes = document.querySelectorAll(selector);
             for ( const node of nodes ) {
@@ -763,14 +827,39 @@
         } catch(ex) {
         }
     };
-    if ( document.readyState === 'loading' ) {
-        window.addEventListener(
-            'DOMContentLoaded',
-            rmclass,
-            { capture: true, once: true }
-        );
-    } else {
+    const mutationHandler = mutations => {
+        if ( timer !== undefined ) { return; }
+        let skip = true;
+        for ( let i = 0; i < mutations.length && skip; i++ ) {
+            const { type, addedNodes, removedNodes } = mutations[i];
+            if ( type === 'attributes' ) { skip = false; }
+            for ( let j = 0; j < addedNodes.length && skip; j++ ) {
+                if ( addedNodes[j].nodeType === 1 ) { skip = false; break; }
+            }
+            for ( let j = 0; j < removedNodes.length && skip; j++ ) {
+                if ( removedNodes[j].nodeType === 1 ) { skip = false; break; }
+            }
+        }
+        if ( skip ) { return; }
+        timer = self.requestIdleCallback(rmclass, { timeout: 67 });
+    };
+    const start = ( ) => {
         rmclass();
+        if ( /\bstay\b/.test(behavior) === false ) { return; }
+        const observer = new MutationObserver(mutationHandler);
+        observer.observe(document, {
+            attributes: true,
+            attributeFilter: [ 'class' ],
+            childList: true,
+            subtree: true,
+        });
+    };
+    if ( document.readyState !== 'complete' && /\bcomplete\b/.test(behavior) ) {
+        self.addEventListener('load', start, { once: true });
+    } else if ( document.readyState === 'loading' ) {
+        self.addEventListener('DOMContentLoaded', start, { once: true });
+    } else {
+        start();
     }
 })();
 
@@ -821,6 +910,12 @@
         cValue = true;
     } else if ( cValue === 'null' ) {
         cValue = null;
+    } else if ( cValue === "''" ) {
+        cValue = '';
+    } else if ( cValue === '[]' ) {
+        cValue = [];
+    } else if ( cValue === '{}' ) {
+        cValue = {};
     } else if ( cValue === 'noopFunc' ) {
         cValue = function(){};
     } else if ( cValue === 'trueFunc' ) {
@@ -831,8 +926,6 @@
         cValue = parseFloat(cValue);
         if ( isNaN(cValue) ) { return; }
         if ( Math.abs(cValue) > 0x7FFF ) { return; }
-    } else if ( cValue === "''" ) {
-        cValue = '';
     } else {
         return;
     }
@@ -852,7 +945,7 @@
         const odesc = Object.getOwnPropertyDescriptor(owner, prop);
         let prevGetter, prevSetter;
         if ( odesc instanceof Object ) {
-            if ( odesc.configurable === false ) { return; }
+            owner[prop] = cValue;
             if ( odesc.get instanceof Function ) {
                 prevGetter = odesc.get;
             }
@@ -860,21 +953,24 @@
                 prevSetter = odesc.set;
             }
         }
-        Object.defineProperty(owner, prop, {
-            configurable,
-            get() {
-                if ( prevGetter !== undefined ) {
-                    prevGetter();
+        try {
+            Object.defineProperty(owner, prop, {
+                configurable,
+                get() {
+                    if ( prevGetter !== undefined ) {
+                        prevGetter();
+                    }
+                    return handler.getter(); // cValue
+                },
+                set(a) {
+                    if ( prevSetter !== undefined ) {
+                        prevSetter(a);
+                    }
+                    handler.setter(a);
                 }
-                return handler.getter(); // cValue
-            },
-            set(a) {
-                if ( prevSetter !== undefined ) {
-                    prevSetter(a);
-                }
-                handler.setter(a);
-            }
-        });
+            });
+        } catch(ex) {
+        }
     };
     const trapChain = function(owner, chain) {
         const pos = chain.indexOf('.');
@@ -1090,6 +1186,111 @@
                 return Reflect.construct(target, args);
             }
         });
+})();
+
+
+/// no-xhr-if.js
+(function() {
+    const xhrInstances = new WeakMap();
+    let arg1 = '{{1}}';
+    if ( arg1 === '{{1}}' ) { arg1 = ''; }
+    const needles = [];
+    for ( const condition of arg1.split(/\s+/) ) {
+        if ( condition === '' ) { continue; }
+        const pos = condition.indexOf(':');
+        let key, value;
+        if ( pos !== -1 ) {
+            key = condition.slice(0, pos);
+            value = condition.slice(pos + 1);
+        } else {
+            key = 'url';
+            value = condition;
+        }
+        if ( value === '' ) {
+            value = '^';
+        } else if ( value.startsWith('/') && value.endsWith('/') ) {
+            value = value.slice(1, -1);
+        } else {
+            value = value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+        needles.push({ key, re: new RegExp(value) });
+    }
+    const log = needles.length === 0 ? console.log.bind(console) : undefined;
+    self.XMLHttpRequest = class extends self.XMLHttpRequest {
+        open(...args) {
+            if ( log !== undefined ) {
+                log(`uBO: xhr.open(${args.join(', ')})`);
+            } else {
+                const argNames = [ 'method', 'url' ];
+                const haystack = new Map();
+                for ( let i = 0; i < args.length && i < argNames.length; i++  ) {
+                    haystack.set(argNames[i], args[i]);
+                }
+                if ( haystack.size !== 0 ) {
+                    let matches = true;
+                    for ( const { key, re } of needles ) {
+                        matches = re.test(haystack.get(key) || '');
+                        if ( matches === false ) { break; }
+                    }
+                    if ( matches ) {
+                        xhrInstances.set(this, haystack);
+                    }
+                }
+            }
+            return super.open(...args);
+        }
+        send(...args) {
+            const haystack = xhrInstances.get(this);
+            if ( haystack === undefined ) {
+                return super.send(...args);
+            }
+            Object.defineProperties(this, {
+                readyState: { value: 4, writable: false },
+                response: { value: '', writable: false },
+                responseText: { value: '', writable: false },
+                responseURL: { value: haystack.get('url'), writable: false },
+                responseXML: { value: '', writable: false },
+                status: { value: 200, writable: false },
+                statusText: { value: 'OK', writable: false },
+            });
+            if ( this.onreadystatechange !== null ) {
+                setTimeout(( ) => {
+                    const ev = new Event('readystatechange');
+                    this.onreadystatechange.call(this, ev);
+                }, 1);
+            }
+            if ( this.onload !== null ) {
+                setTimeout(( ) => {
+                    const ev = new Event('load');
+                    this.onload.call(this, ev);
+                }, 1);
+            }
+        }
+    };
+})();
+
+
+// https://github.com/uBlockOrigin/uAssets/issues/10323#issuecomment-992312847
+// https://github.com/AdguardTeam/Scriptlets/issues/158
+/// window-close-if.js
+(function() {
+    const arg1 = '{{1}}';
+    let reStr;
+    if ( arg1 === '{{1}}' || arg1 === '' ) {
+        reStr = '^';
+    } else if ( arg1.startsWith('/') && arg1.endsWith('/') ) {
+        reStr = arg1.slice(1, -1);
+    } else {
+        reStr = arg1.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+    try {
+        const re = new RegExp(reStr);
+        if ( re.test(`${window.location.pathname}${window.location.search}`) ) {
+            window.close();
+        }
+    } catch(ex) {
+        console.log(ex);
+    }
 })();
 
 
@@ -1357,63 +1558,62 @@
 
 /// damoh-defuser.js
 (function() {
-    var handled = new WeakSet();
-    var asyncTimer;
-    var cleanVideo = function() {
+    const handled = new WeakSet();
+    let asyncTimer;
+    const cleanVideo = function() {
         asyncTimer = undefined;
-        var v = document.querySelector('video');
+        const v = document.querySelector('video');
         if ( v === null ) { return; }
         if ( handled.has(v) ) { return; }
         handled.add(v);
         v.pause();
         v.controls = true;
-        var el = v.querySelector('meta[itemprop="contentURL"][content]');
+        let el = v.querySelector('meta[itemprop="contentURL"][content]');
         if ( el === null ) { return; }
         v.src = el.getAttribute('content');
         el = v.querySelector('meta[itemprop="thumbnailUrl"][content]');
         if ( el !== null ) { v.poster = el.getAttribute('content'); }
     };
-    var cleanVideoAsync = function() {
+    const cleanVideoAsync = function() {
         if ( asyncTimer !== undefined ) { return; }
         asyncTimer = window.requestAnimationFrame(cleanVideo);
     };
-    var observer = new MutationObserver(cleanVideoAsync);
-    observer.observe(document.documentElement, { childList: true, subtree: true });
+    const observer = new MutationObserver(cleanVideoAsync);
+    observer.observe(document, { childList: true, subtree: true });
 })();
 
 
-// https://github.com/uBlockOrigin/uAssets/issues/5184
 /// twitch-videoad.js
+// https://github.com/uBlockOrigin/uAssets/issues/5184
+// https://github.com/pixeltris/TwitchAdSolutions/commit/6be4c5313035
+// https://github.com/pixeltris/TwitchAdSolutions/commit/3d2883ea9e3a
+// https://github.com/pixeltris/TwitchAdSolutions/commit/7233b5fd2284
+// https://github.com/pixeltris/TwitchAdSolutions/commit/aad8946dab2b
 (function() {
     if ( /(^|\.)twitch\.tv$/.test(document.location.hostname) === false ) { return; }
-    var realFetch = window.fetch;
-    window.fetch = function(input) {
-        if ( arguments.length >= 2 && typeof input === 'string' && input.includes('/access_token') ) {
-            var url = new URL(arguments[0]);
-            url.searchParams.delete('platform');
-            arguments[0] = url.href;
+    window.fetch = new Proxy(window.fetch, {
+        apply: function(target, thisArg, args) {
+            const [ url, init ] = args;
+            if (
+                typeof url === 'string' &&
+                url.includes('gql') &&
+                init instanceof Object &&
+                init.headers instanceof Object &&
+                typeof init.body === 'string' &&
+                init.body.includes('PlaybackAccessToken') &&
+                init.body.includes('"isVod":true') === false
+            ) {
+                const { headers } = init;
+                if ( typeof headers['X-Device-Id'] === 'string' ) {
+                    headers['X-Device-Id'] = 'twitch-web-wall-mason';
+                }
+                if ( typeof headers['Device-ID'] === 'string' ) {
+                    headers['Device-ID'] = 'twitch-web-wall-mason';
+                }
+            }
+            return Reflect.apply(target, thisArg, args);
         }
-        return realFetch.apply(this, arguments);
-    };
-})();
-
-
-// https://github.com/uBlockOrigin/uAssets/issues/2912
-/// fingerprint2.js
-(function() {
-    let browserId = '';
-    for ( let i = 0; i < 8; i++ ) {
-        browserId += (Math.random() * 0x10000 + 0x1000 | 0).toString(16).slice(-4);
-    }
-    const fp2 = function(){};
-    fp2.get = function(opts, cb) {
-        if ( !cb  ) { cb = opts; }
-        setTimeout(( ) => { cb(browserId, []); }, 1);
-    };
-    fp2.prototype = {
-        get: fp2.get
-    };
-    window.Fingerprint2 = fp2;
+    });
 })();
 
 

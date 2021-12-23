@@ -20,7 +20,6 @@
 */
 
 'use strict';
-const cssToInject = 'visibility: hidden!important;';
 
 /******************************************************************************/
 
@@ -243,7 +242,7 @@ const handlers = {
         //console.time('dom logger/filterset changed');
         for ( const entry of (changes.declarative || []) ) {
             for ( let selector of entry[0].split(',\n') ) {
-                if ( entry[1] !== cssToInject ) {
+                if ( entry[1] !== 'display:none!important;' ) {
                     declarativeStyleStr = undefined;
                     const styles = declarativeStyleDict.get(selector);
                     if ( styles === undefined ) {

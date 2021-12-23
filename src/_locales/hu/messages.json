@@ -55,6 +55,10 @@
     "message": "Névjegy",
     "description": "appears as tab name in dashboard"
   },
+  "supportPageName": {
+    "message": "Támogatás",
+    "description": "appears as tab name in dashboard"
+  },
   "assetViewerPageName": {
     "message": "uBlock₀ - Eszköznézet",
     "description": "Title for the asset viewer page"
@@ -122,6 +126,10 @@
   "popupTipLog": {
     "message": "Naplózott lekérések megtekintése",
     "description": "Tooltip used for the logger icon in the panel"
+  },
+  "popupTipReport": {
+    "message": "Report an issue on this website",
+    "description": "Tooltip used for the 'chat' icon in the panel"
   },
   "popupTipNoPopups": {
     "message": "Oldal összes felugró ablakának blokkolása/engedélyezése",
@@ -581,7 +589,7 @@
   },
   "whitelistPrompt": {
     "message": "Az alábbi listában felsorolt hostokon a kiegészítő nem fog működni. Soronként egy bejegyzés. Érvénytelen hostnevek figyelmen kívül maradnak.",
-    "description": "The name of the trusted sites pane."
+    "description": "A concise description of the 'Trusted sites' pane."
   },
   "whitelistImport": {
     "message": "Importál és hozzáad",
@@ -847,21 +855,133 @@
     "message": "Markdown",
     "description": "Label for radio-button to pick export text format"
   },
+  "supportOpenButton": {
+    "message": "Megnyitás",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportReportSpecificButton": {
+    "message": "Create new report",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportFindSpecificButton": {
+    "message": "Find similar reports",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS1H": {
+    "message": "Dokumentáció",
+    "description": "Header of 'Documentation' section in Support pane"
+  },
+  "supportS1P1": {
+    "message": "Az uBlock Origin további funkcióihoz látogassa meg a dokumentációt itt: <code>uBlock/wiki</code>.",
+    "description": "First paragraph of 'Documentation' section in Support pane"
+  },
+  "supportS2H": {
+    "message": "Kérdések és támogatás",
+    "description": "Header of 'Questions and support' section in Support pane"
+  },
+  "supportS2P1": {
+    "message": "A felhasználói kérdésekre választ és további segítséget, támogatást az <code>/r/uBlockOrigin</code> subredditen nyújtunk.",
+    "description": "First paragraph of 'Questions and support' section in Support pane"
+  },
+  "supportS3H": {
+    "message": "Szűrőhibák/a weboldal nem működik megfelelően",
+    "description": "Header of 'Filter issues' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "Adott weboldalra vonatkozó szűrőhibákat jelentse a <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> hibakövetőn</span>. GitHub-fiók szükséges.",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P2": {
+    "message": "<b>Fontos:</b> Ne használjon hasonló célú reklámblokkolókat az uBlock Originnal egyszerre, mert ez szűrőhibákat okozhat bizonyos weboldalakon.",
+    "description": "Second paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P3": {
+    "message": "<b>Tippek:</b> Bizonyosodjon meg arról, hogy a legfrissebb szűrőlistákat használja. <span data-url=\"logger-ui.html#_\">A napló<span> a legfontosabb eszköz a szűrőkkel kapcsolatos hibák diagnózisában.",
+    "description": "Third paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS4H": {
+    "message": "Hibajelentés",
+    "description": "Header of 'Bug report' section in Support pane"
+  },
+  "supportS4P1": {
+    "message": "Az uBlock Origin hibáit jelentse a <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uBlock-issue</code> hibakövetőn</span>. GitHub-fiók szükséges.",
+    "description": "First paragraph of 'Bug report' section in Support pane"
+  },
+  "supportS5H": {
+    "message": "Hibakeresési információ",
+    "description": "Header of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P1": {
+    "message": "Az alább található technikai információk segíthetnek önkénteseinknek megoldani a problémáját.",
+    "description": "First paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P2": {
+    "message": "<b>Fontos:</b> Az esetlegesen személyes vagy érzékeny adatok alapértelmezésből rejtve vannak. Az elrejtett információk megnehezíthetik a probléma megoldását.",
+    "description": "Second paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS6H": {
+    "message": "Report a filter issue",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "To avoid burdening volunteers with duplicate reports, please verify that the issue has not already been reported.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "Address of the web page:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "The web page...",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- Pick an entry --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "Shows ads or ad leftovers",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "Has overlays or other nuisances",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "Detects uBlock Origin",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "Has privacy-related issues",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "Malfunctions when uBlock Origin is enabled",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "Opens unwanted tabs or windows",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "Label the web page as “NSFW” (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>)",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportRedact": {
+    "message": "Elrejtés",
+    "description": "Text for 'Redact' button"
+  },
+  "supportUnredact": {
+    "message": "Megjelenítés",
+    "description": "Text for 'Unredact' button"
+  },
+  "aboutPrivacyPolicy": {
+    "message": "Adatvédelmi szabályzat",
+    "description": "Link to privacy policy on GitHub (English)"
+  },
   "aboutChangelog": {
     "message": "Változások listája",
     "description": ""
-  },
-  "aboutWiki": {
-    "message": "Wiki",
-    "description": "English: project' wiki on GitHub"
-  },
-  "aboutSupport": {
-    "message": "Támogatás",
-    "description": "A link for where to get support"
-  },
-  "aboutIssues": {
-    "message": "Bugok és problémák",
-    "description": "Text for a link to official issue tracker"
   },
   "aboutCode": {
     "message": "Forráskód (GPLv3)",
@@ -885,6 +1005,14 @@
   },
   "aboutDependencies": {
     "message": "Külső függőségek (GPLv3-kompatibilis):",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNs": {
+    "message": "Az uBO saját szűrőlistáit a következő ingyenes <a href=\"https://wikipedia.org/wiki/Content_delivery_network\">CDN-ek (angol)</a> szolgáltatják:",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNsInfo": {
+    "message": "A szűrőlisták frissítéséhez egy véletlenszerűen kiválasztott CDN-t használ a bővítmény",
     "description": "Shown in the About pane"
   },
   "aboutBackupDataButton": {
@@ -1043,6 +1171,10 @@
     "message": "Elem blokkolása a keretben",
     "description": "An entry in the browser's contextual menu"
   },
+  "contextMenuSubscribeToList": {
+    "message": "Feliratkozás szűrőlistára...",
+    "description": "An entry in the browser's contextual menu"
+  },
   "contextMenuTemporarilyAllowLargeMediaElements": {
     "message": "Nagyméretű média elemek ideiglenes engedélyezése",
     "description": "A context menu entry, present when large media elements have been blocked on the current site"
@@ -1058,6 +1190,10 @@
   "genericCopyToClipboard": {
     "message": "Másolás a vágólapra",
     "description": "Label for buttons used to copy something to the clipboard"
+  },
+  "genericSelectAll": {
+    "message": "Mindent kijelöl",
+    "description": "Label for buttons used to select all text in editor"
   },
   "toggleBlockingProfile": {
     "message": "Profil blokkolás váltása",

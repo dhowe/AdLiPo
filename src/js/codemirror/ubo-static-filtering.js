@@ -25,8 +25,7 @@
 
 /******************************************************************************/
 
-{
-// >>>>> start of local scope
+import { StaticFilteringParser } from '../static-filtering-parser.js';
 
 /******************************************************************************/
 
@@ -40,9 +39,6 @@ let hintHelperRegistered = false;
 /******************************************************************************/
 
 CodeMirror.defineMode('ubo-static-filtering', function() {
-    const StaticFilteringParser = typeof vAPI === 'object'
-        ? vAPI.StaticFilteringParser
-        : self.StaticFilteringParser;
     if ( StaticFilteringParser instanceof Object === false ) { return; }
     const parser = new StaticFilteringParser({ interactive: true });
 
@@ -212,25 +208,30 @@ CodeMirror.defineMode('ubo-static-filtering', function() {
         return style || 'value';
     };
 
+    // https://github.com/uBlockOrigin/uBlock-issues/issues/760#issuecomment-951146371
+    //   Quick fix: auto-escape commas.
     const colorNetOptionSpan = function(stream) {
-        const bits = parser.slices[parserSlot];
-        if ( (bits & parser.BITComma) !== 0  ) {
-            netOptionValueMode = false;
-            stream.pos += parser.slices[parserSlot+2];
-            parserSlot += 3;
-            return 'def strong';
+        const [ slotBits, slotPos, slotLen ] =
+            parser.slices.slice(parserSlot, parserSlot+3);
+        if ( (slotBits & parser.BITComma) !== 0 ) {
+            if ( /^,\d*?\}/.test(parser.raw.slice(slotPos)) === false ) {
+                netOptionValueMode = false;
+                stream.pos += slotLen;
+                parserSlot += 3;
+                return 'def strong';
+            }
         }
         if ( netOptionValueMode ) {
-            return colorNetOptionValueSpan(stream, bits);
+            return colorNetOptionValueSpan(stream, slotBits);
         }
-        if ( (bits & parser.BITTilde) !== 0 ) {
-            stream.pos += parser.slices[parserSlot+2];
+        if ( (slotBits & parser.BITTilde) !== 0 ) {
+            stream.pos += slotLen;
             parserSlot += 3;
             return 'keyword strong';
         }
-        if ( (bits & parser.BITEqual) !== 0 ) {
+        if ( (slotBits & parser.BITEqual) !== 0 ) {
             netOptionValueMode = true;
-            stream.pos += parser.slices[parserSlot+2];
+            stream.pos += slotLen;
             parserSlot += 3;
             return 'def';
         }
@@ -417,16 +418,12 @@ CodeMirror.defineMode('ubo-static-filtering', function() {
 //   https://codemirror.net/demo/complete.html
 
 const initHints = function() {
-    const StaticFilteringParser = typeof vAPI === 'object'
-        ? vAPI.StaticFilteringParser
-        : self.StaticFilteringParser;
     if ( StaticFilteringParser instanceof Object === false ) { return; }
 
     const parser = new StaticFilteringParser();
     const proceduralOperatorNames = new Map(
-        Array.from(parser.proceduralOperatorTokens).filter(item => {
-            return (item[1] & 0b01) !== 0;
-        })
+        Array.from(parser.proceduralOperatorTokens)
+             .filter(item => (item[1] & 0b01) !== 0)
     );
     const excludedHints = new Set([
         'genericblock',
@@ -446,23 +443,89 @@ const initHints = function() {
             if ( text.startsWith(seed) === false ) { continue; }
             out.push(hint);
         }
-        // If no match, try again with a different heuristic
-        if ( out.length === 0 ) {
-            for ( const hint of hints ) {
-                const text = hint instanceof Object
-                    ? hint.displayText || hint.text
-                    : hint;
-                if ( seedLeft.length === 1 ) {
-                    if ( text.startsWith(seedLeft) === false ) { continue; }
-                } else if ( text.includes(seed) === false ) { continue; }
-                out.push(hint);
-            }
+        if ( out.length !== 0 ) {
+            return {
+                from: { line: cursor.line, ch: cursor.ch - seedLeft.length },
+                to: { line: cursor.line, ch: cursor.ch + seedRight.length },
+                list: out,
+            };
         }
-        return {
-            from: { line: cursor.line, ch: cursor.ch - seedLeft.length },
-            to: { line: cursor.line, ch: cursor.ch + seedRight.length },
-            list: out,
-        };
+        // If no match, try again with a different heuristic: valid hints are
+        // those matching left seed, not matching right seed but right seed is
+        // found to be a valid hint. This is to take care of cases like:
+        //
+        //     *$script,redomain=example.org
+        //                ^
+        //                + cursor position
+        //
+        // In such case, [ redirect=, redirect-rule= ] should be returned
+        // as valid hints.
+        for ( const hint of hints ) {
+            const text = hint instanceof Object
+                ? hint.displayText || hint.text
+                : hint;
+            if ( seedLeft.length === 0 ) { continue; }
+            if ( text.startsWith(seedLeft) === false ) { continue; }
+            if ( hints.includes(seedRight) === false ) { continue; }
+            out.push(hint);
+        }
+        if ( out.length !== 0 ) {
+            return {
+                from: { line: cursor.line, ch: cursor.ch - seedLeft.length },
+                to: { line: cursor.line, ch: cursor.ch },
+                list: out,
+            };
+        }
+        // If no match, try again with a different heuristic: valid hints are
+        // those containing seed as a substring. This is to take care of cases
+        // like:
+        //
+        //     *$script,redirect=gif
+        //                       ^
+        //                       + cursor position
+        //
+        // In such case, [ 1x1.gif, 1x1-transparent.gif ] should be returned
+        // as valid hints.
+        for ( const hint of hints ) {
+            const text = hint instanceof Object
+                ? hint.displayText || hint.text
+                : hint;
+            if ( seedLeft.length === 1 ) {
+                if ( text.startsWith(seedLeft) === false ) { continue; }
+            } else if ( text.includes(seed) === false ) { continue; }
+            out.push(hint);
+        }
+        if ( out.length !== 0 ) {
+            return {
+                from: { line: cursor.line, ch: cursor.ch - seedLeft.length },
+                to: { line: cursor.line, ch: cursor.ch + seedRight.length },
+                list: out,
+            };
+        }
+        // If still no match, try again with a different heuristic: valid hints
+        // are those containing left seed as a substring. This is to take care
+        // of cases like:
+        //
+        //     *$script,redirect=gifdomain=example.org
+        //                          ^
+        //                          + cursor position
+        //
+        // In such case, [ 1x1.gif, 1x1-transparent.gif ] should be returned
+        // as valid hints.
+        for ( const hint of hints ) {
+            const text = hint instanceof Object
+                ? hint.displayText || hint.text
+                : hint;
+            if ( text.includes(seedLeft) === false ) { continue; }
+            out.push(hint);
+        }
+        if ( out.length !== 0 ) {
+            return {
+                from: { line: cursor.line, ch: cursor.ch - seedLeft.length },
+                to: { line: cursor.line, ch: cursor.ch },
+                list: out,
+            };
+        }
     };
 
     const getOriginHints = function(cursor, line, suffix = '') {
@@ -799,11 +862,6 @@ CodeMirror.registerHelper('fold', 'ubo-static-filtering', (( ) => {
             };
         });
     });
-}
-
-/******************************************************************************/
-
-// <<<<< end of local scope
 }
 
 /******************************************************************************/

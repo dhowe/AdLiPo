@@ -55,6 +55,10 @@
     "message": "Honi buruz",
     "description": "appears as tab name in dashboard"
   },
+  "supportPageName": {
+    "message": "Laguntza",
+    "description": "appears as tab name in dashboard"
+  },
   "assetViewerPageName": {
     "message": "uBlock₀ — Aktibo-ikuslea",
     "description": "Title for the asset viewer page"
@@ -122,6 +126,10 @@
   "popupTipLog": {
     "message": "Ireki egunkaria",
     "description": "Tooltip used for the logger icon in the panel"
+  },
+  "popupTipReport": {
+    "message": "Webgune honetan arazo baten berri eman",
+    "description": "Tooltip used for the 'chat' icon in the panel"
   },
   "popupTipNoPopups": {
     "message": "Txandakatu laster-leihoen blokeoa gune honetan",
@@ -268,11 +276,11 @@
     "description": "Example of use: Version 1.26.4"
   },
   "popup3pScriptFilterTip": {
-    "message": "↑: Emphasize rows which have 3rd-party scripts",
+    "message": "↑: Garrantzia eman hirugarrenen scriptak dituzten lerroei",
     "description": "Tooltip shown when hovering small filtering widget in '3rd-party scripts' cell"
   },
   "popup3pFrameFilterTip": {
-    "message": "↑: Emphasize rows which have 3rd-party frames",
+    "message": "↑: Garrantzia eman hirugarrenen markoak dituzten lerroei",
     "description": "Tooltip shown when hovering small filtering widget in '3rd-party frames' cell"
   },
   "pickerCreate": {
@@ -380,7 +388,7 @@
     "description": "background information: https://github.com/gorhill/uBlock/issues/3150"
   },
   "settingsUncloakCnamePrompt": {
-    "message": "Uncloak canonical names",
+    "message": "Erakutsi izen kanonikoak",
     "description": "background information: https://github.com/uBlockOrigin/uBlock-issues/issues/1513"
   },
   "settingsLastRestorePrompt": {
@@ -581,7 +589,7 @@
   },
   "whitelistPrompt": {
     "message": "Zerrenda zuriaren direktibek uBlock zeintzu web orrietan desgaituko den zehazten dute. Sarrera bat lerroko. Baliogabeko ostalari izenak ezikusiko dira.",
-    "description": "The name of the trusted sites pane."
+    "description": "A concise description of the 'Trusted sites' pane."
   },
   "whitelistImport": {
     "message": "Inportatu eta gehitu",
@@ -847,21 +855,133 @@
     "message": "Markdown",
     "description": "Label for radio-button to pick export text format"
   },
+  "supportOpenButton": {
+    "message": "Ireki",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportReportSpecificButton": {
+    "message": "Txosten berri bat sortu",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportFindSpecificButton": {
+    "message": "Antzeko txostenak aurkitu",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS1H": {
+    "message": "Dokumentazioa",
+    "description": "Header of 'Documentation' section in Support pane"
+  },
+  "supportS1P1": {
+    "message": "Irakurri dokumentazioa <code>uBlock/wiki</code> helbidean, uBlock Originen funtzio guztiak ezagutzeko.",
+    "description": "First paragraph of 'Documentation' section in Support pane"
+  },
+  "supportS2H": {
+    "message": "Galderak eta laguntza",
+    "description": "Header of 'Questions and support' section in Support pane"
+  },
+  "supportS2P1": {
+    "message": "<code>/r/uBlockOrigin</code> azpidian galderen erantzunak eta beste laguntza mota batzuk eskaintzen dira.",
+    "description": "First paragraph of 'Questions and support' section in Support pane"
+  },
+  "supportS3H": {
+    "message": "Arazoak iragazkiekin/webguneak ez du funtzionatzen",
+    "description": "Header of 'Filter issues' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "Web-gune espezifikoekin iragazteko arazoak jakinaraz iezaguzu hemen: <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\">uBlockOrigin/uAssets</code> issue tracker</span>. <u>GitHub kontu bat behar da</u>",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P2": {
+    "message": "<b>Kontuan izan:</b> Ez erabili antzeko helburua duten beste blokeatzaile batzuk uBlock Originekin batera, horrek arazoak sor baititzake webgune espezifikoetan iragazteko.",
+    "description": "Second paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P3": {
+    "message": "<b>Aholkuak</b> Ziurtatu zure iragazki-zerrendak eguneratuta daudela. <span data-url=\"logger-ui.html#_\">Erregistratzailea</span> da iragazkiekin lotutako arazoak diagnostikatzeko tresna nagusia.",
+    "description": "Third paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS4H": {
+    "message": "Errore-txostena",
+    "description": "Header of 'Bug report' section in Support pane"
+  },
+  "supportS4P1": {
+    "message": "Report issues with uBlock Origin itself to the <span data-url=\"https://github.com/uBlockOrigin/uBlock-issues/issues?q=is%3Aissue\"><code>uBlockOrigin/uBlock-issue</code> issue tracker</span>. <u>Requires a GitHub account.</u>",
+    "description": "First paragraph of 'Bug report' section in Support pane"
+  },
+  "supportS5H": {
+    "message": "Arazoen konponbideari buruzko informazioa",
+    "description": "Header of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P1": {
+    "message": "Below is technical information that might be useful when volunteers are trying to help you solve a problem.",
+    "description": "First paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P2": {
+    "message": "<b>Important:</b> Potentially private or sensitive information is redacted by default. Redacted information may make it more difficult to solve a problem.",
+    "description": "Second paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS6H": {
+    "message": "Iragazkiko arazo baten berri eman",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "Txosten bikoiztuak dituzten boluntarioak ez gainkargatzeko, mesedez egiaztatu arazoa ez dela jakinarazi.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "Web orriaren helbidea:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "Webgunea...",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- Aukeratu sarrera bat --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "Iragarkiak edo iragarkien hondarrak erakusten ditu",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "Gainjartzeak edo bestelako eragozpenak ditu",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "uBlock Origin detektatzen du",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "Pribatutasun-arazoak ditu",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "Funtzionamendu-akatsak uBlock Origin aktibatuta dagoenean",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "Ireki nahi ez diren erlaitzak edo leihoak",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "Web orria «NSFW» moduan jarri (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work” </a>)",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportRedact": {
+    "message": "Erredaktatu",
+    "description": "Text for 'Redact' button"
+  },
+  "supportUnredact": {
+    "message": "Desegin erredakzioa",
+    "description": "Text for 'Unredact' button"
+  },
+  "aboutPrivacyPolicy": {
+    "message": "Pribatutasun politika",
+    "description": "Link to privacy policy on GitHub (English)"
+  },
   "aboutChangelog": {
     "message": "Aldaketa egunkaria",
     "description": ""
-  },
-  "aboutWiki": {
-    "message": "Wiki",
-    "description": "English: project' wiki on GitHub"
-  },
-  "aboutSupport": {
-    "message": "Laguntza",
-    "description": "A link for where to get support"
-  },
-  "aboutIssues": {
-    "message": "Akats datu-basea",
-    "description": "Text for a link to official issue tracker"
   },
   "aboutCode": {
     "message": "Iturburu kodea (GPLv3)",
@@ -885,6 +1005,14 @@
   },
   "aboutDependencies": {
     "message": "Kanpo menpekotasunak (GPLv3 lizentziarekin bateragarriak):",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNs": {
+    "message": "uBOren iragazki zerrendan <a href=\"https://wikipedia.org/wiki/Content_delivery_network\">CDN</a> hauetan daude:",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNsInfo": {
+    "message": "Ausaz aukeratutako CDN bat erabiltzen da iragazki zerrenda bat eguneratu behar denean",
     "description": "Shown in the About pane"
   },
   "aboutBackupDataButton": {
@@ -1043,6 +1171,10 @@
     "message": "Marko bateko elementua blokeatu...",
     "description": "An entry in the browser's contextual menu"
   },
+  "contextMenuSubscribeToList": {
+    "message": "Harpidetu iragazki zerrenda batera...",
+    "description": "An entry in the browser's contextual menu"
+  },
   "contextMenuTemporarilyAllowLargeMediaElements": {
     "message": "Une batez baimendu multimedia elementu handiak",
     "description": "A context menu entry, present when large media elements have been blocked on the current site"
@@ -1058,6 +1190,10 @@
   "genericCopyToClipboard": {
     "message": "Kopiatu arbelera",
     "description": "Label for buttons used to copy something to the clipboard"
+  },
+  "genericSelectAll": {
+    "message": "Hautatu dena",
+    "description": "Label for buttons used to select all text in editor"
   },
   "toggleBlockingProfile": {
     "message": "Txandakatu blokeatze profila",

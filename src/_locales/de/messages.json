@@ -55,6 +55,10 @@
     "message": "Über",
     "description": "appears as tab name in dashboard"
   },
+  "supportPageName": {
+    "message": "Unterstützung",
+    "description": "appears as tab name in dashboard"
+  },
   "assetViewerPageName": {
     "message": "uBlock₀ — Ressourcenbetrachter",
     "description": "Title for the asset viewer page"
@@ -122,6 +126,10 @@
   "popupTipLog": {
     "message": "Protokoll der Netzwerkanfragen öffnen",
     "description": "Tooltip used for the logger icon in the panel"
+  },
+  "popupTipReport": {
+    "message": "Ein Problem auf dieser Website melden",
+    "description": "Tooltip used for the 'chat' icon in the panel"
   },
   "popupTipNoPopups": {
     "message": "Pop-ups auf dieser Seite blockieren/zulassen",
@@ -581,7 +589,7 @@
   },
   "whitelistPrompt": {
     "message": "Ausnahmeregeln bestimmen, auf welchen Webseiten uBlock Origin nicht aktiv sein soll. Ein Eintrag pro Zeile. Ungültige Regeln werden ignoriert und auskommentiert.",
-    "description": "The name of the trusted sites pane."
+    "description": "A concise description of the 'Trusted sites' pane."
   },
   "whitelistImport": {
     "message": "Importieren und anfügen",
@@ -847,21 +855,133 @@
     "message": "Markdown",
     "description": "Label for radio-button to pick export text format"
   },
+  "supportOpenButton": {
+    "message": "Öffnen",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportReportSpecificButton": {
+    "message": "Neuen Bericht erstellen",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportFindSpecificButton": {
+    "message": "Ähnliche Berichte suchen",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS1H": {
+    "message": "Dokumentation",
+    "description": "Header of 'Documentation' section in Support pane"
+  },
+  "supportS1P1": {
+    "message": "Lesen Sie die Dokumentation auf <code>uBlock/wiki</code>, um mehr über uBlock Origins-Features zu lernen.",
+    "description": "First paragraph of 'Documentation' section in Support pane"
+  },
+  "supportS2H": {
+    "message": "Fragen und Unterstützung",
+    "description": "Header of 'Questions and support' section in Support pane"
+  },
+  "supportS2P1": {
+    "message": "Antworten auf Fragen und andere Arten der Hilfe werden im Subreddit <code>/r/uBlockOrigin</code> gegeben.",
+    "description": "First paragraph of 'Questions and support' section in Support pane"
+  },
+  "supportS3H": {
+    "message": "Filterprobleme/Webseite funktioniert nicht",
+    "description": "Header of 'Filter issues' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "Melden Sie Probleme mit spezifischen Webseiten an <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code>Issue Tracker</span>. Erfordert einen GitHub-Account.",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P2": {
+    "message": "<b>Wichtig:</b> Vermeiden Sie andere ähnliche Blocker zusammen mit uBlock Origin zu verwenden, da es Probleme beim Filter auf spezifischen Webseiten verursachen kann.",
+    "description": "Second paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P3": {
+    "message": "<b>Tipp:</b> Stellen Sie sicher, dass Ihre Filterlisten auf dem aktuellen Stand sind. <span data-url=\"logger-ui.html#_\">Protokoll der Netzwerkanfragen</span> ist das primäre Werkzeug, um filterbezogene Fehler zu diagnostizieren.",
+    "description": "Third paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS4H": {
+    "message": "Fehlerbericht",
+    "description": "Header of 'Bug report' section in Support pane"
+  },
+  "supportS4P1": {
+    "message": "Melden Sie Fehler von uBlock Origin selbst an <span data-url=\"https://github.com/uBlockOrigin/uBlock-issues/issues?q=is%3Aissue\"><code>uBlockOrigin/uBlock-issue</code> Issue Tracker</span>. Es wird ein GitHub-Account benötigt.",
+    "description": "First paragraph of 'Bug report' section in Support pane"
+  },
+  "supportS5H": {
+    "message": "Fehlerinformationen",
+    "description": "Header of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P1": {
+    "message": "Im Folgenden finden Sie technische Informationen, die nützlich sein können, wenn Freiwillige versuchen, Ihnen bei der Lösung eines Problems zu helfen.",
+    "description": "First paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P2": {
+    "message": "<b>Wichtig:</b> Potenziell private oder sensible Informationen werden standardmäßig geschwärzt. Redigierte Informationen können die Lösung eines Problems erschweren.",
+    "description": "Second paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS6H": {
+    "message": "Ein Filterproblem melden",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "Um die freiwilligen Helfer nicht mit doppelten Meldungen zu belasten, vergewissern Sie sich bitte, ob das Problem nicht schon einmal gemeldet wurde.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "Adresse der Webseite:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "Die Webseite …",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- Ein Element auswählen --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "Zeigt Werbung oder Anzeigenreste",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "Enthält Überdeckungen oder andere Belästigungen",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "Erkennt uBlock Origin",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "Enthält Datenschutzprobleme",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "Funktioniert nicht richtig, wenn uBlock Origin aktiviert ist",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "Öffnet unerwünschte Tabs oder Fenster",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "Kennzeichnen Sie die Webseite als „NSFW” (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">„Nicht zur Ansicht bzw. Verwendung am Arbeitsplatz geeignet”</a>)",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportRedact": {
+    "message": "Überarbeiten",
+    "description": "Text for 'Redact' button"
+  },
+  "supportUnredact": {
+    "message": "Überarbeitung widerrufen",
+    "description": "Text for 'Unredact' button"
+  },
+  "aboutPrivacyPolicy": {
+    "message": "Datenschutzerklärung",
+    "description": "Link to privacy policy on GitHub (English)"
+  },
   "aboutChangelog": {
     "message": "Änderungsprotokoll",
     "description": ""
-  },
-  "aboutWiki": {
-    "message": "Wiki",
-    "description": "English: project' wiki on GitHub"
-  },
-  "aboutSupport": {
-    "message": "Unterstützung",
-    "description": "A link for where to get support"
-  },
-  "aboutIssues": {
-    "message": "Bugtracker",
-    "description": "Text for a link to official issue tracker"
   },
   "aboutCode": {
     "message": "Quellcode (GPLv3)",
@@ -885,6 +1005,14 @@
   },
   "aboutDependencies": {
     "message": "Externe Abhängigkeiten (GPLv3-kompatibel):",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNs": {
+    "message": "Die uBO-eigenen Filterlisten werden auf den folgenden <a href=\"https://wikipedia.org/wiki/Content_delivery_network\">CDNs</a> frei zur Verfügung gestellt:",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNsInfo": {
+    "message": "Ein zufällig ausgewähltes CDN wird verwendet, wenn eine Filterliste aktualisiert werden muss",
     "description": "Shown in the About pane"
   },
   "aboutBackupDataButton": {
@@ -1043,6 +1171,10 @@
     "message": "Elemente in Frame sperren …",
     "description": "An entry in the browser's contextual menu"
   },
+  "contextMenuSubscribeToList": {
+    "message": "Filterliste abonnieren …",
+    "description": "An entry in the browser's contextual menu"
+  },
   "contextMenuTemporarilyAllowLargeMediaElements": {
     "message": "Vorübergehend große Medienelemente erlauben",
     "description": "A context menu entry, present when large media elements have been blocked on the current site"
@@ -1058,6 +1190,10 @@
   "genericCopyToClipboard": {
     "message": "In die Zwischenablage kopieren",
     "description": "Label for buttons used to copy something to the clipboard"
+  },
+  "genericSelectAll": {
+    "message": "Alles auswählen",
+    "description": "Label for buttons used to select all text in editor"
   },
   "toggleBlockingProfile": {
     "message": "Sperrprofil umschalten",
