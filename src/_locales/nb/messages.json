@@ -55,6 +55,10 @@
     "message": "Om",
     "description": "appears as tab name in dashboard"
   },
+  "supportPageName": {
+    "message": "Brukerstøtte",
+    "description": "appears as tab name in dashboard"
+  },
   "assetViewerPageName": {
     "message": "uBlock₀ — Ressursviser",
     "description": "Title for the asset viewer page"
@@ -122,6 +126,10 @@
   "popupTipLog": {
     "message": "Åpne loggen",
     "description": "Tooltip used for the logger icon in the panel"
+  },
+  "popupTipReport": {
+    "message": "Rapporter om problem på dette nettstedet",
+    "description": "Tooltip used for the 'chat' icon in the panel"
   },
   "popupTipNoPopups": {
     "message": "Slå av/på blokkering av alle oppspretts-vinduer for dette nettstedet",
@@ -580,8 +588,8 @@
     "description": "English: a sort option for list of rules."
   },
   "whitelistPrompt": {
-    "message": "Direktivene for betrodde sider bestemmer hvilke nettsider uBlock Origin ikke skal være aktiv på. Én oppføring per linje. Ugyldige direktiver blir stille ignorert og kommentert ut.",
-    "description": "The name of the trusted sites pane."
+    "message": "Direktivene for betrodde sider bestemmer hvilke nettsider uBlock Origin ikke skal være aktiv på. Én oppføring per linje.",
+    "description": "A concise description of the 'Trusted sites' pane."
   },
   "whitelistImport": {
     "message": "Importer og legg til",
@@ -847,21 +855,133 @@
     "message": "Markdown",
     "description": "Label for radio-button to pick export text format"
   },
+  "supportOpenButton": {
+    "message": "Åpne",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportReportSpecificButton": {
+    "message": "Opprett ny rapport",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportFindSpecificButton": {
+    "message": "Finn lignende rapporter",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS1H": {
+    "message": "Dokumentasjon",
+    "description": "Header of 'Documentation' section in Support pane"
+  },
+  "supportS1P1": {
+    "message": "Les dokumentasjonen på <code>uBlock/wiki</code> for å lære om alle uBlock Origins funksjoner.",
+    "description": "First paragraph of 'Documentation' section in Support pane"
+  },
+  "supportS2H": {
+    "message": "Spørsmål og brukerstøtte",
+    "description": "Header of 'Questions and support' section in Support pane"
+  },
+  "supportS2P1": {
+    "message": "Svar på spørsmål og andre typer hjelp er gitt på subreddit <code>/r/uBlockOrigin</code>.",
+    "description": "First paragraph of 'Questions and support' section in Support pane"
+  },
+  "supportS3H": {
+    "message": "Filterproblemer/nettside defekt",
+    "description": "Header of 'Filter issues' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "Rapporter filterproblemer med bestemte nettsteder til <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> problemsporing</span>. <u>Krever en GitHub-konto.</u>",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P2": {
+    "message": "<b>Viktig:</b> Unngå å bruke andre blokkerere med lignende formål sammen med uBlock Origin, da dette kan forårsake filterproblemer på bestemte nettsteder.",
+    "description": "Second paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P3": {
+    "message": "<b>Tips:</b> Sørg for at filterlistene dine er oppdaterte. <span data-url=\"logger-ui.html#_\">Loggen</span> er primærverktøyet for å diagnostisere filterrelaterte problemer.",
+    "description": "Third paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS4H": {
+    "message": "Feilrapport",
+    "description": "Header of 'Bug report' section in Support pane"
+  },
+  "supportS4P1": {
+    "message": "Rapporter problemer med selve uBlock Origin til <span data-url=\"https://github.com/uBlockOrigin/uBlock-issues/issues?q=is%3Aissue\"><code>uBlockOrigin/uBlock-issue</code> problemsporing</span>. <u>Krever en GitHub-konto.</u>",
+    "description": "First paragraph of 'Bug report' section in Support pane"
+  },
+  "supportS5H": {
+    "message": "Problemløsingsinformasjon",
+    "description": "Header of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P1": {
+    "message": "Nedenfor er teknisk informasjon som kan være nyttig når frivillige prøver å hjelpe deg med å løse et problem.",
+    "description": "First paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P2": {
+    "message": "<b>Viktig:</b> Potensielt privat eller sensitiv informasjon blir redigert som standard. Redigert informasjon kan gjøre det vanskeligere å løse et problem.",
+    "description": "Second paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS6H": {
+    "message": "Rapporter om filterproblem",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "For å unngå å belaste frivillige med duplikate rapporter, kontroller at problemet ikke allerede er rapportert.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "Nettsidens adresse:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "Nettsiden...",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- Velg en type --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "Viser reklame eller reklamerester",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "Har overlegg eller andre ulemper",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "Detekterer uBlock Origin",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "Har personvernrelaterte problemer",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "Fungerer ikke riktig når uBlock Origin er aktivert",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "Åpner uønskede faner eller vinduer",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "Merk nettsiden som “NSFW” (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>) (advarsel mot sider med upassende innhold)",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportRedact": {
+    "message": "Rediger",
+    "description": "Text for 'Redact' button"
+  },
+  "supportUnredact": {
+    "message": "Ikke rediger",
+    "description": "Text for 'Unredact' button"
+  },
+  "aboutPrivacyPolicy": {
+    "message": "Personvernpraksis",
+    "description": "Link to privacy policy on GitHub (English)"
+  },
   "aboutChangelog": {
     "message": "Endringslogg",
     "description": ""
-  },
-  "aboutWiki": {
-    "message": "Wiki",
-    "description": "English: project' wiki on GitHub"
-  },
-  "aboutSupport": {
-    "message": "Brukerstøtte",
-    "description": "A link for where to get support"
-  },
-  "aboutIssues": {
-    "message": "Problemsporing",
-    "description": "Text for a link to official issue tracker"
   },
   "aboutCode": {
     "message": "Kildekode (GPLv3)",
@@ -885,6 +1005,14 @@
   },
   "aboutDependencies": {
     "message": "Eksterne avhengigheter (GPLv3-kompatible):",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNs": {
+    "message": "uBlock Origins egne filterlister finnes fritt tilgjengelig hos følgende <a href=\"https://wikipedia.org/wiki/Content_delivery_network\">CDN-er</a>:",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNsInfo": {
+    "message": "En tilfeldig valgt CDN blir brukt når en filterliste trenger å bli oppdatert",
     "description": "Shown in the About pane"
   },
   "aboutBackupDataButton": {
@@ -1043,6 +1171,10 @@
     "message": "Blokker element i ramme...",
     "description": "An entry in the browser's contextual menu"
   },
+  "contextMenuSubscribeToList": {
+    "message": "Abonner på filterliste...",
+    "description": "An entry in the browser's contextual menu"
+  },
   "contextMenuTemporarilyAllowLargeMediaElements": {
     "message": "Tillat store mediaelementer midlertidig",
     "description": "A context menu entry, present when large media elements have been blocked on the current site"
@@ -1058,6 +1190,10 @@
   "genericCopyToClipboard": {
     "message": "Kopier til utklippstavle",
     "description": "Label for buttons used to copy something to the clipboard"
+  },
+  "genericSelectAll": {
+    "message": "Merk alt",
+    "description": "Label for buttons used to select all text in editor"
   },
   "toggleBlockingProfile": {
     "message": "Skift blokkeringsprofil",

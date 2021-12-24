@@ -55,6 +55,10 @@
     "message": "Hakkında",
     "description": "appears as tab name in dashboard"
   },
+  "supportPageName": {
+    "message": "Destek",
+    "description": "appears as tab name in dashboard"
+  },
   "assetViewerPageName": {
     "message": "uBlock₀ — Kaynak görüntüleyici",
     "description": "Title for the asset viewer page"
@@ -123,6 +127,10 @@
     "message": "Günlükçüyü açar",
     "description": "Tooltip used for the logger icon in the panel"
   },
+  "popupTipReport": {
+    "message": "Bu web sitesinde bir sorunu bildir",
+    "description": "Tooltip used for the 'chat' icon in the panel"
+  },
   "popupTipNoPopups": {
     "message": "Bu site için açılır pencere engellemeyi aç/kapa",
     "description": "Tooltip for the no-popups per-site switch"
@@ -176,7 +184,7 @@
     "description": "Tooltip for the no-scripting per-site switch"
   },
   "popupTipNoScripting2": {
-    "message": "JavaScript'i bu sitede artık devre dışı bırakmamak için tıklayın",
+    "message": "Artık bu sitede JavaScript'i devre dışı bırakmamak için tıklayın",
     "description": "Tooltip for the no-scripting per-site switch"
   },
   "popupNoPopups_v2": {
@@ -268,7 +276,7 @@
     "description": "Example of use: Version 1.26.4"
   },
   "popup3pScriptFilterTip": {
-    "message": "↑: 3. taraf betikler içeren satırları vurgula",
+    "message": "↑: 3. taraf betik içeren satırları vurgula",
     "description": "Tooltip shown when hovering small filtering widget in '3rd-party scripts' cell"
   },
   "popup3pFrameFilterTip": {
@@ -581,7 +589,7 @@
   },
   "whitelistPrompt": {
     "message": "Güvenilen site yönergeleri, uBlock Origin'in devre dışı bırakılması gerektiği web sayfalarını belirler. Her satırda bir girdi. Geçersiz yönergeler sessizce yok sayılacak ve yoruma dönüştürülecektir.",
-    "description": "The name of the trusted sites pane."
+    "description": "A concise description of the 'Trusted sites' pane."
   },
   "whitelistImport": {
     "message": "İçe aktar ve ekle",
@@ -847,21 +855,133 @@
     "message": "Markdown",
     "description": "Label for radio-button to pick export text format"
   },
+  "supportOpenButton": {
+    "message": "Aç",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportReportSpecificButton": {
+    "message": "Yeni rapor oluştur",
+    "description": "Text for button which open an external webpage in Support pane"
+  },
+  "supportFindSpecificButton": {
+    "message": "Benzer raporları bul",
+    "description": "A clickable link in the filter issue reporter section"
+  },
+  "supportS1H": {
+    "message": "Belgeler",
+    "description": "Header of 'Documentation' section in Support pane"
+  },
+  "supportS1P1": {
+    "message": "uBlock Origin'in özelliklerinin tamamı hakkında bilgi edinmek için <code>uBlock/wiki</code> adresindeki belgeri okuyun.",
+    "description": "First paragraph of 'Documentation' section in Support pane"
+  },
+  "supportS2H": {
+    "message": "Sorular ve destek",
+    "description": "Header of 'Questions and support' section in Support pane"
+  },
+  "supportS2P1": {
+    "message": "Sorulara cevaplar ve diğer türlü yardım desteği <code>/r/uBlockOrigin</code> subreddit'inde sunulmaktadır.",
+    "description": "First paragraph of 'Questions and support' section in Support pane"
+  },
+  "supportS3H": {
+    "message": "Filtre sorunları/websitesi bozuk",
+    "description": "Header of 'Filter issues' section in Support pane"
+  },
+  "supportS3P1": {
+    "message": "Belirli websiteleriyle ilgili filtre sorunlarını  <span data-url=\"https://github.com/uBlockOrigin/uAssets/issues?q=is%3Aissue\"><code>uBlockOrigin/uAssets</code> sorun izleyicisine</span> bildirin. <u>Github hesabı gerektirir.</u>",
+    "description": "First paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P2": {
+    "message": "<b>Önemli:</b> uBlock Origin'le birlikte, belirli websitelerinde filtre sorunlarına neden olabileceği için, diğer benzer amaçlı engellicileri kullanmaktan kaçının.",
+    "description": "Second paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS3P3": {
+    "message": "<b>İpuçları:</b> Filtre listenizin güncelliğinden emin olun. <span data-url=\"logger-ui.html#_\">Günlükçü</span> filtre bağlantılı sorunları tanılamada temel araçtır.",
+    "description": "Third paragraph of 'Filter issues' section in Support pane"
+  },
+  "supportS4H": {
+    "message": "Hata raporu",
+    "description": "Header of 'Bug report' section in Support pane"
+  },
+  "supportS4P1": {
+    "message": "uBlock Origin'in kendisiyle ilgili sorunları <span data-url=\"https://github.com/uBlockOrigin/uBlock-issues/issues?q=is%3Aissue\"><code>uBlockOrigin/uBlock-issue</code> sorun izleyicisine</span> bildirin. <u>Github hesabı gerektirir.</u>",
+    "description": "First paragraph of 'Bug report' section in Support pane"
+  },
+  "supportS5H": {
+    "message": "Hata Giderme Bilgisi",
+    "description": "Header of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P1": {
+    "message": "Aşağıdaki, gönüllüler size bir sorunu çözmede yardım etmeye çalışırken, faydalı olabilecek teknik bilgidir.",
+    "description": "First paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS5P2": {
+    "message": "<b>Önemli:</b> Olası gizli ve hassas bilgiler öntanımlı olarak kısaltılır. Kısaltılmış bilgiler bir sorunu çözmeyi zorlaştırabilir.",
+    "description": "Second paragraph of 'Troubleshooting Information' section in Support pane"
+  },
+  "supportS6H": {
+    "message": "Bir filtre sorunu bildirin",
+    "description": "Header of 'Report a filter issue' section in Support pane"
+  },
+  "supportS6P1S1": {
+    "message": "Gönüllülere aynı raporlarla sıkıntı vermemek için, lütfen sorunun daha önce bildirilmediğinden emin olun.",
+    "description": "A paragraph in the filter issue reporter section"
+  },
+  "supportS6URL": {
+    "message": "Web sayfasının adresi:",
+    "description": "Label for the URL of the page"
+  },
+  "supportS6Select1": {
+    "message": "Web sayfası…",
+    "description": "Label for widget to select type of issue"
+  },
+  "supportS6Select1Option0": {
+    "message": "-- Bir girdi seçin --",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option1": {
+    "message": "Reklam veya reklam artıkları gösteriyor",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option2": {
+    "message": "Örten reklamlar veya can sıkıcı öğeler",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option3": {
+    "message": "uBlock Origin’i algılıyor",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option4": {
+    "message": "Gizlilikle ilgili sorunları var",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option5": {
+    "message": "uBlock Origin etkinken bozuluyor",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Select1Option6": {
+    "message": "İstenmeyen sekme veya pencereler açıyor",
+    "description": "An entry in the widget used to select the type of issue"
+  },
+  "supportS6Checkbox1": {
+    "message": "Websitesini uygunsuz (“NSFW”) olarak etiketle (<a href=\"https://wikipedia.org/wiki/Not_safe_for_work\">“Not Safe For Work”</a>)",
+    "description": "A checkbox to use for NSFW sites"
+  },
+  "supportRedact": {
+    "message": "Kısalt",
+    "description": "Text for 'Redact' button"
+  },
+  "supportUnredact": {
+    "message": "Kısaltma",
+    "description": "Text for 'Unredact' button"
+  },
+  "aboutPrivacyPolicy": {
+    "message": "Gizlilik ilkesi",
+    "description": "Link to privacy policy on GitHub (English)"
+  },
   "aboutChangelog": {
     "message": "Değişiklik günlüğü",
     "description": ""
-  },
-  "aboutWiki": {
-    "message": "Viki",
-    "description": "English: project' wiki on GitHub"
-  },
-  "aboutSupport": {
-    "message": "Destek",
-    "description": "A link for where to get support"
-  },
-  "aboutIssues": {
-    "message": "Sorun izleyici",
-    "description": "Text for a link to official issue tracker"
   },
   "aboutCode": {
     "message": "Kaynak kodu (GPLv3)",
@@ -885,6 +1005,14 @@
   },
   "aboutDependencies": {
     "message": "Dış bağımlılıklar (GPLv3-uyumlu):",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNs": {
+    "message": "uBO'nun kendi filtre listeleri ücretsiz olarak şu <a href=\"https://wikipedia.org/wiki/Content_delivery_network\">CDN'lerde</a> barındırılır:",
+    "description": "Shown in the About pane"
+  },
+  "aboutCDNsInfo": {
+    "message": "Bir filtre listesinin güncellenmesi gerektiğinde rastgele seçilen bir CDN kullanılır",
     "description": "Shown in the About pane"
   },
   "aboutBackupDataButton": {
@@ -1043,6 +1171,10 @@
     "message": "Çerçevedeki ögeyi engelle...",
     "description": "An entry in the browser's contextual menu"
   },
+  "contextMenuSubscribeToList": {
+    "message": "Filtre listesine abone ol...",
+    "description": "An entry in the browser's contextual menu"
+  },
   "contextMenuTemporarilyAllowLargeMediaElements": {
     "message": "Geçici olarak büyük medya ögelerine izin ver",
     "description": "A context menu entry, present when large media elements have been blocked on the current site"
@@ -1058,6 +1190,10 @@
   "genericCopyToClipboard": {
     "message": "Panoya kopyala",
     "description": "Label for buttons used to copy something to the clipboard"
+  },
+  "genericSelectAll": {
+    "message": "Tümünü seç",
+    "description": "Label for buttons used to select all text in editor"
   },
   "toggleBlockingProfile": {
     "message": "Engelleme profilini aç/kapa",

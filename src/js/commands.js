@@ -19,26 +19,29 @@
     Home: https://github.com/gorhill/uBlock
 */
 
-/******************************************************************************/
-
 'use strict';
 
 /******************************************************************************/
 
-µBlock.canUseShortcuts = vAPI.commands instanceof Object;
+import µb from './background.js';
+import { hostnameFromURI } from './uri-utils.js';
+
+/******************************************************************************/
+
+µb.canUseShortcuts = vAPI.commands instanceof Object;
 
 // https://github.com/uBlockOrigin/uBlock-issues/issues/386
 //   Firefox 74 and above has complete shotcut assignment user interface.
-µBlock.canUpdateShortcuts =
-    µBlock.canUseShortcuts &&
-    vAPI.webextFlavor.soup.has('firefox') &&
-    typeof vAPI.commands.update === 'function';
+µb.canUpdateShortcuts = false;
 
-if ( µBlock.canUpdateShortcuts ) {
+if (
+    µb.canUseShortcuts &&
+    vAPI.webextFlavor.soup.has('firefox') &&
+    typeof vAPI.commands.update === 'function'
+) {
     self.addEventListener(
         'webextFlavor',
         ( ) => {
-            const µb = µBlock;
             µb.canUpdateShortcuts = vAPI.webextFlavor.major < 74;
             if ( µb.canUpdateShortcuts === false ) { return; }
             vAPI.storage.get('commandShortcuts').then(bin => {
@@ -62,7 +65,7 @@ if ( µBlock.canUpdateShortcuts ) {
 // *****************************************************************************
 // start of local namespace
 
-if ( µBlock.canUseShortcuts === false ) { return; }
+if ( µb.canUseShortcuts === false ) { return; }
 
 const relaxBlockingMode = (( ) => {
     const reloadTimers = new Map();
@@ -70,12 +73,11 @@ const relaxBlockingMode = (( ) => {
     return function(tab) {
         if ( tab instanceof Object === false || tab.id <= 0 ) { return; }
 
-        const µb = µBlock;
-        const normalURL = µb.normalizePageURL(tab.id, tab.url);
+        const normalURL = µb.normalizeTabURL(tab.id, tab.url);
 
         if ( µb.getNetFilteringSwitch(normalURL) === false ) { return; }
 
-        const hn = µb.URI.hostnameFromURI(normalURL);
+        const hn = hostnameFromURI(normalURL);
         const curProfileBits = µb.blockingModeFromHostname(hn);
         let newProfileBits;
         for ( const profile of µb.liveBlockingProfiles ) {
@@ -158,8 +160,6 @@ const relaxBlockingMode = (( ) => {
 })();
 
 vAPI.commands.onCommand.addListener(async command => {
-    const µb = µBlock;
-
     switch ( command ) {
     case 'launch-element-picker':
     case 'launch-element-zapper': {

@@ -19,9 +19,11 @@
     Home: https://github.com/gorhill/uBlock
 */
 
-/* global punycode, uDom */
+/* global uDom */
 
 'use strict';
+
+import punycode from '../lib/punycode.js';
 
 /******************************************************************************/
 
@@ -154,13 +156,8 @@ const hashFromPopupData = function(reset) {
     const rules = popupData.firewallRules;
     for ( const key in rules ) {
         const rule = rules[key];
-        if ( rule === null ) { continue; }
-        hasher.push(
-            rule.src + ' ' +
-            rule.des + ' ' +
-            rule.type + ' ' +
-            rule.action
-        );
+        if ( rule === undefined ) { continue; }
+        hasher.push(rule);
     }
     hasher.sort();
     hasher.push(uDom('body').hasClass('off'));

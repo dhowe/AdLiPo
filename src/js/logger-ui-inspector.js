@@ -43,7 +43,7 @@ if (
 
 /******************************************************************************/
 
-var logger = self.logger;
+const logger = self.logger;
 var inspectorConnectionId;
 var inspectedTabId = 0;
 var inspectedURL = '';

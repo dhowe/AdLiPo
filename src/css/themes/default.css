@@ -26,7 +26,8 @@
     --ink-50: #291d4f;
     --ink-80: #20123a;
     --ink-80-a4: #20123a0a;
-    --ink-80-a50: #20123a88;
+    --ink-80-a40: #20123a66;
+    --ink-80-a50: #20123a80;
     --ink-90: #1d1133;
     --light-gray-10: #f9f9fb;
     --light-gray-10-a4: #f9f9fb0a;
@@ -79,6 +80,7 @@
 
     --default-ink: var(--ink-80);
     --default-ink-a4: var(--ink-80-a4);
+    --default-ink-a40: var(--ink-80-a40);
     --default-ink-a50: var(--ink-80-a50);
     --default-surface: var(--light-gray-10);
     --default-surface-border: var(--light-gray-70);
@@ -320,6 +322,10 @@
     --bg-popup-cell-block-own: hsla(0, 100%, 40%, 1);
     --bg-popup-cell-label-mixed: hsla(45, 100%, 38%, 1);
     --popup-icon-x-ink: #e22850;
+
+    /* cloud widget */
+    --cloud-widget-surface: var(--dark-gray-80);
+
 
  /* Need to set colors in forms.css for moz-field stuffz
   -moz-FieldText: #888888 !important;  change from these names to either HEX value or variables.  default-ink

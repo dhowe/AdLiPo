@@ -1,5 +1,5 @@
-/* https://protocol.mozilla.org/assets/docs/css/protocol.css */
 @charset "UTF-8";
+/* https://protocol.mozilla.org/assets/docs/css/protocol.css */
 @font-face {
     font-family: Inter;
     font-style: normal;
@@ -57,7 +57,8 @@ a {
 code, .code {
     background-color: var(--button-surface);
     font-family: monospace;
-    padding: 4px;
+    font-size: smaller;
+    padding: 2px 4px;
     }
 hr {
     border: 0;
@@ -124,8 +125,13 @@ button.iconifiable > .fa-icon {
     font-size: 120%;
     }
 body[dir="rtl"] button.iconifiable > .fa-icon {
-    padding-left: 0.5em;
+    padding-left: 0.4em;
+    padding-right: 0;
     }
+body[dir] button.iconifiable > .fa-icon:last-child {
+    padding-left: 0;
+    padding-right: 0;
+}
 label {
     align-items: center;
     display: inline-flex;
