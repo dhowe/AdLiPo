@@ -101,7 +101,7 @@ const processCatchedElement = function (node, dbug, skipText) {
     let type = (node.tagName.toLowerCase() === "img" || node.tagName.toLowerCase() === "iframe")
     let oriW = node.offsetWidth;
     // https://github.com/dhowe/AdLiPo/issues/35
-    if (oriW > 1200) {
+    if (oriW > 800) {
         if (dbug) console.log(node, "too big");
         node.remove();
         return;
