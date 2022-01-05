@@ -84,13 +84,13 @@ const processCatchedElement = function (node, dbug, skipText) {
         return;
     }
 
-    if (node.offsetWidth < 2 || node.offsetHeight < 2) {
+    if (node.offsetWidth < 15 || node.offsetHeight < 15) {
         if (dbug) console.log(node, "too small");
         node.remove();
         return;
     }
 
-    if (node.offsetHeight/node.offsetWidth > 100 || node.offsetWidth/node.offsetHeight > 100) {
+    if (node.offsetHeight/node.offsetWidth > 20 || node.offsetWidth/node.offsetHeight > 20) {
         if (dbug) console.log(node, "shape too strange");
         node.remove();
         return;
@@ -100,6 +100,12 @@ const processCatchedElement = function (node, dbug, skipText) {
     //
     let type = (node.tagName.toLowerCase() === "img" || node.tagName.toLowerCase() === "iframe")
     let oriW = node.offsetWidth;
+    // https://github.com/dhowe/AdLiPo/issues/35
+    if (oriW > 1200) {
+        if (dbug) console.log(node, "too big");
+        node.remove();
+        return;
+    }
     let oriH = node.offsetHeight;
     if (dbug) console.log("w: " + oriW + " , h: " + oriH);
     //
