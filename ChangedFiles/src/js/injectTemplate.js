@@ -208,18 +208,11 @@ const appendText = function(textContent, element, widthInPx, heightInPx, type, d
     const padding_LR = Math.min(parseInt(Math.max(2, parseInt(width)/15)), 20); // min padding is 2px max padding is 20px
     const padding_TB = Math.min(parseInt(Math.max(2, parseInt(height)/15)), 20); // min padding is 2px
     const padding = element.style.padding || `${padding_TB}px ${padding_LR}px`;
-    //deal with possible orphan
-    //textContent = textContent.replace(/ +/g, "\\u00a0");// works but not good: 1.jam all letter into one "word"; 2.space might occur at the start of the line
-    // const textGroup = textContent.split("\\n");
-    // const newtextGroup = []
-    // textGroup.forEach(txt => {
-    //     const textArr = txt.trim().split(" ");
-    //     const final2 = textArr.splice(textArr.length - 2, 2);
-    //     textArr.push(final2.join("\\u00a0"));
-    //     newtextGroup.push(textArr.join(" "));
-    // });
-    // textContent = newtextGroup.length === 1 ? newtextGroup[0] : newtextGroup.join("\\n"); // in extremely rare case create word break ...
     if (dbug) console.log("computing font size");
+    let temArr = textContent.split(' ');
+    temArr[temArr.length - 2] = temArr[temArr.length - 2] + "\u00A0" + temArr[temArr.length - 1];
+    temArr.splice(temArr.length - 1, 1);
+    textContent = temArr.join(" ");
     //compute fontSize
     const fontSize = computeFontSize(textContent, width, height, font, textAlign, wordBreak, lineHeight, padding, 100, dbug);
     //fontSize to vw
@@ -242,12 +235,7 @@ const appendText = function(textContent, element, widthInPx, heightInPx, type, d
     cellElement.style.display = "table-cell";
     cellElement.style.verticalAlign = "middle";
     cellElement.style.padding = padding;
-    // tem fix for orphans ------------------
-    temArr = textContent.split(" ");
-    temArr[temArr.length - 2] = temArr[temArr.length - 2] + "\u00A0" + temArr[temArr.length - 1];
-    temArr.splice(temArr.length - 1, 1);
-    textContent = temArr.join(" ");
-    // --------------------------------------
+    cellElement.style.wordBreak = "normal";
     cellElement.innerText = textContent;
     try {
         try {
@@ -288,6 +276,8 @@ const computeFontSize = function(textContent, width, height, font, textAlign, wo
     const targetHeight = parseFloat(height.slice(0,-1).slice(0,-1));
     const contentLength = textContent.length;
     const testEl = document.createElement("div");
+    testEl.style.wordBreak = "normal";
+    testEl.style.textAlign = "left";
     let lastDirection;
     const last5 = [];
     let tries = 0;
