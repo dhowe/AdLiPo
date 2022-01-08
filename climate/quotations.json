@@ -1,57 +1,136 @@
-[
-    {
-        "quote": "We, the people, still believe that our obligations as Americans are not just to ourselves, but to all posterity. We will respond to the threat of climate change, knowing that the failure to do so would betray our children and future generations.",
-        "author": "Barack Obama",
-        "author-meta": "President of the United States",
-        "source": "http://www.climatechangechallenge.org/Media/Quotations.htm",
-        "date": ""
-    }
+[{
+		"quote": "We, the people, still believe that our obligations as Americans are not just to ourselves, but to all posterity. We will respond to the threat of climate change, knowing that the failure to do so would betray our children and future generations.",
+		"author": "Barack Obama",
+		"author-meta": "President of the United States",
+		"source": "http://www.climatechangechallenge.org/Media/Quotations.htm",
+		"date": ""
+	},
+
+	{
+		"quote": "A child working in a mine in the Congo would need more than 700,000 years of non-stop work to earn the same amount as a single day of Bezos’ income.",
+		"author": "Kate Crawford and Vladan Joler",
+		"author-meta": "",
+		"source": "Anatomy of an AI System",
+		"date": ""
+	},
+
+	{
+		"quote": "First, we must stop wasting energy. A quarter of the UK’s carbon emissions come from the home. Our housing stock – the oldest in Europe – is costing us the earth… After transport, heating is the second biggest driver of energy demand in Britain. British Gas research suggests that householders who put in energy efficiency measures cut their gas consumption by 44%. Better insulated buildings will do much of the work for us.",
+		"author": "Chris Huhne",
+		"author-meta": "Former Secretary of State for Energy and Climate Change",
+		"source": "",
+		"date": ""
+	},
+
+	{
+		"quote": "How could I look my grandchildren in the eye and say I knew what was happening to the world and did nothing.",
+		"author": "David Attenborough",
+		"author-meta": "",
+		"source": "Sunday Times",
+		"date": ""
+	},
+
+	{
+		"quote": "I'd put my money on the sun and solar energy. What a source of power! I hope we don't have to wait 'til oil and coal run out before we tackle that.",
+		"author": "Thomas Edison",
+		"author-meta": "",
+		"source": "",
+		"date": "1847–1931"
+	},
+
+	{
+		"quote": "Ask not what your country can do for you—ask what you can do for your country.",
+		"author": "John F Kennedy",
+		"author-meta": "President",
+		"source": "",
+		"date": ""
+	},
+
+	{
+		"quote": "But we must also look at renewable heat technology. More combined heat and power schemes, putting waste heat to better use. More district heating schemes. And more electric air and ground-source heat pumps, drawing warmth from the outside world to heat the indoors. Better insulation, smarter homes, and more efficient heating can help us cut our energy demand.",
+		"author": "Chris Huhne",
+		"author-meta": "Secretary of State for Energy and Climate Change",
+		"source": "",
+		"date": ""
+	},
+
+	{
+		"quote": "In the end, the question is not, how do we use nature to serve our interests? It’s how can we use humans to serve nature’s interest?’",
+		"author": "William McDonough",
+		"author-meta": "",
+		"source": "",
+		"date": ""
+	},
+
+	{
+		"quote": "We must be the change we wish to see in the world.",
+		"author": "Gandhi",
+		"author-meta": "",
+		"source": "",
+		"date": ""
+	},
+
+	{
+		"quote": "If the world is to be healed through human efforts, I am convinced it will be by ordinary people, people whose love for this life is even greater than their fear. People who can open to the web of life that called us into being.",
+		"author": "Joanna Macy",
+		"author-meta": "",
+		"source": "",
+		"date": ""
+	},
+
+	{
+		"quote": "All things are possible, once enough human beings realize that everything is at stake.",
+		"author": "Norman Cousins",
+		"author-meta": "",
+		"source": "",
+		"date": ""
+	},
+
+	{
+		"quote": "Do your little bit of good where you are; it's those little bits of good put together that overwhelm the world",
+		"author": "Desmond Tutu",
+		"author-meta": "Archbishop",
+		"source": "",
+		"date": ""
+	},
+
+	{
+		"quote": "Waste no more time talking about great souls and how they should be, become one yourself!",
+		"author": "Marcus Aurelius",
+		"author-meta": "",
+		"source": "",
+		"date": ""
+	},
+
+	{
+		"quote": "You don't have to be a fantastic hero to do certain things to compete. You can be just an ordinary chap, sufficiently motivated to reach challenging goals.",
+		"author": "Sir Edmund Hillary",
+		"author-meta": "Mountaineer",
+		"source": "",
+		"date": ""
+	},
+
+	{
+		"quote": "Ignoring climate change will be the most costly of all possible choices, for us and our children.",
+		"author": "Peter Ewins",
+		"author-meta": "",
+		"source": "British Meteorological Office",
+		"date": ""
+	},
+
+	{
+		"quote": "The problems of the world cannot possibly be solved by skeptics or cynics whose horizons are limited by the obvious realities. We need men who can dream of things that never were.",
+		"author": "John F. Kennedy",
+		"author-meta": "",
+		"source": "",
+		"date": ""
+	},
+
+	{
+		"quote": "In the year 2065, on current trends, damage from climate change will exceed global GDP.",
+		"author": "Andrew Dlugolecki",
+		"author-meta": "",
+		"source": "General Insurance Development",
+		"date": ""
+	}
 ]
-
-"A child working in a mine in the Congo would need more than 700,000 years of non-stop work to earn the same amount as a single day of Bezos’ income."
-Kate Crawford and Vladan Joler, from "Anatomy of an AI System"
-
-"First, we must stop wasting energy. A quarter of the UK’s carbon emissions come from the home. Our housing stock – the oldest in Europe – is costing us the earth… After transport, heating is the second biggest driver of energy demand in Britain. British Gas research suggests that householders who put in energy efficiency measures cut their gas consumption by 44%. Better insulated buildings will do much of the work for us."
-Chris Huhne, Former Secretary of State for Energy and Climate Change
-
-"How could I look my grandchildren in the eye and say I knew what was happening to the world and did nothing."
-David Attenborough from Sunday Times
-
-"I'd put my money on the sun and solar energy. What a source of power! I hope we don't have to wait 'til oil and coal run out before we tackle that."
-Thomas Edison (1847–1931)
-
-"Ask not what your country can do for you—ask what you can do for your country."
-President John F Kennedy
-
-"But we must also look at renewable heat technology. More combined heat and power schemes, putting waste heat to better use. More district heating schemes. And more electric air and ground-source heat pumps, drawing warmth from the outside world to heat the indoors. Better insulation, smarter homes, and more efficient heating can help us cut our energy demand."
-Chris Huhne, Secretary of State for Energy and Climate Change
-
-"In the end, the question is not, how do we use nature to serve our interests? It’s how can we use humans to serve nature’s interest?’"
-William McDonough
-
-"We must be the change we wish to see in the world"
-Gandhi
-
-"If the world is to be healed through human efforts, I am convinced it will be by ordinary people, people whose love for this life is even greater than their fear. People who can open to the web of life that called us into being".
-Joanna Macy
-
-"All things are possible, once enough human beings realize that everything is at stake."
-Norman Cousins
-
-"Do your little bit of good where you are; it's those little bits of good put together that overwhelm the world"
-Archbishop Desmond Tutu
-
-"Waste no more time talking about great souls and how they should be, become one yourself!"
-Marcus Aurelius
-
-"You don't have to be a fantastic hero to do certain things to compete. You can be just an ordinary chap, sufficiently motivated to reach challenging goals."
-Sir Edmund Hillary, Mountaineer
-
-"Ignoring climate change will be the most costly of all possible choices, for us and our children."
-Peter Ewins, British Meteorological Office
-
-"The problems of the world cannot possibly be solved by skeptics or cynics whose horizons are limited by the obvious realities. We need men who can dream of things that never were."
-John F. Kennedy
-
-"In the year 2065, on current trends, damage from climate change will exceed global GDP."
-Andrew Dlugolecki, General Insurance Development
