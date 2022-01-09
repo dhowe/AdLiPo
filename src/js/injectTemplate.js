@@ -72,7 +72,8 @@ const processCatchedElement = function (node, dbug, skipText) {
     //per page limit
     if (noOfReplacement > perPageLimit) {
         if (dbug) console.log(node, "over limit");
-        node.remove();
+        //node.remove();
+        node.style.display = "none";
         return;
     }
     //
@@ -80,19 +81,22 @@ const processCatchedElement = function (node, dbug, skipText) {
     //check the node
     if (node.offsetWidth === undefined || node.offsetHeight === undefined) {
         if (dbug) console.log(node, "invalid node");
-        node.remove();
+        //node.remove();
+        node.style.display = "none";
         return;
     }
 
     if (node.offsetWidth < 15 || node.offsetHeight < 15) {
         if (dbug) console.log(node, "too small");
-        node.remove();
+        //node.remove();
+        node.style.display = "none";
         return;
     }
 
     if (node.offsetHeight/node.offsetWidth > 20 || node.offsetWidth/node.offsetHeight > 20) {
         if (dbug) console.log(node, "shape too strange");
-        node.remove();
+        //node.remove();
+        node.style.display = "none";
         return;
     }
 
@@ -103,7 +107,8 @@ const processCatchedElement = function (node, dbug, skipText) {
     // https://github.com/dhowe/AdLiPo/issues/35
     if (oriW > 800) {
         if (dbug) console.log(node, "too big");
-        node.remove();
+        //node.remove();
+        node.style.display = "none";
         return;
     }
     let oriH = node.offsetHeight;
