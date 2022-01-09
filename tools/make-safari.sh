@@ -17,10 +17,10 @@ cp -R src/lib $DES/
 cp -R src/_locales $DES/
 cp src/*.html $DES/
 mv $DES/img/icon_128.png $DES/Icon.png
-cp ChangedFiles/platform/safari/*.js $DES/js/
-cp -R ChangedFiles/platform/safari/img $DES/
-cp ChangedFiles/platform/safari/Info.plist $DES/
-cp ChangedFiles/platform/safari/Settings.plist $DES/
+cp platform/safari/*.js $DES/js/
+cp -R platform/safari/img $DES/
+cp platform/safari/Info.plist $DES/
+cp platform/safari/Settings.plist $DES/
 cp LICENSE.txt $DES/
 
 echo "*** uBlock.safariextension: Generating Info.plist..."

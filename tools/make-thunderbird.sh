@@ -14,9 +14,9 @@ bash ./tools/copy-common-files.sh  $DES
 
 cp -R $DES/_locales/nb                 $DES/_locales/no
 
-cp ChangedFiles/platform/thunderbird/manifest.json  $DES/
-cp ChangedFiles/platform/firefox/webext.js          $DES/js/
-cp ChangedFiles/platform/firefox/vapi-webrequest.js $DES/js/
+cp platform/thunderbird/manifest.json  $DES/
+cp platform/firefox/webext.js          $DES/js/
+cp platform/firefox/vapi-webrequest.js $DES/js/
 
 # Firefox/webext-specific
 rm $DES/img/icon_128.png

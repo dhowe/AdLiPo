@@ -1,21 +1,22 @@
 {
+   "homepage_url": "http://rednoise.org/adlipo/",
   "applications": {
     "gecko": {
-      "id": "uBlock0@raymondhill.net",
-      "strict_min_version": "78.0"
+      "id": "adlipo@adlipo",
+      "strict_min_version": "65.0"
     }
   },
-  "author": "Raymond Hill & contributors",
+  "author": " ",
   "background": {
     "page": "background.html"
   },
   "browser_action": {
     "browser_style": false,
     "default_icon": {
-      "16": "img/icon_16.png",
-      "32": "img/icon_32.png"
+      "16": "image/icon-16.png",
+      "32": "image/icon-38.png"
     },
-    "default_title": "uBlock Origin",
+    "default_title": "AdLiPo",
     "default_popup": "popup.html"
   },
   "content_scripts": [
@@ -26,9 +27,11 @@
         "file://*/*"
       ],
       "js": [
+        "/js/rita-micro.js",
         "/js/vapi.js",
         "/js/vapi-client.js",
-        "/js/contentscript.js"
+        "/js/contentscript.js",
+        "/js/injectTemplate.js"
       ],
       "all_frames": true,
       "match_about_blank": true,
@@ -48,17 +51,32 @@
       ],
       "run_at": "document_idle",
       "all_frames": false
+    },
+    {
+      "matches":[
+        "https://www.washingtonpost.com/*",
+        "http://www.washingtonpost.com/*",
+        "https://www.nytimes.com/*",
+        "http://www.nytimes.com/*"
+      ],
+      "js": [
+        "/js/preventOverwrite.js"
+      ],
+      "all_frames": true,
+      "match_about_blank": true,
+      "run_at": "document_start"
     }
   ],
   "default_locale": "en",
   "description": "__MSG_extShortDesc__",
   "icons": {
-    "16": "img/ublock.svg",
-    "48": "img/ublock.svg",
-    "96": "img/ublock.svg"
+    "16": "image/icon-16.png",
+    "32": "image/icon-38.png",
+    "48": "image/icon-48.png",
+    "128": "image/icon-128.png"
   },
   "manifest_version": 2,
-  "name": "uBlock Origin",
+  "name": "AdLiPo",
   "options_ui": {
     "page": "dashboard.html",
     "browser_style": false,
@@ -73,8 +91,8 @@
     "webRequestBlocking",
     "<all_urls>"
   ],
-  "short_name": "uBlock₀",
-  "version": "1.9.15.101",
+  "short_name": "AdLiPo",
+  "version": "dev",
   "web_accessible_resources": [
     "/web_accessible_resources/*"
   ]
