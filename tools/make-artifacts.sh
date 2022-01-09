@@ -16,7 +16,7 @@ exit #tmp
 rm -rf $ARTS
 mkdir -p $ARTS
 
-./tools/make-firefox.sh
+./tools/make-firefox.sh -all
 ./tools/make-chromium.sh
 
 echo "*** AdLiPo: Copying files to $ARTS

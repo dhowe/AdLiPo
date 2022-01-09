@@ -96,6 +96,7 @@ const webext = {
         reload: promisifyNoFail(chrome.tabs, 'reload'),
         remove: promisifyNoFail(chrome.tabs, 'remove'),
         update: promisifyNoFail(chrome.tabs, 'update', tab => tab instanceof Object ? tab : null),
+        sendMessage: promisifyNoFail(chrome.tabs, 'sendMessage')
     },
     // https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/webNavigation
     webNavigation: {

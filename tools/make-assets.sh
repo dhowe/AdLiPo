@@ -13,7 +13,7 @@ if [ -n "${TRAVIS_TAG}" ]; then
 fi
 
 rm -rf $DES
-cp -R ./assets $DES/
+cp -R ublockOrigin/assets $DES/
 
 mkdir $DES/thirdparties
 cp -R ../uAssets/thirdparties/easylist-downloads.adblockplus.org $DES/thirdparties/

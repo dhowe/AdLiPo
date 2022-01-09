@@ -8,7 +8,7 @@ SRC=~/Downloads/crowdin
 rm -r $SRC
 unzip -q ~/Downloads/uBlock\ \(translations\).zip -d $SRC
 
-DES=./src/_locales
+DES=ublockOrigin/src/_locales
 cp $SRC/ar/messages.json    $DES/ar/messages.json
 cp $SRC/az/messages.json    $DES/az/messages.json
 cp $SRC/bg/messages.json    $DES/bg/messages.json
