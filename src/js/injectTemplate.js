@@ -180,7 +180,7 @@ const processCatchedElement = function (node, dbug, skipText) {
     let internalImageUrl = "web_accessible_resources/" + catagory + "/" + (climateImageMeta[catagory][randomIdx]);
     let webUrl = typeof browser === "undefined" ? chrome.runtime.getURL(internalImageUrl) : browser.runtime.getURL(internalImageUrl);
     injectedBG.style.backgroundImage = "url(" + webUrl +")";
-    injectedBG.backgroundSize = "contain";
+    injectedBG.backgroundSize = "cover";
     // --------------------------------------------------------------------
     injectedBG.style.border = "0";
     // check the origin ad setting
