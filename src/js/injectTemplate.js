@@ -1,3 +1,14 @@
+// [Climate] ---------------------------------------------------
+const climateImageMeta = {
+    "4x3": ["Test_960x720.png"],
+    "3x4": ["Test_720x960.png"],
+    "2x1": ["Test_1000x500.png"],
+    "1x2": ["Test_500x1000.png"],
+    "32x9": ["Test_1920x540.png"],
+    "9x32": ["Test_540x1920.png"],
+}
+// -------------------------------------------------------------
+
 const selectors = [];
 const recentUsed = [];
 const perPageLimit = 5;
@@ -112,6 +123,15 @@ const processCatchedElement = function (node, dbug, skipText) {
         return;
     }
     let oriH = node.offsetHeight;
+    // [Climate]-------------------------------------------------
+    let ratio = oriW/oriH;
+    if (ratio > 5 || ratio < 0.20){
+        if (dbug) console.log(node, "ratio not good for image replacement");
+        //node.remove();
+        node.style.display = "none";
+        return;
+    }
+    // ----------------------------------------------------------
     if (dbug) console.log("w: " + oriW + " , h: " + oriH);
     //
     let parentNode = node.parentElement;
@@ -129,7 +149,39 @@ const processCatchedElement = function (node, dbug, skipText) {
     // let oldStyles = window.getComputedStyle(node);
     // Array.from(oldStyles).forEach(s => injectedBG.style.setProperty(s, oldStyles.getPropertyValue(s)))
     // overwrite style:
+    // [Climate] injectedBG should be an image ----------------------------
     injectedBG.style.backgroundColor = getColor();
+    let catagory;
+    if (ratio <=5 && ratio > 3) {
+        // ratio 3-5
+        catagory = "32x9";
+    } else if (ratio > 1.5) {
+        // ratio 1.5 - 3
+        catagory = "2x1";
+    } else if (ratio > 1) {
+        // ratio 1 - 1.5
+        catagory = "4x3";
+    } else if (ratio > 0.667) {
+        // 0.667 - 1
+        catagory = "3x4";
+    } else if (ratio > 0.333) {
+        //0.333 - 0.667
+        catagory = "1x2";
+    } else if (ratio >= 0.20) {
+        //0.20 - 0.333
+        catagory = "9x32"
+    } else {
+        if (dbug) console.log(node, "ratio not good for image replacement");
+        //node.remove();
+        node.style.display = "none";
+        return;
+    }
+    let randomIdx = Math.floor(Math.random() * climateImageMeta[catagory].length);
+    let internalImageUrl = "web_accessible_resources/" + catagory + "/" + (climateImageMeta[catagory][randomIdx]);
+    let webUrl = typeof browser === "undefined" ? chrome.runtime.getURL(internalImageUrl) : browser.runtime.getURL(internalImageUrl);
+    injectedBG.style.backgroundImage = "url(" + webUrl +")";
+    injectedBG.backgroundSize = "contain";
+    // --------------------------------------------------------------------
     injectedBG.style.border = "0";
     // check the origin ad setting
     let sizeType = checkSizeType(node)
