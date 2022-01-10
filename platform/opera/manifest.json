@@ -5,8 +5,8 @@
   },
   "browser_action": {
     "default_icon": {
-      "16": "AdLiPoImage/icon-16.png",
-      "32": "AdLiPoImage/icon-38.png"
+      "16": "image/icon-16.png",
+      "32": "image/icon-38.png"
     },
     "default_popup": "popup-fenix.html",
     "default_title": "AdLiPo"
@@ -78,10 +78,10 @@
   "default_locale": "en",
   "description": "__MSG_extShortDesc__",
   "icons": {
-    "16": "AdLiPoImage/icon-16.png",
-    "32": "AdLiPoImage/icon-38.png",
-    "48": "AdLiPoImage/icon-48.png",
-    "128": "AdLiPoImage/icon-128.png"
+    "16": "image/icon-16.png",
+    "32": "image/icon-38.png",
+    "48": "image/icon-48.png",
+    "128": "image/icon-128.png"
   },
   "incognito": "split",
   "manifest_version": 2,
@@ -102,8 +102,8 @@
   "short_name": "AdLiPo",
   "sidebar_action": {
     "default_icon": {
-      "16": "AdLiPoImage/icon-16.png",
-      "32": "AdLiPoImage/icon-32.png"
+      "16": "image/icon-16.png",
+      "32": "image/icon-32.png"
     },
     "default_panel": "logger-ui.html",
     "default_title": "__MSG_statsPageName__"

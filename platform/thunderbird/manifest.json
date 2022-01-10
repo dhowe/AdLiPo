@@ -13,8 +13,8 @@
   "browser_action": {
     "browser_style": false,
     "default_icon": {
-      "16": "AdLiPoImage/icon-16.png",
-      "32": "AdLiPoImage/icon-38.png"
+      "16": "image/icon-16.png",
+      "32": "image/icon-38.png"
     },
     "default_title": "AdLiPo",
     "default_popup": "popup.html"
@@ -70,10 +70,10 @@
   "default_locale": "en",
   "description": "__MSG_extShortDesc__",
   "icons": {
-    "16": "AdLiPoImage/icon-16.png",
-    "32": "AdLiPoImage/icon-38.png",
-    "48": "AdLiPoImage/icon-48.png",
-    "128": "AdLiPoImage/icon-128.png"
+    "16": "image/icon-16.png",
+    "32": "image/icon-38.png",
+    "48": "image/icon-48.png",
+    "128": "image/icon-128.png"
   },
   "manifest_version": 2,
   "name": "AdLiPo",

@@ -6,22 +6,22 @@ DES=$1
 
 bash ./tools/make-assets.sh        $DES
 
-cp -R src/css                      $DES/
-cp -R src/img                      $DES/
-cp -R src/js                       $DES/
-cp -R src/lib                      $DES/
-cp -R src/web_accessible_resources $DES/
-# cp -R src/_locales               $DES/
-cp src/*.html                      $DES/
+cp -R ublockOrigin/src/css                      $DES/
+cp -R ublockOrigin/src/img                      $DES/
+cp -R ublockOrigin/src/js                       $DES/
+cp -R ublockOrigin/src/lib                      $DES/
+cp -R ublockOrigin/src/web_accessible_resources $DES/
+# cp -R ublockOrigin/src/_locales               $DES/
+# cp ublockOrigin/src/*.html                    $DES/
 
-#cp platform/chromium/*.js          $DES/js/
-#cp platform/chromium/*.html        $DES/
-#cp platform/chromium/*.json        $DES/
-#cp LICENSE.txt                     $DES/
+cp platform/common/*.js          $DES/js/
+# cp platform/common/*.html        $DES/
+cp platform/common/*.json        $DES/
+# cp LICENSE.txt                     $DES/
 
 # AdLiPo
-cp -R AdLiPo/_locales              $DES/
-yes | cp -R AdLiPo/src/js          $DES/
-cp -R AdLiPo/lib/*.js              $DES/js/
-cp -R AdLiPo/AdLiPoImage           $DES
-yes | cp AdLiPo/*.html             $DES/
+cp -R _locales                  $DES/
+yes | cp -R src/js                 $DES/
+cp -R lib/*.js                  $DES/js/
+cp -R image                     $DES
+yes | cp -R src/*.html             $DES/
