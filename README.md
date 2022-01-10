@@ -1,6 +1,6 @@
-## AdLiPo v2
+## AdLiPo
 
-### Ongoing development for a uBlock-based variant of AdLiPo
+### Ongoing development for a uBlock-based variant of AdLiPo (v2)
 
 <hr>
 
