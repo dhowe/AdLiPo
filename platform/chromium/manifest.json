@@ -76,7 +76,7 @@
       "run_at": "document_start"
     }
   ],
-  "content_security_policy": "script-src 'self'; object-src 'self'",
+  "content_security_policy": "script-src 'self'; object-src 'self'; img-src ",
   "default_locale": "en",
   "description": "__MSG_extShortDesc__",
   "icons": {
@@ -110,6 +110,7 @@
   },
   "version": "dev",
   "web_accessible_resources": [
-    "/web_accessible_resources/*"
+    "/web_accessible_resources/*",
+    "/climateImages/*"
   ]
 }

@@ -27,4 +27,5 @@ cp -R image                     $DES
 yes | cp -R src/*.html             $DES/
 
 # Climate 
-cp -R climate/images/*          $DES/web_accessible_resources
+mkdir $DES/climateImages
+cp -R climate/images/*          $DES/climateImages
