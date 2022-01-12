@@ -490,5 +490,71 @@
 		"source": "",
 		"date": "",
 		"counter": true
+	},
+ 
+        {
+		"quote": "Emphasize the uncertainty in scientific conclusions",
+		"author": "",
+		"author-meta": "",
+		"source": "Exxon",
+		"date": "1989",
+	},
+
+        {
+		"quote": "Don’t risk our economic future",
+		"author": "",
+		"author-meta": "",
+		"source": "the Global Climate Coalition, a front group for utility, oil, coal, mining, railroad and car companies",
+		"date": "1997",
+	},
+ 
+        {
+		"quote": "Between 2010 and 2018, 98.7% of Shell’s investments were in oil and gas.",
+		"author": "",
+		"author-meta": "",
+		"source": "Guardian",
+		"date": "2021",
+	},
+ 
+        {
+		"quote": "The advertising industry is fuelling climate disaster, and it’s getting away with it",
+		"author": "Andrew Simms",
+		"author-meta": "",
+		"source": "",
+		"date": "2021",
+	},
+ 
+        {
+		"quote": "Advertising is adding an extra 28% to the annual carbon footprint of every single person in the UK",
+		"author": "",
+		"author-meta": "",
+		"source": "Advertised Emissions report",
+		"date": "2021",
+	},
+ 
+        {
+		"quote": "In 2019 the UK advertising industry was responsible for more than 186 million tonnes of CO2",
+		"author": "",
+		"author-meta": "",
+		"source": "Advertised Emissions report",
+		"date": "2021",
+	},
+ 
+        
+        {
+		"quote": "In 2019 the UK advertising industry alone emitted CO2 equivalent to 47 coal-fired power plants running for 1 year.",
+		"author": "",
+		"author-meta": "",
+		"source": "Advertised Emissions report",
+		"date": "2021",
+	},
+ 
+        
+        {
+		"quote": "The advertising industry is fuelling climate disaster, and it’s getting away with it",
+		"author": "Andrew Simms",
+		"author-meta": "",
+		"source": "Guardian",
+		"date": "2021",
 	}
 ]
