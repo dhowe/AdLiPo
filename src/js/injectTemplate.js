@@ -23,6 +23,16 @@ const climateImageMeta = {
     "PaulSwanstorm_MountainFlyingService_800x500.jpeg","Piqsels_1001x668.jpeg",
     "PrzemystawStefaniak_Greenpeace_800x500.jpeg","UNESCO_3000x2000.jpeg","WarutChinsai_Shutterstock_3000x2000.jpeg"],
 }
+
+let climateUsedImageIndex = {
+    "4x3":[],
+    "3x4":[],
+    "2x1":[],
+    "1x2":[],
+    "32x9": [],
+    "9x32":[],
+    "others":[]
+}
 // -------------------------------------------------------------
 
 const selectors = [];
@@ -194,6 +204,23 @@ const processCatchedElement = function (node, dbug, skipText) {
     }
     // [Climate]if we dont have images for that ratio, then it should pick one from the nomatch pool
     let randomIdx = climateImageMeta[catagory].length > 1 ? Math.floor(Math.random() * climateImageMeta[catagory].length) : Math.floor(Math.random() * climateImageMeta.others.length);
+    // prevent repeat images
+    let tries = 0;
+    const triesLimit = 99;
+    if (climateImageMeta[catagory].length > 1) {
+        while(climateUsedImageIndex[catagory].length < climateImageMeta[catagory].length && climateUsedImageIndex[catagory].includes(randomIdx) && tries < triesLimit){
+            randomIdx = Math.floor(Math.random() * climateImageMeta[catagory].length);
+            tries ++;
+        }
+        if (!climateUsedImageIndex[catagory].includes(randomIdx)) climateUsedImageIndex[catagory].push(randomIdx);
+    } else {
+        while(climateUsedImageIndex.others.length < climateImageMeta.others.length && climateUsedImageIndex.others.includes(randomIdx) && tries < triesLimit) {
+            randomIdx = Math.floor(Math.random() * climateImageMeta.others.length);
+            trie ++;
+        }
+        if (!climateUsedImageIndex.others.includes(randomIdx)) climateUsedImageIndex.others.push(randomIdx);
+    }
+
     let internalImageUrl = climateImageMeta[catagory].length > 1 ? "climateImages/" + catagory + "/" + (climateImageMeta[catagory][randomIdx]).trim() : "climateImages/nomatch/" + (climateImageMeta.others[randomIdx]).trim();
     let webUrl = typeof browser === "undefined" ? chrome.runtime.getURL(internalImageUrl) : browser.runtime.getURL(internalImageUrl);
     injectedBG.style.backgroundImage = "url(" + webUrl +")";
