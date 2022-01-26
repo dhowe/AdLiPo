@@ -1,11 +1,27 @@
 // [Climate] ---------------------------------------------------
 const climateImageMeta = {
-    "4x3": ["Test_960x720.png"],
-    "3x4": ["Test_720x960.png"],
-    "2x1": ["Test_1000x500.png"],
+    "4x3": ["Alexandria_1744x1308.jpeg", "Alexandria_1744x1308.jpeg","donotdepart_3600x2700.jpeg",
+    " Mark_Wilson_Getty Images_1600x1200.jpeg","ScottOlson_GettyImages_2240x1680.png",
+    "SulimanSallehi_1600x1200.jpeg","Test_960x720.png","TomFisk_Pexels_4800x3600.jpeg",
+    "TZORTZINIS_GettyImages_2400x1600.png","WilliamWest_AFP_GettyImages_1600x1200.jpg"],
+    "3x4": ["Test_720x960.png", "ChrisLeboutillier_2400x3200.jpeg"],
+    "2x1": ["ChristianAslund_Greenpeace_1200x600.jpeg","dreamstime_3400x1700.jpeg","FuturesHub_1000x500.jpg",
+    "JaggXaxx_GettyImages_2048x1024.jpeg","Lumppini_Shutterstock_1200x600.jpeg","Mitchell_GettyImages_1600x800.jpg",
+    "Shutterstock_3900x1950.jpeg","Test_1000x500.png","UNDP_El_Salvador_1200x600.jpeg",
+    "WikipediaCommons_1600x800.jpeg"],
     "1x2": ["Test_500x1000.png"],
     "32x9": ["Test_1920x540.png"],
     "9x32": ["Test_540x1920.png"],
+    "others": ["AFP_4256x2832.jpeg","BiankaCsenki_Greenpeace_1200x800.jpeg","BrunoKelly_Greenpeace_1200x800.jpeg",
+    "ChristianBarga_Greenpeace_1200x800.jpeg","ChristopherFurlong-GettyImages_2175x1450.png","FenEdge_co_uk_1200x800.jpg",
+    "Greeenpeace_1200x791.jpeg","Harvard_1200X800.jpeg","JamesBalog2_1120x700.jpeg","JamesBalog3_1120x700.jpeg",
+    "JamesBalog4_1120x700.jpeg","JamesBalog1_1120x700.jpeg","JamesBalog5_1120x700.jpeg",
+    "JamesBalog6_1120x700.jpeg","JamesBalog7_1120x700.jpeg","JodyJohnson_1440x860.jpeg",
+    "KacperPempel_Reuters_1008x567.jpeg","KristiMcCluer-Reuters2_960x640.jpeg",
+    "MannieGarcia_Greenpeace_1200x800.jpeg","MarieJacquemin_Greenpeace_1200x800.jpeg",
+    "MichaelM.Santiago_GettyImages_3240x2160.png","MikeOsborne_TheNewYorker_960x641.png",
+    "PaulSwanstorm_MountainFlyingService_800x500.jpeg","Piqsels_1001x668.jpeg",
+    "PrzemystawStefaniak_Greenpeace_800x500.jpeg","UNESCO_3000x2000.jpeg","WarutChinsai_Shutterstock_3000x2000.jpeg"],
 }
 // -------------------------------------------------------------
 
@@ -176,8 +192,9 @@ const processCatchedElement = function (node, dbug, skipText) {
         node.style.display = "none";
         return;
     }
-    let randomIdx = Math.floor(Math.random() * climateImageMeta[catagory].length);
-    let internalImageUrl = "climateImages/" + catagory + "/" + (climateImageMeta[catagory][randomIdx]);
+    // [Climate]if we dont have images for that ratio, then it should pick one from the nomatch pool
+    let randomIdx = climateImageMeta[catagory].length > 1 ? Math.floor(Math.random() * climateImageMeta[catagory].length) : Math.floor(Math.random() * climateImageMeta.others.length);
+    let internalImageUrl = climateImageMeta[catagory].length > 1 ? "climateImages/" + catagory + "/" + (climateImageMeta[catagory][randomIdx]).trim() : "climateImages/nomatch/" + (climateImageMeta.others[randomIdx]).trim();
     let webUrl = typeof browser === "undefined" ? chrome.runtime.getURL(internalImageUrl) : browser.runtime.getURL(internalImageUrl);
     injectedBG.style.backgroundImage = "url(" + webUrl +")";
     injectedBG.style.backgroundSize = "cover";
@@ -302,7 +319,7 @@ const appendText = function(textContent, element, widthInPx, heightInPx, type, d
     cellElement.style.padding = padddingOutsideFrame;
     cellElement.style.wordBreak = "normal";
     const innerframe = document.createElement("div");
-    innerframe.style.backgroundColor = "hsla(0,0%,100%,0.2)";
+    innerframe.style.backgroundColor = "hsla(0,0%,0%,0.3)";
     innerframe.style.border = "1px solid white";
     innerframe.style.padding = padddingInsideFrame;
     innerframe.innerText = textContent
