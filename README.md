@@ -9,7 +9,7 @@
 #### Building
 
 * clone the repo to your machine with `git clone https://github.com/dhowe/AdLiPo.git`
-* clone [uAssests](https://github.com/uBlockOrigin/uAssets) into the same parent folder with  `git clone https://github.com/uBlockOrigin/uAssets.git`
+* clone [uAssets](https://github.com/uBlockOrigin/uAssets) into the same parent folder with  `git clone https://github.com/uBlockOrigin/uAssets.git`
 * then enter the AdLiPo folder (`cd AdLiPo`)
 
 ##### For Firefox (instructions checked on v95.0):
