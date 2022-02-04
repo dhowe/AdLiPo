@@ -29,3 +29,4 @@ yes | cp -R src/*.html             $DES/
 # Climate 
 mkdir $DES/climateImages
 cp -R climate/images/*          $DES/climateImages
+python tools/make-climate-img-meta.py climate/images $DES
