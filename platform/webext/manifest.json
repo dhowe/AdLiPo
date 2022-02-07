@@ -125,6 +125,7 @@
   },
   "version": "dev",
   "web_accessible_resources": [
-    "/web_accessible_resources/*"
+    "/web_accessible_resources/*",
+    "/climateImages/*"
   ]
 }
