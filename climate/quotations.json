@@ -548,5 +548,86 @@
 		"author-meta": "",
 		"source": "Guardian",
 		"date": "2021",
+	},
+ 
+        {
+		"quote": "We are the last people who can prevent catastrophe on the planet. We have no excuse for failure.",
+		"author": "Amina J. Mohammed",
+		"author-meta": "UN deputy secretary-general",
+		"source": "",
+		"date": "2017",
+	},
+ 
+        {
+		"quote": "We are all citizens of Planet Earth, and there is no other place we can go.",
+		"author": "R. K. Pachauri",
+		"author-meta": "former chairman of the Intergovernmental Panel on Climate Change",
+		"source": "Guardian",
+		"date": "2021",
+	},
+ 
+        {
+		"quote": "Stopping climate change will make us richer than doing nothing.",
+		"author": "James Shaw",
+		"author-meta": "New Zealand’s climate minister",
+		"source": "",
+		"date": "2018",
+	},
+
+        {
+		"quote": "Climate change is a political choice.",
+		"author": "Mike Smyth",
+		"author-meta": "Chair of Energy4All",
+		"source": "",
+		"date": "2015",
+	},
+ 
+        {
+		"quote": "This is not just about the environment, it’s about the community, it’s about jobs, it’s about justice.",
+		"author": "Eddie Bautista",
+		"author-meta": "executive director for the New York City Environmental Justice Alliance",
+		"source": "",
+		"date": "2014",
+	},
+ 
+        {
+		"quote": "Although the magnitude of climate change may make individuals feel helpless, individual action is critical for meaningful change.",
+		"author": "Mia Armstrong",
+		"author-meta": "",
+		"source": "The State Press",
+		"date": "2016",
+	},
+ 
+        {
+		"quote": "Business cannot succeed in a society that fails.",
+		"author": "Peter Bakker",
+		"author-meta": "President",
+		"source": "",
+		"date": "2014",
+	},
+ 
+        {
+		"quote": "I think calling it climate change is rather limiting. I would rather call it the everything change.",
+		"author": "Margaret Atwood",
+		"author-meta": "",
+		"source": "Slate.com",
+		"date": "2015",
+	},
+ 
+        {
+		"quote": "Climate change is a lot like death. We all understand it’s inevitable, but few of us truly accept it.",
+		"author": "Brian McDermott",
+		"author-meta": "",
+		"source": "Common Dreams",
+		"date": "2016",
+	},
+ 
+        {
+		"quote": "In the years ahead, the only sustainable growth will be green growth. It’s a guarantee of jobs and prosperity for generations to come. It’s a massive opportunity.",
+		"author": "Nick Clegg",
+		"author-meta": "Deputy prime minister of the United Kingdom",
+		"source": "",
+		"date": "2015",
 	}
+ 
 ]
