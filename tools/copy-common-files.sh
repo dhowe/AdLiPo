@@ -25,8 +25,3 @@ yes | cp -R src/js                 $DES/
 cp -R lib/*.js                  $DES/js/
 cp -R image                     $DES
 yes | cp -R src/*.html             $DES/
-
-# Climate 
-mkdir $DES/climateImages
-cp -R climate/images/*          $DES/climateImages
-python tools/make-climate-img-meta.py climate/images $DES

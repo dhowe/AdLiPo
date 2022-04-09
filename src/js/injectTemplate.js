@@ -1,18 +1,3 @@
-// [Climate] ---------------------------------------------------
-const validIMGFileNameRE = /([A-Za-z_0-9-]+\.(png|jpg))/
-const climateImageMeta = "TO_BE_REPLACED_BY_GENERATED_META";
-
-let climateUsedImageIndex = {
-    "4x3":[],
-    "3x4":[],
-    "2x1":[],
-    "1x2":[],
-    "32x9": [],
-    "9x32":[],
-    "nomatch":[]
-}
-// -------------------------------------------------------------
-
 const selectors = [];
 const recentUsed = [];
 const perPageLimit = 5;
@@ -127,15 +112,6 @@ const processCatchedElement = function (node, dbug, skipText) {
         return;
     }
     let oriH = node.offsetHeight;
-    // [Climate]-------------------------------------------------
-    let ratio = oriW/oriH;
-    if (ratio > 5 || ratio < 0.20){
-        if (dbug) console.log(node, "ratio not good for image replacement");
-        //node.remove();
-        node.style.display = "none";
-        return;
-    }
-    // ----------------------------------------------------------
     if (dbug) console.log("w: " + oriW + " , h: " + oriH);
     //
     let parentNode = node.parentElement;
@@ -153,71 +129,7 @@ const processCatchedElement = function (node, dbug, skipText) {
     // let oldStyles = window.getComputedStyle(node);
     // Array.from(oldStyles).forEach(s => injectedBG.style.setProperty(s, oldStyles.getPropertyValue(s)))
     // overwrite style:
-    // [Climate] injectedBG should be an image ----------------------------
     injectedBG.style.backgroundColor = getColor();
-    let catagory;
-    if (ratio <=5 && ratio > 3) {
-        // ratio 3-5
-        catagory = "32x9";
-    } else if (ratio > 1.5) {
-        // ratio 1.5 - 3
-        catagory = "2x1";
-    } else if (ratio > 1) {
-        // ratio 1 - 1.5
-        catagory = "4x3";
-    } else if (ratio > 0.667) {
-        // 0.667 - 1
-        catagory = "3x4";
-    } else if (ratio > 0.333) {
-        //0.333 - 0.667
-        catagory = "1x2";
-    } else if (ratio >= 0.20) {
-        //0.20 - 0.333
-        catagory = "9x32"
-    } else {
-        if (dbug) console.log(node, "ratio not good for image replacement");
-        //node.remove();
-        node.style.display = "none";
-        return;
-    }
-    // [Climate]if we dont have images for that ratio, then it should pick one from the nomatch pool
-    let useCatagoryPool =  climateImageMeta[catagory].length > 1;
-    let randomIdx = useCatagoryPool ? Math.floor(Math.random() * climateImageMeta[catagory].length) : Math.floor(Math.random() * climateImageMeta.nomatch.length);
-    // prevent repeat images
-    let tries = 0;
-    const triesLimit = 99;
-    if (useCatagoryPool) {
-        while(climateUsedImageIndex[catagory].length < climateImageMeta[catagory].length && climateUsedImageIndex[catagory].includes(randomIdx) && tries < triesLimit){
-            randomIdx = Math.floor(Math.random() * climateImageMeta[catagory].length);
-            tries ++;
-        }
-        if (!climateUsedImageIndex[catagory].includes(randomIdx)) {
-            climateUsedImageIndex[catagory].push(randomIdx);
-        } else {
-            useCatagoryPool = false;
-            tries = 0;
-            randomIdx = Math.floor(Math.random() * climateImageMeta.nomatch.length);
-            while(climateUsedImageIndex.nomatch.length < climateImageMeta.nomatch.length && climateUsedImageIndex.nomatch.includes(randomIdx) && tries < triesLimit) {
-                randomIdx = Math.floor(Math.random() * climateImageMeta.nomatch.length);
-                tries ++;
-            }
-            if (!climateUsedImageIndex.nomatch.includes(randomIdx)) climateUsedImageIndex.nomatch.push(randomIdx);
-        }
-    } else {
-        while(climateUsedImageIndex.nomatch.length < climateImageMeta.nomatch.length && climateUsedImageIndex.nomatch.includes(randomIdx) && tries < triesLimit) {
-            randomIdx = Math.floor(Math.random() * climateImageMeta.nomatch.length);
-            tries ++;
-        }
-        if (!climateUsedImageIndex.nomatch.includes(randomIdx)) climateUsedImageIndex.nomatch.push(randomIdx);
-    }
-
-    let internalImageUrl = useCatagoryPool ? "climateImages/" + catagory + "/" + (climateImageMeta[catagory][randomIdx]).trim() : "climateImages/nomatch/" + (climateImageMeta.nomatch[randomIdx]).trim();
-    let webUrl = typeof browser === "undefined" ? chrome.runtime.getURL(internalImageUrl) : browser.runtime.getURL(internalImageUrl);
-    injectedBG.style.backgroundImage = "url(" + webUrl +")";
-    injectedBG.style.backgroundSize = "cover";
-    injectedBG.style.backgroundOrigin = "border-box";
-    injectedBG.style.backgroundPosition = "center";
-    // --------------------------------------------------------------------
     injectedBG.style.border = "0";
     // check the origin ad setting
     let sizeType = checkSizeType(node)
@@ -300,11 +212,7 @@ const appendText = function(textContent, element, widthInPx, heightInPx, type, d
     const lineHeight = element.style.lineHeight || 'normal';
     const padding_LR = Math.min(parseInt(Math.max(2, parseInt(width)/15)), 20); // min padding is 2px max padding is 20px
     const padding_TB = Math.min(parseInt(Math.max(2, parseInt(height)/15)), 20); // min padding is 2px
-    // [Climate]--------------------------------------------------------------------------------
     const padding = element.style.padding || `${padding_TB}px ${padding_LR}px`;
-    const padddingOutsideFrame = `${padding_TB}px ${Math.min(padding_LR/2, padding_LR - 10)}px`;
-    const padddingInsideFrame = `0px ${Math.min(5,padding_LR/2)}px`;
-    // -----------------------------------------------------------------------------------------
     if (dbug) console.log("computing font size");
     let temArr = textContent.split(' ');
     temArr[temArr.length - 2] = temArr[temArr.length - 2] + "\u00A0" + temArr[temArr.length - 1];
@@ -331,18 +239,8 @@ const appendText = function(textContent, element, widthInPx, heightInPx, type, d
     noOfReplacement ++;
     cellElement.style.display = "table-cell";
     cellElement.style.verticalAlign = "middle";
-    // [Climate] --------------------------------------------------------------------
-    //cellElement.style.padding = padding;
-    cellElement.style.padding = padddingOutsideFrame;
-    cellElement.style.wordBreak = "normal";
-    const innerframe = document.createElement("div");
-    innerframe.style.backgroundColor = "hsla(0,0%,0%,0.3)";
-    innerframe.style.border = "1px solid white";
-    innerframe.style.padding = padddingInsideFrame;
-    innerframe.innerText = textContent
-    //cellElement.innerText = textContent;
-    cellElement.append(innerframe);
-    // ------------------------------------------------------------------------------
+    cellElement.style.padding = padding;
+    cellElement.innerText = textContent;
     try {
         try {
             browser.runtime.sendMessage({
