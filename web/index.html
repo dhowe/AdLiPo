@@ -1,0 +1,345 @@
+
+<html>
+<head>
+<link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/pebnfdfoickfleegcnjefombjnnncpon">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!-- META --> 
+<title>AdLiPo</title>
+<link rel="shortcut icon" href="img/favicon.ico">
+<!--link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'-->
+
+<style type="text/css">
+
+@font-face
+{
+    font-family: pagedefault;
+    src: url(./fonts/BenchNine.ttf);
+}
+/**************************
+			MAIN
+/*************************/
+html, body
+{
+	margin-left:0;
+	margin-right:0;
+	margin-top:0;
+	margin-bottom:0;
+	background-color: #8296a0;
+	background-color: #fff;
+}
+a:link 
+{
+	color: #BC7F2A;
+	color: #486EcD;
+	text-decoration: none;
+}
+a:visited 
+{
+	text-decoration: none;
+	color: #486EcD;
+}
+a:hover 
+{
+	text-decoration: none;
+	color: #486EcD;
+}
+a:active 
+{
+	text-decoration: none;
+	color: #486EcD;
+}
+/**************************
+		 CONTAINER 
+/*************************/
+
+.container
+{
+	position:relative;
+	width:700px;
+	margin:0 auto;
+}
+
+
+.mailto
+{
+	padding-top:20px;
+}
+
+.spot
+{
+    margin: 0px;
+	width: auto;
+	height: 3px
+	padding-bottom: 0px;
+	padding-top: 0px;
+	text-align: center;
+	position: relative;
+}
+.poem1
+{
+    margin: 0px;
+    width:108px;
+	height:53px;
+	top: 6px;
+	left: 526px;
+	float:left;
+	position: absolute;
+	background-color:#fffccc;
+}
+
+.poem2
+{
+    margin: 0px;
+    width:131px;
+	height:52px;
+	top: 129px;
+	left: 64px;
+	float:left;
+	position: absolute;
+	background-color:#fffccc;
+}
+
+.poem3
+{
+    margin: 0px;
+    width:431px;
+	height:52px;
+	top: 129px;
+	left: 203px;
+	float:right;
+	position: absolute;
+	background-color:#fffccc;
+}
+
+.screenshot
+{
+	text-align:center;
+	background-color:#fff;
+	padding:0px 0px 0px 0px;
+    border-width: 1px; 
+    border-color: Black;
+}
+
+.title
+{
+	text-align:center;
+	padding:0px 0px 0px 0px;
+	font-size:72px;
+	font-style:normal;
+	color:#fff;
+	font-style:normal;
+	line-height: normal;
+	width:700px;
+	font-family: pagedefault;
+}
+
+.download
+{
+	text-align:center;
+	padding-top:0px;
+	font-size:	18px;
+	color:#4484A4;
+	width:700px;
+	font-family: pagedefault;
+}
+		
+.bio
+{
+	width:576px;
+	text-align: center;
+	font-size:16px;
+	height:30px;
+	color:#718290;
+	padding-top:inherit;
+	padding-left:62px;
+	font-family: pagedefault;
+}
+
+.main
+{
+	font-size:17px;
+	color:#eee;
+	color:#718290;
+	padding-left:90px;
+	padding-top:inherit;
+	text-align:justify;
+	text-justify:inter-word;
+	width: 525px;
+	line-height: 20px;
+    font-family: pagedefault;
+}
+
+.drop
+{
+	font-size:17px;
+	color:#eee;
+    color:#718290;
+	padding-left:50px;
+	padding-top:inherit;
+	text-align:center;
+	text-justify:inter-word;
+	width: 600px;
+    font-family: pagedefault;
+}
+.credit
+{
+	height: 37px;
+    margin:0px;
+    margin-top:3px;
+    margin-bottom:0px;
+	font-size:23px;
+    color:#112230;
+	color: #BC7F2A;
+	padding-left:0px;
+	padding-top:inherit;
+	text-align:center;
+	text-justify:inter-word;
+	width: 700px;
+    font-family: pagedefault;
+    -webkit-margin-after: 0em;
+}
+.tag-line
+{
+    margin:0px;
+	font-size:19px;
+    color:#718290;
+    color:#357193;
+	padding-left:0px;
+	padding-top:5px;
+	padding-bottom:6px;
+	text-align:center;
+	text-justify:inter-word;
+	width: 700px;
+    font-family: pagedefault;
+    height: 25px;
+
+}
+.credit-media
+{
+    margin:0px;
+	font-size:16px;
+    color:#718290;
+   	color: #BC7F2A;
+	padding-left:0px;
+	padding-top:0px;
+	text-align:center;
+	text-justify:inter-word;
+	width: 700px;
+    font-family: pagedefault;
+    height: 15px;
+}
+#footer
+{
+	text-align:center;
+	margin-right:10px;	
+	margin-bottom:0px;
+	margin-top:20px;
+}
+hr{
+	border-color: #d1b38b;
+
+}
+</style>
+<style type="text/css">@font-face { font-family: custom; src: url("./fonts/BenchNine.ttf"); }</style>
+<script src="./lib/jquery-1.8.3.min.js"></script>
+<script src="./lib/text.js"></script>
+<script src="./lib/rita-1.0.67.microp5.js"></script>
+<script src="./fonts/BenchNineAll.js"></script>
+<script src="./lib/adlipo-client.js"></script>	
+
+<script>
+$(document).ready(function() {
+
+	injectAd("#poem1", 108, 53, 5);
+	injectAd("#poem2", 131, 52, 5);
+	injectAd("#poem3", 431, 52, 5);
+	
+	(function refreshRandom() {
+		var idx = Math.floor(Math.random()*3);
+		idx==0 && injectAd("#poem1", 108, 53, 5);
+		idx==1 && injectAd("#poem2", 131, 52, 5);
+		idx==2 && injectAd("#poem3", 431, 52, 5);
+		setTimeout(refreshRandom, 3000);
+	})();
+		
+});
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+		<br>
+		
+		<div class="spot">
+			<div class='poem1 adlipo.div'>
+					<a class="adlipo.a" target="new" title="AdLiPo" 
+						href="http://rednoise.org/adlipo/"><div class="adlipo.p" id="poem1"></div>
+					</a>
+			</div>
+			
+			<div class='poem2 adlipo.div'>
+					<a class="adlipo.a" target="new" title="AdLiPo" 
+						href="http://rednoise.org/adlipo/"><div class="adlipo.p" id="poem2"></div>
+					</a>
+			</div>
+			
+			<div class='poem3 adlipo.div' style="float:right;">
+					<a class="adlipo.a" target="new" title="AdLiPo" 
+						href="http://rednoise.org/adlipo/"><div class="adlipo.p" id="poem3"></div>
+					</a>
+			</div>
+			<img class="screenshot" style="border:1px solid #d1b38b;" src="./img/homepage4.jpg" height="340">
+		</div>
+		
+		<p class="tag-line"><em>'Replacing browser ads with generative language...'</em></p>
+		<p class="credit"><font size="6">AdLiPo</font>, by Daniel C. Howe</p>
+		<p class="credit-media">2014, Browser Addon / Custom Software</p>
+		
+		<p class="main">
+		AdLiPo is a browser plugin that replaces advertisements with
+		generated language art. Leveraging the ad-detection
+		techniques of popular ad-blockers, AdLiPo not only blocks ads,
+		but replaces them with calls to Javascript code that
+        <!--library (<a target="new" href="http://rednoise.org/rita">the RiTa library</a>, in this case)a--> fills the advertising regions of pages with text created in real-time. AdLiPo doesn't replace every ad, but instead makes careful selections to pique your interest. Check out the live examples above or ...
+        <!--with static or kinetic text created for the specific context (the containing page, advertising-content, and dimensions of the ad-frame).--> 
+		<br> 
+		
+		<!--For the experimental writer, the AdLiPo framework presents a unique set of spatial and thematic constraints for writing across the face of the browser. In this prototype version AdLiPo uses a Markov-like model in <a target="new" href="http://rednoise.org/rita">RiTa</a> to create Ad replacements in real-time. The model is composed of the 'description' texts from a recent <a target="new" href="http://conference.eliterature.org/2014/media">digital writing conference</a>, seasoned liberally with quotations from the likes of Marx and the Marquis de Sade... 
+		<br--> 
+		</p>
+		<!--p class="drop">
+		Drop me a <a href="http://rednoise.org/adlipo/mail.html" onmouseover="this.href=&#39;mai&#39; + &#39;lto:&#39; + &#39;daniel&#39; + &#39;@&#39; + &#39;rednoise.org?subject=Re: contact link&#39;">note</a> if you have an idea about using AdLiPo in one of your own projects...
+		</p>
+		
+		
+		<br-->
+		   <div class="download"><a title="Install AdLiPo" id="install-link" onclick="chrome.webstore.install(); return false;" href="https://chrome.google.com/webstore/detail/adlipo/pebnfdfoickfleegcnjefombjnnncpon?hl=en" target=_blank>Install for Chrome (beta v0.48)</a></div><div class="spot"><a title="Install AdLiPo" id="install-link" onclick="chrome.webstore.install(); return false;" href="https://chrome.google.com/webstore/detail/adlipo/pebnfdfoickfleegcnjefombjnnncpon?hl=en" target=_blank><img src="./img/adlipo.png" alt="" align="center"></a></div>
+		   <!--div class="download"><a title="Install AdLiPo" id="install-link" onclick="chrome.webstore.install(); return false;" href="http://rednoise.org/adlipo/adlipo.crx">Install for Chrome (beta v0.48)</a></div><div class="spot"><a title="Install AdLiPo" id="install-link" onclick="chrome.webstore.install(); return false;" href="http://rednoise.org/adlipo/adlipo.crx"><img src="./img/adlipo.png" alt="" align="center"></a></div-->
+		<p class="main" style="margin-left:0px">
+       <br>&nbsp;<br>  * Note: &nbsp; The current version of AdLiPo will automatically install <a target="new" href="https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom?hl=en">AdBlock</a>. If you are using another adblocker, you will need to disable it. Also, on some platforms, you may need to restart your browser after installing
+        </p>
+		<hr width=81%>   
+		       
+		<p class="bio">
+		Daniel C. Howe (<a href="http://rednoise.org/adlipo/mail.html" onmouseover="this.href=&#39;mai&#39; + &#39;lto:&#39; + &#39;daniel&#39; + &#39;@&#39; + &#39;rednoise.org?subject=Re: AdLiPo&#39;">daniel@rednoise.org</a>) is an artist, writer, & critical technologist. <!--whose work focuses on networked systems for sound and text, and on the social and political implications of computational media. -->He lives in Hong Kong & New York.  
+		</p>
+	 
+	</div>   
+	     
+	<div style="clear:both;"></div>   
+	
+	
+	<!-- FOOTER -->
+	
+	<div id="footer">
+	 <p id="mailto">
+	    <a href="http://rednoise.org/adlipo/mail.html" onmouseover="this.href=&#39;mai&#39; + &#39;lto:&#39; + &#39;daniel&#39; + &#39;@&#39; + &#39;rednoise.org?subject=Re: AdLiPo&#39;"><img src="./img/email.png" width="50" height="36"></a>
+	  </p>
+	</div>
+
+
+</body></html>
